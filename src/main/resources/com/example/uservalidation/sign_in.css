@@ -1,0 +1,130 @@
+.back-signIn {
+    -fx-background-color:#0F0A05;
+}
+
+.signInTop-butt {
+    -fx-background-color:#DCA523;
+}
+
+.email-signIn {
+    -fx-background-color: #221D19;
+}
+
+.email-signIn:focused{
+    -fx-border-width: 0 0 2 0;
+    -fx-border-color: #DCA523;
+    -fx-border-radius: 10;
+    -fx-text-inner-color:white;
+}
+
+.password-signIn {
+    -fx-background-color: #221D19;
+}
+
+.password-signIn:focused{
+    -fx-border-width: 0 0 2 0;
+    -fx-border-color: #DCA523;
+    -fx-border-radius: 10;
+    -fx-text-inner-color:white;
+}
+
+.signInSwitch {
+    -fx-background-color:#DCA523;
+}
+
+.sign-in-link {
+    -fx-text-fill:#DCA523;
+}
+
+.sign-in-link:hover {
+    -fx-underline: true;
+    -fx-text-fill:#b6891a;
+}
+
+
+
+
+
+
+
+
+
+
+
+.back-signUp {
+    -fx-background-color:#0F0A05;
+}
+
+.signUpTop-butt {
+    -fx-background-color:#DCA523;
+}
+
+
+.firstName-signUp {
+    -fx-background-color: #221D19;
+}
+
+.firstName-signUp:focused{
+    -fx-border-width: 0 0 2 0;
+    -fx-border-color: #DCA523;
+    -fx-border-radius: 10;
+    -fx-text-inner-color:white;
+}
+
+.lastName-signUp {
+    -fx-background-color: #221D19;
+}
+
+.lastName-signUp:focused{
+    -fx-border-width: 0 0 2 0;
+    -fx-border-color: #DCA523;
+    -fx-border-radius: 10;
+    -fx-text-inner-color:white;
+}
+
+.userName-signUp {
+    -fx-background-color: #221D19;
+}
+
+.userName-signUp:focused{
+    -fx-border-width: 0 0 2 0;
+    -fx-border-color: #DCA523;
+    -fx-border-radius: 10;
+    -fx-text-inner-color:white;
+}
+
+.email-signUp {
+    -fx-background-color: #221D19;
+}
+
+.email-signUp:focused{
+    -fx-border-width: 0 0 2 0;
+    -fx-border-color: #DCA523;
+    -fx-border-radius: 10;
+    -fx-text-inner-color:white;
+}
+
+.password-signUp {
+    -fx-background-color: #221D19;
+}
+
+.password-signUp:focused{
+    -fx-border-width: 0 0 2 0;
+    -fx-border-color: #DCA523;
+    -fx-border-radius: 10;
+    -fx-text-inner-color:white;
+}
+
+.signUpSwitch {
+    -fx-background-color:#DCA523;
+}
+
+.sign-up-link {
+    -fx-text-fill:#DCA523;
+}
+
+.sign-up-link:hover {
+    -fx-text-fill:#b6891a;
+    -fx-underline: true;
+}
+

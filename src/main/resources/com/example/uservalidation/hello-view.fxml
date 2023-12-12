@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.uservalidation.HelloController">
+   <children>
+      <AnchorPane fx:id="signInForm" prefHeight="800.0" prefWidth="1280.0" styleClass="back-signIn" stylesheets="@sign_in.css">
+         <children>
+            <ImageView fitHeight="75.0" fitWidth="66.0" layoutX="42.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@wwww.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="110.0" layoutY="24.0" prefHeight="46.0" prefWidth="126.0" text="WATCH IT" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+            <Button fx:id="topSignInButton" alignment="CENTER" contentDisplay="CENTER" layoutX="1084.0" layoutY="26.0" lineSpacing="1.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="38.0" prefWidth="166.0" styleClass="signInTop-butt" stylesheets="@sign_in.css" text="Create Account" AnchorPane.rightAnchor="29.59999999999991">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Button>
+            <Label layoutX="412.0" layoutY="152.0" prefHeight="54.0" prefWidth="414.0" text="Sign In to your Account" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="37.0" />
+               </font>
+            </Label>
+            <Label contentDisplay="CENTER" layoutX="413.0" layoutY="217.0" prefHeight="34.0" prefWidth="326.0" text="Enter your registered email and password" textFill="#c1bdb9" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <TextField fx:id="emailSignIn" layoutX="412.0" layoutY="352.0" onMouseClicked="#emailWriting" prefHeight="34.0" prefWidth="466.0" promptText="Email" styleClass="email-signIn" stylesheets="@sign_in.css">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </TextField>
+            <PasswordField fx:id="passwordSignIn" layoutX="412.0" layoutY="433.0" onMouseClicked="#passwordWriting" prefHeight="34.0" prefWidth="466.0" promptText="Password" styleClass="password-signIn" stylesheets="@sign_in.css">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </PasswordField>
+            <Label layoutX="413.0" layoutY="316.0" prefHeight="34.0" prefWidth="46.0" text="Email:" textFill="WHITE">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <Label layoutX="412.0" layoutY="399.0" prefHeight="34.0" prefWidth="80.0" text="Password:" textFill="WHITE">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <Button fx:id="submitSignIn" layoutX="412.0" layoutY="553.0" mnemonicParsing="false" onAction="#signIn" prefHeight="46.0" prefWidth="466.0" styleClass="signInSwitch" stylesheets="@sign_in.css" text="Sign In">
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Label layoutX="531.0" layoutY="613.0" text="Don’t have an account?" textFill="WHITE">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Hyperlink fx:id="signInHyper" layoutX="697.0" layoutY="612.0" onAction="#switchForm" styleClass="sign-in-link" stylesheets="@sign_in.css" text="Sign Up" textFill="#dca523">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Hyperlink>
+            <Label fx:id="emailValid" layoutX="733.0" layoutY="386.0" prefHeight="26.0" prefWidth="154.0" text="This field is required" textFill="#dc0f0f" visible="false">
+               <font>
+                  <Font name="Roboto" size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="passwordValid" layoutX="733.0" layoutY="467.0" prefHeight="26.0" prefWidth="154.0" text="This field is required" textFill="#dc0f0f" visible="false">
+               <font>
+                  <Font name="Roboto" size="16.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="signUpForm" prefHeight="800.0" prefWidth="1280.0" styleClass="back-signUp" stylesheets="@sign_in.css" visible="false">
+         <children>
+            <ImageView fitHeight="75.0" fitWidth="66.0" layoutX="42.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@wwww.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="108.0" layoutY="28.0" prefHeight="35.0" prefWidth="126.0" text="WATCH IT" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+            <Button fx:id="topSingUpButton" alignment="CENTER" contentDisplay="CENTER" layoutX="1127.0" layoutY="26.0" lineSpacing="1.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="38.0" prefWidth="120.0" styleClass="signUpSwitch" stylesheets="@sign_in.css" text="Sign In" AnchorPane.rightAnchor="33.0">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Button>
+            <Label layoutX="411.0" layoutY="106.0" prefHeight="54.0" prefWidth="414.0" text="Create your Account" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="37.0" />
+               </font>
+            </Label>
+            <Label contentDisplay="CENTER" layoutX="411.0" layoutY="166.0" prefHeight="34.0" prefWidth="395.0" text="Enter an email and password to create your account" textFill="#c1bdb9" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <TextField fx:id="emailSignUp" layoutX="412.0" layoutY="397.0" onMouseClicked="#emailUpWriting" prefHeight="34.0" prefWidth="466.0" promptText="Email" styleClass="email-signUp" stylesheets="@sign_in.css">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </TextField>
+            <PasswordField fx:id="passwordSignUp" layoutX="412.0" layoutY="478.0" onMouseClicked="#passwordUpWriting" prefHeight="34.0" prefWidth="466.0" promptText="Password" styleClass="password-signUp" stylesheets="@sign_in.css">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </PasswordField>
+            <Label layoutX="413.0" layoutY="361.0" prefHeight="34.0" prefWidth="46.0" text="Email:" textFill="WHITE">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <Label layoutX="412.0" layoutY="444.0" prefHeight="34.0" prefWidth="80.0" text="Password:" textFill="WHITE">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <Button fx:id="submitSignUp" layoutX="412.0" layoutY="555.0" mnemonicParsing="false" onAction="#signUp" prefHeight="46.0" prefWidth="466.0" styleClass="signUpSwitch" stylesheets="@sign_in.css" text="Next">
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Label layoutX="533.0" layoutY="609.0" text="Already have an account?" textFill="WHITE">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Hyperlink fx:id="signUpHyper" layoutX="714.0" layoutY="606.0" onAction="#switchForm" styleClass="sign-up-link" stylesheets="@sign_in.css" text="Sign In" textFill="#dca523">
+               <font>
+                  <Font name="System Bold" size="15.5" />
+               </font>
+            </Hyperlink>
+            <TextField fx:id="firstNameSignUp" layoutX="413.0" layoutY="240.0" onMouseClicked="#firstNameWriting" prefHeight="37.0" prefWidth="209.7" promptText="First Name" styleClass="firstName-signUp" stylesheets="@sign_in.css">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="lastNameSignUp" layoutX="667.0" layoutY="240.0" onMouseClicked="#lastNameWriting" prefHeight="37.0" prefWidth="209.7" promptText="Last Name" styleClass="lastName-signUp" stylesheets="@sign_in.css">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="userNameSignUp" layoutX="413.0" layoutY="316.0" onMouseClicked="#userNameWriting" prefHeight="37.0" prefWidth="466.0" promptText="Username" styleClass="userName-signUp" stylesheets="@sign_in.css">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </TextField>
+            <Label layoutX="412.0" layoutY="209.0" prefHeight="34.0" prefWidth="80.0" text="Full Name:" textFill="WHITE">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <Label layoutX="413.0" layoutY="285.0" prefHeight="34.0" prefWidth="88.0" text="Username:" textFill="WHITE">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <Label fx:id="fullNameValid" layoutX="726.0" layoutY="278.0" prefHeight="26.0" prefWidth="154.0" textFill="#dc0f0f" visible="false">
+               <font>
+                  <Font name="Roboto" size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="passwordSignUpValid" layoutX="736.0" layoutY="514.0" prefHeight="26.0" prefWidth="148.0" textFill="#dc0f0f" visible="false">
+               <font>
+                  <Font name="Roboto" size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="emailSignUpValid" layoutX="736.0" layoutY="433.0" prefHeight="26.0" prefWidth="148.0" textFill="#dc0f0f" visible="false">
+               <font>
+                  <Font name="Roboto" size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="userNameValid" layoutX="736.0" layoutY="352.0" prefHeight="26.0" prefWidth="148.0" textFill="#dc0f0f">
+               <font>
+                  <Font name="Roboto" size="16.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
