@@ -2,7 +2,7 @@ package com.example.uservalidation;
 
 import java.util.ArrayList;
 
-public class movie extends  mediaitem{
+public class Movie extends  mediaitem{
    private int year;
    private float runningtime;
    private String movieDescription;
@@ -12,11 +12,11 @@ public class movie extends  mediaitem{
 
    //objects
    //Genre genre = new Genre();
-   movie instancemovie = new movie();
+   Movie instancemovie = new Movie();
 
    //constructor
-   public movie(){}
-   public movie(int movieId, String title, ArrayList<String> types, String language, String country, float imdbscore, int year, float runningtime, String movieDescription, float budget, float revenue){
+   public Movie(){}
+   public Movie(int movieId, String title, ArrayList<String> types, String language, String country, float imdbscore, int year, float runningtime, String movieDescription, float budget, float revenue){
        super(movieId,title,types,language,country,imdbscore);
        this.year=year;
        this.runningtime=runningtime;
@@ -94,7 +94,7 @@ public class movie extends  mediaitem{
        }*/
    //}
 
-  // public void addCast(){
+  //public void addCast(){
 
-  // }
+   //}
 }
