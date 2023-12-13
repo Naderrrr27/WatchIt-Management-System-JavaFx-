@@ -3,7 +3,6 @@ package com.example.uservalidation;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.HashMap;
-
 public class Subscription {
     private String subscriptionPlan ;
     private int price ;
