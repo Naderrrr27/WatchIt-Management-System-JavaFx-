@@ -15,6 +15,9 @@ public class Season {
         this.imdbScore = imdbScore;
         this.description = description;
     }
+    public ArrayList<Episode> getEpisodes() {
+        return episodes;
+    }
 
     public float getImdbScore() {
         return imdbScore;
