@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class HelloApplication extends Application {
 
-    public static int x=0;
+
 
     public static ArrayList<User> users = new ArrayList<>();
 
@@ -23,12 +23,6 @@ public class HelloApplication extends Application {
 
         users.get(0).getInfo();
         users.get(1).getInfo();
-
-//        User user1=new User("Ahmed","Nader","_Naderr","ahmed412naderr@gmail.com","12345678");
-//        User user2=new User("Farrah","Sherif","_Farrah","farrah23sherif@gmail.com","87654321");
-//        user1.getInfo();
-//        System.out.println("##################");
-//        user2.getInfo();
 
 
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));

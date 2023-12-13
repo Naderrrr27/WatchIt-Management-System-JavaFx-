@@ -126,43 +126,31 @@ public class HelloController implements Initializable {
 
     public boolean isUsernameExist()
     {
-//        for (User itt : HelloApplication.users)
-//        {
-//            if(userNameSignUp.getText().equals(itt.getUserName()))
-//            {
-//                System.out.println(userNameSignUp.getText());
-//                System.out.println(itt.getUserName());
-//
-//                return true;
-////            }
-//
-//        }
-        for (int i=0;i<HelloApplication.users.size();i++)
+        for (User itt : HelloApplication.users)
         {
-            if(userNameSignUp.getText().equals(HelloApplication.users.get(i).getUserName()))
+            if(userNameSignUp.getText().equals(itt.getUserName()))
             {
+                System.out.println(userNameSignUp.getText());
+                System.out.println(itt.getUserName());
+
                 return true;
             }
+
         }
+
         return false;
     }
 
     public boolean isEmailExist()
     {
-//        for (User it : HelloApplication.users)
-//        {
-//            if(emailSignUp.getText().equals(it.getEmail()))
-//            {
-//                return true;
-//            }
-//        }
-        for (int i=0;i<HelloApplication.users.size();i++)
+        for (User it : HelloApplication.users)
         {
-            if(emailSignUp.getText().equals(HelloApplication.users.get(i).getEmail()))
+            if(emailSignUp.getText().equals(it.getEmail()))
             {
                 return true;
             }
         }
+
         return false;
     }
 
