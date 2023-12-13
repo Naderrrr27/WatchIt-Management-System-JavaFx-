@@ -4,5 +4,11 @@ import java.util.ArrayList;
 
 public class TVshow {
     private ArrayList<Season> seasons;
-    
+
+    public static class mediaitem {
+
+
+
+
+    }
 }
