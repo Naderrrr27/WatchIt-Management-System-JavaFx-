@@ -1,5 +1,7 @@
 package com.example.uservalidation;
 
+import org.controlsfx.control.tableview2.filter.filtereditor.SouthFilter;
+
 import java.util.ArrayList;
 
 public class Movie extends  mediaitem{
@@ -90,7 +92,20 @@ public class Movie extends  mediaitem{
                genre.addForKidsMovie(instancemovie);
        }
    }
-  public void addCast(Cast castt){
-       cast.add(castt);
+
+       public void displaydetails(){
+           System.out.println(getTitle());
+           System.out.print("Movie"+" ");
+           displaytypes();
+           System.out.println(" "+getYear());
+           System.out.println("Running time: "+getRunningtime());
+           System.out.println(getMovieDescription());
+           displaycast();
+           System.out.println("Rating: "+getRate());
+           System.out.println("Imdb score: " + getImdbScore());
+           System.out.println("language: "+getLanguage());
+           System.out.println("country: "+getCountry());
+           System.out.println("Budget: " +getBudget());
+           System.out.println("Revenue"+getRevenue());
            }
 }
