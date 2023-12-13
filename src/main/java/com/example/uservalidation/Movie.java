@@ -11,7 +11,7 @@ public class Movie extends  mediaitem{
    private float revenue;
 
    //objects
-   //Genre genre = new Genre();
+   //Genra genre = new Genra();
    Movie instancemovie = new Movie();
 
    //constructor
