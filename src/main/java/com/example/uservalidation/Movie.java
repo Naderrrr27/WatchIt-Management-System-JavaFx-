@@ -11,7 +11,7 @@ public class Movie extends  mediaitem{
    private float revenue;
 
    //objects
-   //Genra genre = new Genra();
+   Genra genre = new Genra();
    Movie instancemovie = new Movie();
 
    //constructor
@@ -72,27 +72,27 @@ public class Movie extends  mediaitem{
    }
 
 
- /*  public  void addgenre(){
+  public  void addgenre(){
        for (int i =0 ; i< types.size();i++){
            if(types.get(i).equals("drama"))
-               genre.setDramaMovies(instancemovie);
+               genre.addDramaMovie(instancemovie);
            else if (types.get(i).equals("comedy"))
-               genre.setComedyMovies(instancemovie);
+               genre.addComedyMovie(instancemovie);
            else if (types.get(i).equals("action"))
-               genre.setActionMovies(instancemovie);
+               genre.addActionyMovie(instancemovie);
            else if (types.get(i).equals("romance"))
-               genre.setRomanceMovies(instancemovie);
+               genre.addRomanceMovie(instancemovie);
            else if (types.get(i).equals("horror"))
-               genre.setHorrorMovies(instancemovie);
+               genre.addHorrorMovie(instancemovie);
            else if (types.get(i).equals("international"))
-               genre.setInternationalMovies(instancemovie);
+               genre.addInternationalMovie(instancemovie);
            else if (types.get(i).equals("social"))
-               genre.setSocialMovies(instancemovie);
+               genre.addSocialMovie(instancemovie);
            else if (types.get(i).equals("forkids"))
-               genre.setForKidsMovies(instancemovie);
+               genre.addForKidsMovie(instancemovie);
 
-       }*/
-   //}
+       }
+   }
 
   //public void addCast(){
 
