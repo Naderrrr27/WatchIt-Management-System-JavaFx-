@@ -5,13 +5,13 @@ import java.util.ArrayList;
 
 public class Cast {
     // declaring
-    String firstName;
-    String lastName;
-    Byte actorAge;
-    static ArrayList<Movie> actedMovie = new ArrayList();
-    static ArrayList<Tvshow> actedTvShow = new ArrayList();
-    String actorNationality;
-    String actorJob;
+    private String firstName;
+    private String lastName;
+    private Byte actorAge;
+    private static ArrayList<Movie> actedMovie = new ArrayList();
+    private static ArrayList<TVshow> actedTvShow = new ArrayList();
+    private String actorNationality;
+    private String actorJob;
 
     // constructor
     Cast(String fname, String lName, Byte age, String nationality, String job) {
@@ -39,7 +39,7 @@ public class Cast {
         actedMovie = newActedMovie;
     }
 
-    public void setActedTvShow(ArrayList<Tvshow> newActedTvShow) {
+    public void setActedTvShow(ArrayList<TVshow> newActedTvShow) {
         actedTvShow = newActedTvShow;
     }
 
@@ -74,13 +74,13 @@ public class Cast {
 
     // display methods
     public static void displayActedMovie() {for (Movie movie : actedMovie) {
-        System.out.println(Movie.getTitle());
+        System.out.println(movie.getTitle());
     }
     }
     // display for the Tv show
     public static void displayActedTvShow(){
-        for(Tvshow tvShow: actedTvShow){
-            System.out.println(Tvshow.getTitle());
+        for(TVshow tvshow : actedTvShow){
+         //   System.out.println(tvshow.getTitle());
         }
     }
 }

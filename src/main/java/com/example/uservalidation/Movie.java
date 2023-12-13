@@ -1,5 +1,7 @@
 package com.example.uservalidation;
 
+import org.controlsfx.control.tableview2.filter.filtereditor.SouthFilter;
+
 import java.util.ArrayList;
 
 public class Movie extends  mediaitem{
@@ -11,7 +13,7 @@ public class Movie extends  mediaitem{
    private float revenue;
 
    //objects
-   //Genra genre = new Genra();
+   Genra genre = new Genra();
    Movie instancemovie = new Movie();
 
    //constructor
@@ -70,31 +72,40 @@ public class Movie extends  mediaitem{
        for (Byte rating : ratings) sum += rating;
        return (sum/ratings.size());
    }
-
-
- /*  public  void addgenre(){
+  public  void addgenre(){
        for (int i =0 ; i< types.size();i++){
            if(types.get(i).equals("drama"))
-               genre.setDramaMovies(instancemovie);
+               genre.addDramaMovie(instancemovie);
            else if (types.get(i).equals("comedy"))
-               genre.setComedyMovies(instancemovie);
+               genre.addComedyMovie(instancemovie);
            else if (types.get(i).equals("action"))
-               genre.setActionMovies(instancemovie);
+               genre.addActionyMovie(instancemovie);
            else if (types.get(i).equals("romance"))
-               genre.setRomanceMovies(instancemovie);
+               genre.addRomanceMovie(instancemovie);
            else if (types.get(i).equals("horror"))
-               genre.setHorrorMovies(instancemovie);
+               genre.addHorrorMovie(instancemovie);
            else if (types.get(i).equals("international"))
-               genre.setInternationalMovies(instancemovie);
+               genre.addInternationalMovie(instancemovie);
            else if (types.get(i).equals("social"))
-               genre.setSocialMovies(instancemovie);
+               genre.addSocialMovie(instancemovie);
            else if (types.get(i).equals("forkids"))
-               genre.setForKidsMovies(instancemovie);
+               genre.addForKidsMovie(instancemovie);
+       }
+   }
 
-       }*/
-   //}
-
-  //public void addCast(){
-
-   //}
+       public void displaydetails(){
+           System.out.println(getTitle());
+           System.out.print("Movie"+" ");
+           displaytypes();
+           System.out.println(" "+getYear());
+           System.out.println("Running time: "+getRunningtime());
+           System.out.println(getMovieDescription());
+           displaycast();
+           System.out.println("Rating: "+getRate());
+           System.out.println("Imdb score: " + getImdbScore());
+           System.out.println("language: "+getLanguage());
+           System.out.println("country: "+getCountry());
+           System.out.println("Budget: " +getBudget());
+           System.out.println("Revenue"+getRevenue());
+           }
 }

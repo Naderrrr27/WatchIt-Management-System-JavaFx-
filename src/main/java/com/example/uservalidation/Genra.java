@@ -13,14 +13,14 @@ public class Genra {
     private static ArrayList<Movie> socialMovie = new ArrayList();
     private static  ArrayList<Movie> forkidsMovie = new ArrayList();
     // declaring parameters for TV show
-    private static ArrayList<Tvshow> dramaTvShow = new ArrayList();
-    private static  ArrayList<Tvshow> comedyTvShow = new ArrayList();
-    private static ArrayList<Tvshow> romanceTvShow = new ArrayList();
-    private static ArrayList<Tvshow> actionTvShow = new ArrayList();
-    private static  ArrayList<Tvshow> horrorTvShow = new ArrayList();
-    private static ArrayList<Tvshow> internationalTvShow = new ArrayList();
-    private static ArrayList<Tvshow> socialTvShow = new ArrayList();
-    private static ArrayList<Tvshow> forkidsTvShow = new ArrayList();
+    private static ArrayList<TVshow> dramaTvShow = new ArrayList();
+    private static  ArrayList<TVshow> comedyTvShow = new ArrayList();
+    private static ArrayList<TVshow> romanceTvShow = new ArrayList();
+    private static ArrayList<TVshow> actionTvShow = new ArrayList();
+    private static  ArrayList<TVshow> horrorTvShow = new ArrayList();
+    private static ArrayList<TVshow> internationalTvShow = new ArrayList();
+    private static ArrayList<TVshow> socialTvShow = new ArrayList();
+    private static ArrayList<TVshow> forkidsTvShow = new ArrayList();
 
     //using the default constructor
     // Method Movies
@@ -49,119 +49,119 @@ public class Genra {
         forkidsMovie.add(movie);
     }
     // Method Tvshow
-    public void addDramaTvshowe(Tvshow tvshow ) {
+    public void addDramaTvshowe(TVshow tvshow ) {
         dramaTvShow.add(tvshow);
     }
-    public void addComedyTvShow(Tvshow tvshow) {
+    public void addComedyTvShow(TVshow tvshow) {
         comedyTvShow.add(tvshow);
     }
-    public void addRomanceTvshowe(Tvshow tvshow){romanceTvShow.add(tvshow);}
-    public void addActionyTvShow(Tvshow tvshow){
+    public void addRomanceTvshowe(TVshow tvshow){romanceTvShow.add(tvshow);}
+    public void addActionyTvShow(TVshow tvshow){
         actionTvShow.add(tvshow);
     }
-    public void addHorrorTvShow(Tvshow tvshow) {
+    public void addHorrorTvShow(TVshow tvshow) {
         horrorTvShow.add(tvshow);
     }
-    public void addInternationalTvShow(Tvshow tvshow){
+    public void addInternationalTvShow(TVshow tvshow){
         internationalTvShow.add(tvshow);
 
     }
-    public void addSocialTvShow(Tvshow tvshow) {
+    public void addSocialTvShow(TVshow tvshow) {
         socialTvShow.add(tvshow);
     }
-    public void addForKidsTvShow(Tvshow tvshow) {
+    public void addForKidsTvShow(TVshow tvshow) {
         forkidsTvShow.add(tvshow);
     }
     // getters for the Movies
     public static void displayDramaMovies(){
         for(Movie movie:dramaMovie){
-            System.out.println(Movie.getTitle());
+            System.out.println(movie.getTitle());
         }
     }
     public static void displayComedyMovie() {
         for(Movie movie:comedyMovie){
-            System.out.println(Movie.getTitle());
+            System.out.println(movie.getTitle());
         }
     }
     public static void displayRomanceMovie() {
         for (Movie movie : romancMovie) {
-            System.out.println(Movie.getTitle());
+            System.out.println(movie.getTitle());
         }
     }
     public static void  displayActionMovie() {
         for (Movie movie : actionMovie) {
-            System.out.println(Movie.getTitle());
+            System.out.println(movie.getTitle());
         }
     }
     public static void displayHorrorMovie(){
         for(Movie movie:horrorMovie){
-            System.out.println(Movie.getTitle());
+            System.out.println(movie.getTitle());
         }
     }
 
     public static void  displayInternationalMovie() {
         for(Movie movie:internationalMovie){
-            System.out.println(Movie.getTitle());
+            System.out.println(movie.getTitle());
         }
     }
 
     public static void  displaySocialMovie() {
         for (Movie movie : socialMovie) {
-            System.out.println(Movie.getTitle());
+            System.out.println(movie.getTitle());
         }
     }
     public static void displayForkidsMovie() {
         for(Movie movie:forkidsMovie){
-            System.out.println(Movie.getTitle());
+            System.out.println(movie.getTitle());
         }
     }
     // display for the TV Show
 
 
     public static void displayDramaTvShow() {
-        for(Tvshow tvshow :dramaTvShow){
-            System.out.println(Tvshow.getTitle());
+        for(TVshow tvshow :dramaTvShow){
+          //  System.out.println(TVshow.getTitle());
         }
     }
 
     public static void displayComedyTvShow() {
-        for(Tvshow tvshow :comedyTvShow){
-            System.out.println(Tvshow.getTitle());
+        for(TVshow tvshow :comedyTvShow){
+           // System.out.println(TVshow.getTitle());
         }
     }
     public static void displayromanceTvShow(){
-        for(Tvshow tvshow :romanceTvShow){
-            System.out.println(Tvshow.getTitle());
+        for(TVshow tvshow :romanceTvShow){
+            //System.out.println(TVshow.getTitle());
         }
     }
 
     public static void  displayActionTvShow() {
-        for(Tvshow tvshow :actionTvShow){
-            System.out.println(Tvshow.getTitle());
+        for(TVshow tvshow :actionTvShow){
+           // System.out.println(TVhow.getTitle());
         }
     }
 
     public static void  displayHorrorTvShow() {
-        for(Tvshow tvshow :horrorTvShow){
-            System.out.println(Tvshow.getTitle());
+        for(TVshow tvshow :horrorTvShow){
+           // System.out.println(TVshow.getTitle());
         }
     }
 
     public static void displayInternationalTvShow() {
-        for(Tvshow tvshow :internationalTvShow){
-            System.out.println(Tvshow.getTitle());
+        for(TVshow tvshow :internationalTvShow){
+           // System.out.println(TVshow.getTitle());
         }
     }
 
     public static void displaySocialTvShow() {
-        for(Tvshow tvshow :socialTvShow){
-            System.out.println(Tvshow.getTitle());
+        for(TVshow tvshow :socialTvShow){
+           //System.out.println(TVshow.getTitle());
         }
     }
 
     public static void  displayForkidsTvShow() {
-        for(Tvshow tvshow :forkidsTvShow){
-            System.out.println(Tvshow.getTitle());
+        for(TVshow tvshow :forkidsTvShow){
+           // System.out.println(TVshow.getTitle());
         }
     }
 }

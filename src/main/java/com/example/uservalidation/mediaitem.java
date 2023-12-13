@@ -1,6 +1,7 @@
 package com.example.uservalidation;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public abstract class mediaitem {
 
@@ -11,8 +12,7 @@ public abstract class mediaitem {
     protected float imdbScore;
     protected ArrayList<Byte> ratings = new ArrayList<>();
     protected ArrayList<String> types = new ArrayList<>();
-    //protected Arraylist<Cast> cast;
-    //protected Director directorr;
+    protected ArrayList<Cast> cast;
 //constructor
     public mediaitem(){}
     public mediaitem(int mediaitemid, String title, ArrayList<String> types, String language , String country, float imdbScore){
@@ -25,8 +25,8 @@ public abstract class mediaitem {
     }
 
     //abstract methodes
-    //public abstract void addgenre();
-   // public abstract void addCast();
+    public abstract void addgenre();
+    public abstract void displaydetails();
     //setters
     public void setMediaitemid(int mediaitemid) {
         this.mediaitemid = mediaitemid;
@@ -54,6 +54,9 @@ public abstract class mediaitem {
     public void setRatings(ArrayList<Byte> ratings) {
         this.ratings = ratings;
     }
+    public  void addCast(Cast castt){
+        cast.add(castt);
+    }
 
     //getters
     public int getMediaitemid() {return mediaitemid;}
@@ -63,17 +66,24 @@ public abstract class mediaitem {
     public float getImdbScore() {return imdbScore;}
     public ArrayList<String> getTypes() {return types;}
 
-    public void displayTypes() {
-        System.out.println("Types for " + getTitle() + ":");
-        for (String type : types) {
-            System.out.println(type);
+    public void displaycast(){
+        for(Cast it: cast){
+            if(it.getActorJob().equals("Director:")) {
+                System.out.println("Director:" + it.getFirstName() + " " + it.getLastName());
+               // System.out.println("Director's Nationality: "+it.getActorNationality());
+                //System.out.println("Director's Age: "+ it.getActorAge());
+            }
+            else if(it.getActorJob().equals("Actor")) {
+                System.out.println("Cast:"+ it.getFirstName() + " " + it.getLastName() + ",");
+                //System.out.println("Actor's ");
+            }
         }
     }
-
-
-
-
-    //public void displaycast(){}
+    public void displaytypes(){
+            for(String it:types){
+                System.out.print(it+" ");
+            }
+    }
 
 
 }
