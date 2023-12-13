@@ -11,8 +11,7 @@ public abstract class mediaitem {
     protected float imdbScore;
     protected ArrayList<Byte> ratings = new ArrayList<>();
     protected ArrayList<String> types = new ArrayList<>();
-    //protected Arraylist<Cast> cast;
-    //protected Director directorr;
+    protected ArrayList<Cast> cast;
 //constructor
     public mediaitem(){}
     public mediaitem(int mediaitemid, String title, ArrayList<String> types, String language , String country, float imdbScore){
@@ -25,8 +24,8 @@ public abstract class mediaitem {
     }
 
     //abstract methodes
-    //public abstract void addgenre();
-   // public abstract void addCast();
+    public abstract void addgenre();
+    public abstract void addCast(Cast castt);
     //setters
     public void setMediaitemid(int mediaitemid) {
         this.mediaitemid = mediaitemid;
@@ -69,11 +68,18 @@ public abstract class mediaitem {
             System.out.println(type);
         }
     }
+    public void displaycast(){
+        for(Cast it: cast){
 
-
-
-
-    //public void displaycast(){}
+            System.out.println(it.getFirstName() + " " +it.getLastName()+",");
+            System.out.println();
+        }
+    }
+    public void displaytypes(){
+            for(String it:types){
+                System.out.print(it+" ");
+            }
+    }
 
 
 }

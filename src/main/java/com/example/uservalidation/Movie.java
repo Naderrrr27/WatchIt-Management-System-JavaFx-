@@ -70,8 +70,6 @@ public class Movie extends  mediaitem{
        for (Byte rating : ratings) sum += rating;
        return (sum/ratings.size());
    }
-
-
   public  void addgenre(){
        for (int i =0 ; i< types.size();i++){
            if(types.get(i).equals("drama"))
@@ -90,11 +88,9 @@ public class Movie extends  mediaitem{
                genre.addSocialMovie(instancemovie);
            else if (types.get(i).equals("forkids"))
                genre.addForKidsMovie(instancemovie);
-
        }
    }
-
-  //public void addCast(){
-
-   //}
+  public void addCast(Cast castt){
+       cast.add(castt);
+           }
 }
