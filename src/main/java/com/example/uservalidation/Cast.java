@@ -5,13 +5,13 @@ import java.util.ArrayList;
 
 public class Cast {
     // declaring
-    String firstName;
-    String lastName;
-    Byte actorAge;
-    static ArrayList<Movie> actedMovie = new ArrayList();
-    static ArrayList<TVshow> actedTvShow = new ArrayList();
-    String actorNationality;
-    String actorJob;
+    private String firstName;
+    private String lastName;
+    private Byte actorAge;
+    private static ArrayList<Movie> actedMovie = new ArrayList();
+    private static ArrayList<TVshow> actedTvShow = new ArrayList();
+    private String actorNationality;
+    private String actorJob;
 
     // constructor
     Cast(String fname, String lName, Byte age, String nationality, String job) {
