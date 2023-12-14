@@ -14,7 +14,7 @@ import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class HelloController implements Initializable {
+public class PhaseOneController implements Initializable {
 
     @FXML
     private TextField emailSignIn;
