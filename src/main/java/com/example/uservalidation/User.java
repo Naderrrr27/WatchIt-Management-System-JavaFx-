@@ -16,7 +16,9 @@ public class User implements Serializable {
     protected boolean active;
     protected Subscription subscription;
 
-    public User(String fName, String lName, String uName, String mail, String pass,Subscription sub)
+    protected boolean isSubscriptionDone;
+
+    public User(String fName, String lName, String uName, String mail, String pass)
     {
         this.userId = ++userIdCounter;
         setFirstName(fName);
@@ -24,7 +26,6 @@ public class User implements Serializable {
         setUserName(uName);
         setEmail(mail);
         setPassword(pass);
-        this.subscription=sub;
     }
 
     //Setter
@@ -53,7 +54,9 @@ public class User implements Serializable {
         this.password = password;
     }
 
-
+    public void setSubscriptionActive(boolean subscriptionActive) {
+        isSubscriptionDone = subscriptionActive;
+    }
 
     public void setSubscription(Subscription subscription) {
         this.subscription = subscription;
@@ -85,6 +88,14 @@ public class User implements Serializable {
         return email;
     }
 
+    public Subscription getSubscription() {
+        return subscription;
+    }
+
+    public boolean isSubscriptionActive() {
+        return isSubscriptionDone;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -96,8 +107,24 @@ public class User implements Serializable {
                 ", password='" + password + '\'' +
                 ", active=" + active +
                 ", subscription=" + subscription +
+                ", isSubscriptionDone=" + isSubscriptionDone +
                 '}';
     }
+
+    //    @Override
+//    public String toString() {
+//        return "User{" +
+//                "userId=" + userId +
+//                ", firstName='" + firstName + '\'' +
+//                ", lastName='" + lastName + '\'' +
+//                ", userName='" + userName + '\'' +
+//                ", email='" + email + '\'' +
+//                ", password='" + password + '\'' +
+//                ", active=" + active +
+//                ", subscription=" + subscription +
+//                '}';
+//    }
+
 
     public String getPassword()
     {

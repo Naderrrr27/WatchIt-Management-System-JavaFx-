@@ -10,9 +10,10 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.uservalidation.HelloController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.uservalidation.PhaseOneController">
    <children>
       <AnchorPane fx:id="signInForm" prefHeight="800.0" prefWidth="1280.0" styleClass="back-signIn" stylesheets="@sign_in.css">
          <children>
@@ -213,6 +214,140 @@
                   <Font name="Roboto" size="16.0" />
                </font>
             </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="subscriptionPlanss" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" styleClass="fullContainer" stylesheets="@styling.css" visible="false" xmlns="http://javafx.com/javafx/21">
+         <children>
+            <Label alignment="CENTER" layoutX="17.0" layoutY="177.0" prefHeight="83.0" prefWidth="1262.0" text="Subscription Plans" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="38.4" />
+               </font>
+            </Label>
+            <HBox alignment="CENTER" layoutX="-3.0" layoutY="287.0" prefHeight="242.0" prefWidth="1353.0" spacing="40.0">
+               <children>
+                  <AnchorPane fx:id="basicPlan" onMousePressed="#basicSelected" prefHeight="237.0" prefWidth="297.0" stylesheets="@styling.css">
+                     <children>
+                        <Label fx:id="basicTxt" alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="11.0" layoutY="14.0" prefHeight="62.0" prefWidth="128.0" text="Basic " textFill="#acacac">
+                           <font>
+                              <Font name="System Bold" size="35.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="priceB" alignment="BOTTOM_LEFT" layoutX="162.0" layoutY="162.0" prefHeight="50.0" prefWidth="142.0" text="100 EGP " textFill="#acacac">
+                           <font>
+                              <Font name="System Bold" size="33.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="capacityB" alignment="BOTTOM_LEFT" layoutX="11.0" layoutY="152.0" prefHeight="56.0" prefWidth="48.0" text="5 " textFill="#acacac">
+                           <font>
+                              <Font name="System Bold" size="45.0" />
+                           </font>
+                        </Label>
+                        <ImageView fx:id="selectBasic" fitHeight="50.0" fitWidth="48.0" layoutX="262.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                           <image>
+                              <Image url="@done.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="42.0" fitWidth="58.0" layoutX="39.0" layoutY="163.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@v.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="standardPLan" layoutX="540.0" layoutY="12.0" onMousePressed="#standardSelected" prefHeight="237.0" prefWidth="297.0" stylesheets="@styling.css">
+                     <children>
+                        <Label fx:id="standTxt" alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="11.0" layoutY="14.0" prefHeight="62.0" prefWidth="192.0" text="Standard" textFill="#acacac">
+                           <font>
+                              <Font name="System Bold" size="35.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="priceStand" alignment="BOTTOM_LEFT" layoutX="168.0" layoutY="164.0" prefHeight="46.0" prefWidth="141.0" text="120 EGP " textFill="#acacac">
+                           <font>
+                              <Font name="System Bold" size="33.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="capStand" alignment="BOTTOM_LEFT" layoutX="8.0" layoutY="157.0" prefHeight="56.0" prefWidth="59.0" text="10" textFill="#acacac">
+                           <font>
+                              <Font name="System Bold" size="45.0" />
+                           </font>
+                        </Label>
+                        <ImageView fx:id="standardSelect" fitHeight="50.0" fitWidth="48.0" layoutX="262.0" layoutY="21.0" onMouseClicked="#standardSelected" pickOnBounds="true" preserveRatio="true" visible="false">
+                           <image>
+                              <Image url="@done.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="43.0" fitWidth="58.0" layoutX="63.0" layoutY="166.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@v.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="prePlan" layoutX="714.0" layoutY="12.0" onMousePressed="#premiumSelected" prefHeight="237.0" prefWidth="297.0" stylesheets="@styling.css">
+                     <children>
+                        <Label fx:id="preTxt" alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="11.0" layoutY="14.0" prefHeight="62.0" prefWidth="192.0" text="Premium" textFill="#acacac">
+                           <font>
+                              <Font name="System Bold" size="35.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="priceP" alignment="BOTTOM_LEFT" layoutX="168.0" layoutY="164.0" prefHeight="46.0" prefWidth="141.0" text="150 EGP " textFill="#acacac">
+                           <font>
+                              <Font name="System Bold" size="33.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="capP" alignment="BOTTOM_LEFT" layoutX="8.0" layoutY="157.0" prefHeight="56.0" prefWidth="59.0" text="15" textFill="#acacac">
+                           <font>
+                              <Font name="System Bold" size="45.0" />
+                           </font>
+                        </Label>
+                        <ImageView fx:id="premiumSelect" fitHeight="50.0" fitWidth="48.0" layoutX="261.0" layoutY="21.0" onMouseClicked="#premiumSelected" pickOnBounds="true" preserveRatio="true" visible="false">
+                           <image>
+                              <Image url="@done.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="43.0" fitWidth="58.0" layoutX="60.0" layoutY="166.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@v.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
+               </children>
+               <padding>
+                  <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+               </padding>
+            </HBox>
+            <Label fx:id="describeNote" alignment="CENTER" layoutX="-34.0" layoutY="575.0" prefHeight="26.0" prefWidth="1430.0" styleClass="subnote" stylesheets="@styling.css">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Button fx:id="subBtttn" alignment="CENTER" layoutX="508.0" layoutY="634.0" mnemonicParsing="false" onAction="#subscribeNow" prefHeight="56.0" prefWidth="303.0" styleClass="subbttn" stylesheets="@styling.css" text="Subscribe Now">
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+            </Button>
+            <ImageView fitHeight="75.0" fitWidth="66.0" layoutX="45.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@wwww.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="113.0" layoutY="29.0" prefHeight="46.0" prefWidth="126.0" text="WATCH IT" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="1129.0" layoutY="31.0" lineSpacing="1.0" mnemonicParsing="false" onAction="#signOut" prefHeight="38.0" prefWidth="120.0" styleClass="signUpSwitch" stylesheets="@sign_in.css" text="Sign Out">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
    </children>

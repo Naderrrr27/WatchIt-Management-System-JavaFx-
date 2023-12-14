@@ -11,15 +11,13 @@ import java.util.ArrayList;
 
 public class HelloApplication extends Application {
 
-
-
     public static ArrayList<User> users = new ArrayList<>();
     public static File file = new File("users.txt");
 
     public static void saveUsersToFile(String fileName) {
         try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(fileName));
              BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(outputStream)) {
-            outputStream.writeObject(users);
+             outputStream.writeObject(users);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -28,7 +26,7 @@ public class HelloApplication extends Application {
     public static void loadUsersFromFile(String fileName) {
         try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(fileName));
              BufferedInputStream bufferedInputStream = new BufferedInputStream(inputStream)) {
-            users = (ArrayList<User>) inputStream.readObject();
+             users = (ArrayList<User>) inputStream.readObject();
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
