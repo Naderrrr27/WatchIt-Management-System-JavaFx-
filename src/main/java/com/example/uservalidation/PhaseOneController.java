@@ -4,8 +4,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.*;
@@ -14,7 +12,7 @@ import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class HelloController implements Initializable {
+public class PhaseOneController implements Initializable {
 
     @FXML
     private TextField emailSignIn;
@@ -214,12 +212,9 @@ public class HelloController implements Initializable {
         }
         else
         {
-            Subscription sub1 = new Subscription("Basic");
-            HelloApplication.users.add(new User(firstNameSignUp.getText(),lastNameSignUp.getText(),userNameSignUp.getText(),emailSignUp.getText(),passwordSignUp.getText(),sub1));
-
+            HelloApplication.users.add(new User(firstNameSignUp.getText(),lastNameSignUp.getText(),userNameSignUp.getText(),emailSignUp.getText(),passwordSignUp.getText(),new Subscription("Basic")));
 
             HelloApplication.saveUsersToFile("users.txt");
-
         }
     }
 
