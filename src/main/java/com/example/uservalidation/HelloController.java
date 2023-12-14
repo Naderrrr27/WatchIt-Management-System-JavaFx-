@@ -217,7 +217,6 @@ public class HelloController implements Initializable {
             Subscription sub1 = new Subscription("Basic");
             HelloApplication.users.add(new User(firstNameSignUp.getText(),lastNameSignUp.getText(),userNameSignUp.getText(),emailSignUp.getText(),passwordSignUp.getText(),sub1));
 
-
             HelloApplication.saveUsersToFile("users.txt");
 
         }

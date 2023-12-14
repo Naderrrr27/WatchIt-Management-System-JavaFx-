@@ -10,7 +10,7 @@ public class Subscription implements Serializable {
     private LocalDate startDate;
     private LocalDate endDate;
     private Byte capacity ;
-    private static HashMap<String , Integer> monthsRevenue = new HashMap<>();
+    private  static HashMap<String , Integer> monthsRevenue = new HashMap<>();
     private static HashMap<String , HashMap<String, Integer>> highestPlan = new HashMap<>();
     private  static HashMap<String , Integer> plan1 = new HashMap<>();
     private  static HashMap<String , Integer> plan2 = new HashMap<>();
@@ -193,6 +193,8 @@ public class Subscription implements Serializable {
         System.out.println("Start date of your subscription plan " + getStartDate());
         System.out.println("End date of your subscription plan " +getEndDate());
     }
+
+
 
     @Override
     public String toString() {
