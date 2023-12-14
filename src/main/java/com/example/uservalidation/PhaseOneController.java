@@ -206,9 +206,20 @@ public class PhaseOneController implements Initializable {
         return false;
     }
 
-    public void subscribeNow()
+    public void subscribeNow(ActionEvent event)
     {
+        for (User it : HelloApplication.users)
+        {
+            if(it.isActive()==true && !userPlan.isEmpty())
+            {
+                it.setSubscriptionActive(true);
+                it.setSubscription(new Subscription(userPlan));
 
+                HelloApplication.saveUsersToFile("users.txt");
+
+                break;
+            }
+        }
     }
 
     public void signUp() throws IOException {
@@ -278,6 +289,9 @@ public class PhaseOneController implements Initializable {
             HelloApplication.saveUsersToFile("users.txt");
 
 
+            HelloApplication.users.get(HelloApplication.users.size()-1).setActive(true);
+
+
             subscriptionPlanss.setVisible(true);
             signInForm.setVisible(false);
             signUpForm.setVisible(false);
@@ -290,6 +304,16 @@ public class PhaseOneController implements Initializable {
         signInForm.setVisible(true);
         signUpForm.setVisible(false);
         subscriptionPlanss.setVisible(false);
+
+        for(User it : HelloApplication.users)
+        {
+            if(it.isActive()==true)
+            {
+                it.setActive(false);
+                break;
+            }
+        }
+
     }
 
     public void emailWriting()
@@ -327,10 +351,21 @@ public class PhaseOneController implements Initializable {
             {
                 if(emailSignIn.getText().equals(it.getEmail())&&passwordSignIn.getText().equals(it.getPassword()))
                 {
-                    emailSignIn.setStyle("-fx-border-width: 0 0 2 0;-fx-border-radius: 10;-fx-text-inner-color:white;-fx-border-color: #1de03a;");
-                    passwordSignIn.setStyle("-fx-border-width: 0 0 2 0;-fx-border-radius: 10;-fx-text-inner-color:white;-fx-border-color: #1de03a;");
-                    emailValid.setVisible(false);
-                    passwordValid.setVisible(false);
+                    if(it.isSubscriptionActive()==false)
+                    {
+                        subscriptionPlanss.setVisible(true);
+                        signInForm.setVisible(false);
+                        signUpForm.setVisible(false);
+                        it.setActive(true);
+                    }
+                    else
+                    {
+                        emailSignIn.setStyle("-fx-border-width: 0 0 2 0;-fx-border-radius: 10;-fx-text-inner-color:white;-fx-border-color: #1de03a;");
+                        passwordSignIn.setStyle("-fx-border-width: 0 0 2 0;-fx-border-radius: 10;-fx-text-inner-color:white;-fx-border-color: #1de03a;");
+                        emailValid.setVisible(false);
+                        passwordValid.setVisible(false);
+                    }
+
                     this.valid=true;
                     break;
                 }

@@ -54,6 +54,10 @@ public class User implements Serializable {
         this.password = password;
     }
 
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
     public void setSubscriptionActive(boolean subscriptionActive) {
         isSubscriptionDone = subscriptionActive;
     }
@@ -86,6 +90,10 @@ public class User implements Serializable {
     public String getEmail()
     {
         return email;
+    }
+
+    public boolean isActive() {
+        return active;
     }
 
     public Subscription getSubscription() {
