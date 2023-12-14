@@ -430,7 +430,7 @@ public class PhaseOneController implements Initializable {
         capStand.setStyle("-fx-text-fill: #acacac;");
         subBtttn.setStyle("-fx-text-fill: black;");
         priceStand.setStyle("-fx-text-fill: #acacac;");
-        describeNote.setText("You can watch only 30 movies in 30 days");
+        describeNote.setText("You can watch only 15 movies in 30 days");
         userPlan = "Premium";
     }
 

@@ -1,19 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.Cursor?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Hyperlink?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.uservalidation.PhaseOneController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.uservalidation.PhaseOneController">
    <children>
       <AnchorPane fx:id="signInForm" prefHeight="800.0" prefWidth="1280.0" styleClass="back-signIn" stylesheets="@sign_in.css">
          <children>
@@ -218,9 +212,9 @@
       </AnchorPane>
       <AnchorPane fx:id="subscriptionPlanss" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" styleClass="fullContainer" stylesheets="@styling.css" visible="false" xmlns="http://javafx.com/javafx/21">
          <children>
-            <Label alignment="CENTER" layoutX="17.0" layoutY="177.0" prefHeight="83.0" prefWidth="1262.0" text="Subscription Plans" textFill="WHITE">
+            <Label alignment="CENTER" layoutX="-13.0" layoutY="171.0" prefHeight="83.0" prefWidth="1262.0" text="Subscription Plans" textFill="WHITE">
                <font>
-                  <Font name="System Bold" size="38.4" />
+                  <Font name="System Bold" size="40.0" />
                </font>
             </Label>
             <HBox alignment="CENTER" layoutX="-3.0" layoutY="287.0" prefHeight="242.0" prefWidth="1353.0" spacing="40.0">
@@ -232,14 +226,14 @@
                               <Font name="System Bold" size="35.0" />
                            </font>
                         </Label>
-                        <Label fx:id="priceB" alignment="BOTTOM_LEFT" layoutX="162.0" layoutY="162.0" prefHeight="50.0" prefWidth="142.0" text="100 EGP " textFill="#acacac">
+                        <Label fx:id="priceB" alignment="BOTTOM_LEFT" layoutX="169.0" layoutY="161.0" prefHeight="50.0" prefWidth="142.0" text="100 EGP " textFill="#acacac">
                            <font>
                               <Font name="System Bold" size="33.0" />
                            </font>
                         </Label>
                         <Label fx:id="capacityB" alignment="BOTTOM_LEFT" layoutX="11.0" layoutY="152.0" prefHeight="56.0" prefWidth="48.0" text="5 " textFill="#acacac">
                            <font>
-                              <Font name="System Bold" size="45.0" />
+                              <Font name="System Bold" size="43.0" />
                            </font>
                         </Label>
                         <ImageView fx:id="selectBasic" fitHeight="50.0" fitWidth="48.0" layoutX="262.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true" visible="false">
@@ -247,7 +241,7 @@
                               <Image url="@done.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="42.0" fitWidth="58.0" layoutX="39.0" layoutY="163.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="39.0" fitWidth="58.0" layoutX="37.0" layoutY="163.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@v.png" />
                            </image>
@@ -261,14 +255,14 @@
                               <Font name="System Bold" size="35.0" />
                            </font>
                         </Label>
-                        <Label fx:id="priceStand" alignment="BOTTOM_LEFT" layoutX="168.0" layoutY="164.0" prefHeight="46.0" prefWidth="141.0" text="120 EGP " textFill="#acacac">
+                        <Label fx:id="priceStand" alignment="BOTTOM_LEFT" layoutX="168.0" layoutY="166.0" prefHeight="46.0" prefWidth="141.0" text="120 EGP " textFill="#acacac">
                            <font>
                               <Font name="System Bold" size="33.0" />
                            </font>
                         </Label>
                         <Label fx:id="capStand" alignment="BOTTOM_LEFT" layoutX="8.0" layoutY="157.0" prefHeight="56.0" prefWidth="59.0" text="10" textFill="#acacac">
                            <font>
-                              <Font name="System Bold" size="45.0" />
+                              <Font name="System Bold" size="42.0" />
                            </font>
                         </Label>
                         <ImageView fx:id="standardSelect" fitHeight="50.0" fitWidth="48.0" layoutX="262.0" layoutY="21.0" onMouseClicked="#standardSelected" pickOnBounds="true" preserveRatio="true" visible="false">
@@ -276,7 +270,7 @@
                               <Image url="@done.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="43.0" fitWidth="58.0" layoutX="63.0" layoutY="166.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="41.0" fitWidth="58.0" layoutX="58.0" layoutY="166.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@v.png" />
                            </image>
@@ -290,14 +284,14 @@
                               <Font name="System Bold" size="35.0" />
                            </font>
                         </Label>
-                        <Label fx:id="priceP" alignment="BOTTOM_LEFT" layoutX="168.0" layoutY="164.0" prefHeight="46.0" prefWidth="141.0" text="150 EGP " textFill="#acacac">
+                        <Label fx:id="priceP" alignment="BOTTOM_LEFT" layoutX="168.0" layoutY="166.0" prefHeight="46.0" prefWidth="141.0" text="150 EGP " textFill="#acacac">
                            <font>
                               <Font name="System Bold" size="33.0" />
                            </font>
                         </Label>
                         <Label fx:id="capP" alignment="BOTTOM_LEFT" layoutX="8.0" layoutY="157.0" prefHeight="56.0" prefWidth="59.0" text="15" textFill="#acacac">
                            <font>
-                              <Font name="System Bold" size="45.0" />
+                              <Font name="System Bold" size="42.0" />
                            </font>
                         </Label>
                         <ImageView fx:id="premiumSelect" fitHeight="50.0" fitWidth="48.0" layoutX="261.0" layoutY="21.0" onMouseClicked="#premiumSelected" pickOnBounds="true" preserveRatio="true" visible="false">
@@ -305,7 +299,7 @@
                               <Image url="@done.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="43.0" fitWidth="58.0" layoutX="60.0" layoutY="166.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="41.0" fitWidth="58.0" layoutX="58.0" layoutY="166.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@v.png" />
                            </image>
@@ -317,12 +311,12 @@
                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                </padding>
             </HBox>
-            <Label fx:id="describeNote" alignment="CENTER" layoutX="-34.0" layoutY="575.0" prefHeight="26.0" prefWidth="1430.0" styleClass="subnote" stylesheets="@styling.css">
+            <Label fx:id="describeNote" alignment="CENTER" layoutX="-69.0" layoutY="575.0" prefHeight="26.0" prefWidth="1430.0" styleClass="subnote" stylesheets="@styling.css">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
-            <Button fx:id="subBtttn" alignment="CENTER" layoutX="508.0" layoutY="634.0" mnemonicParsing="false" onAction="#subscribeNow" prefHeight="56.0" prefWidth="303.0" styleClass="subbttn" stylesheets="@styling.css" text="Subscribe Now">
+            <Button fx:id="subBtttn" alignment="CENTER" layoutX="493.0" layoutY="634.0" mnemonicParsing="false" onAction="#subscribeNow" prefHeight="56.0" prefWidth="303.0" styleClass="subbttn" stylesheets="@styling.css" text="Subscribe Now">
                <font>
                   <Font name="System Bold" size="22.0" />
                </font>
@@ -348,6 +342,10 @@
                   <Font name="System Bold" size="17.0" />
                </font>
             </Button>
+            <ImageView fitHeight="62.0" fitWidth="59.0" layoutX="792.0" layoutY="189.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@choose.png" />
+               </image></ImageView>
          </children>
       </AnchorPane>
    </children>
