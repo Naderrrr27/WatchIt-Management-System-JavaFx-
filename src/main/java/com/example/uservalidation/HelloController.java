@@ -250,6 +250,7 @@ public class HelloController implements Initializable {
                 passwordValid.setVisible(true);
                 passwordSignIn.setStyle("-fx-border-width: 0 0 2 0;-fx-border-radius: 10;-fx-text-inner-color:white;-fx-border-color: #D22F26;");
             }
+
         }
         else
         {

@@ -54,6 +54,7 @@ public class User implements Serializable {
     }
 
 
+
     public void setSubscription(Subscription subscription) {
         this.subscription = subscription;
     }

@@ -184,6 +184,7 @@ public class Subscription implements Serializable {
         return highestPlan;
     }
 
+
     public void displaySubInfo ()
     {
         System.out.println("PLAN : " + getSubscriptionPlan());
