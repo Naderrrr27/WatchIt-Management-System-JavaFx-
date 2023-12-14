@@ -1,0 +1,11 @@
+.fullContainer{
+    -fx-background-color: #0F0A05;
+}
+
+.subbttn {
+    -fx-background-color: #dca523;
+    -fx-text-fill: #363535;
+}
+.subnote{
+    -fx-text-fill: #ACACAC;
+}

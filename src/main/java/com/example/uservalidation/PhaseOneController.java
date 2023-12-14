@@ -5,6 +5,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 
 import java.io.*;
 import java.net.URL;
@@ -80,6 +82,61 @@ public class PhaseOneController implements Initializable {
     private boolean valid;
 
 
+    @FXML
+    private AnchorPane basicPlan;
+
+    @FXML
+    private Label basicTxt;
+
+    @FXML
+    private Label capacityB;
+
+    @FXML
+    private Label priceB;
+
+    @FXML
+    private AnchorPane standardPLan;
+
+    @FXML
+    private AnchorPane prePlan;
+
+    @FXML
+    private ImageView selectBasic;
+
+    @FXML
+    private ImageView standardSelect;
+
+    @FXML
+    private ImageView premiumSelect;
+
+    @FXML
+    private Label describeNote;
+
+    @FXML
+    private Label priceStand;
+
+    @FXML
+    private Label standTxt;
+
+    @FXML
+    private Label capStand;
+
+    @FXML
+    private Label capP;
+
+    @FXML
+    private Label preTxt;
+
+    @FXML
+    private Label priceP;
+
+    @FXML
+    private Button subBtttn;
+
+    @FXML
+    private AnchorPane subscriptionPlanss;
+    String userPlan = "";
+
     public boolean validEmail()
     {
         Pattern emailPat = Pattern.compile("^[A-z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$",Pattern.CASE_INSENSITIVE);
@@ -149,6 +206,11 @@ public class PhaseOneController implements Initializable {
         return false;
     }
 
+    public void subscribeNow()
+    {
+
+    }
+
     public void signUp() throws IOException {
         if (firstNameSignUp.getText().isEmpty()||lastNameSignUp.getText().isEmpty()||userNameSignUp.getText().isEmpty()||emailSignUp.getText().isEmpty()||passwordSignUp.getText().isEmpty())
         {
@@ -212,10 +274,22 @@ public class PhaseOneController implements Initializable {
         }
         else
         {
-            HelloApplication.users.add(new User(firstNameSignUp.getText(),lastNameSignUp.getText(),userNameSignUp.getText(),emailSignUp.getText(),passwordSignUp.getText(),new Subscription("Basic")));
-
+            HelloApplication.users.add(new User(firstNameSignUp.getText(),lastNameSignUp.getText(),userNameSignUp.getText(),emailSignUp.getText(),passwordSignUp.getText()));
             HelloApplication.saveUsersToFile("users.txt");
+
+
+            subscriptionPlanss.setVisible(true);
+            signInForm.setVisible(false);
+            signUpForm.setVisible(false);
+
         }
+    }
+
+    public void signOut(ActionEvent event)
+    {
+        signInForm.setVisible(true);
+        signUpForm.setVisible(false);
+        subscriptionPlanss.setVisible(false);
     }
 
     public void emailWriting()
@@ -288,6 +362,76 @@ public class PhaseOneController implements Initializable {
             signInForm.setVisible(true);
             signUpForm.setVisible(false);
         }
+    }
+
+
+
+    @FXML
+    void basicSelected(MouseEvent event) {
+        selectBasic.setVisible(true);
+        premiumSelect.setVisible(false);
+        standardSelect.setVisible(false);
+        basicPlan.setStyle("-fx-border-width: 4.5px; -fx-border-color: #dca523; -fx-border-style: solid; -fx-start-margin: 4px; -fx-border-radius: 10px;");
+        basicTxt.setStyle("-fx-text-fill: white;");
+        capacityB.setStyle("-fx-text-fill: white;");
+        priceB.setStyle("-fx-text-fill: white;");
+        standTxt.setStyle("-fx-text-fill: #acacac;");
+        capStand.setStyle("-fx-text-fill: #acacac;");
+        priceStand.setStyle("-fx-text-fill: #acacac;");
+        preTxt.setStyle("-fx-text-fill: #acacac;");
+        capP.setStyle("-fx-text-fill: #acacac;");
+        priceP.setStyle("-fx-text-fill: #acacac;");
+        subBtttn.setStyle("-fx-text-fill: black;");
+        standardPLan.setStyle("-fx-border-width : 0 ;");
+        prePlan.setStyle(" -fx-border-width : 0 ;");
+        describeNote.setText("You can watch only 5 movies in 30 days");
+        userPlan = "Basic" ;
+    }
+
+    @FXML
+    void standardSelected(MouseEvent event) {
+        selectBasic.setVisible(false);
+        premiumSelect.setVisible(false);
+        standardSelect.setVisible(true);
+        standardPLan.setStyle("-fx-border-width: 4.5px; -fx-border-color: #dca523; -fx-border-style: solid; -fx-start-margin: 4px; -fx-border-radius: 10px;");
+        basicPlan.setStyle(" -fx-border-width : 0 ;");
+        standTxt.setStyle("-fx-text-fill: white;");
+        capStand.setStyle("-fx-text-fill: white;");
+        priceStand.setStyle("-fx-text-fill: white;");
+        basicTxt.setStyle("-fx-text-fill: #acacac;");
+        capacityB.setStyle("-fx-text-fill: #acacac;");
+        priceB.setStyle("-fx-text-fill: #acacac;");
+        preTxt.setStyle("-fx-text-fill: #acacac;");
+        capP.setStyle("-fx-text-fill: #acacac;");
+        priceP.setStyle("-fx-text-fill: #acacac;");
+        subBtttn.setStyle("-fx-text-fill: black;");
+        prePlan.setStyle(" -fx-border-width : 0 ;");
+        describeNote.setText("You can watch only 10 movies in 30 days");
+        userPlan = "Standard" ;
+    }
+
+
+
+    @FXML
+    void premiumSelected(MouseEvent event) {
+        selectBasic.setVisible(false);
+        premiumSelect.setVisible(true);
+        standardSelect.setVisible(false);
+        prePlan.setStyle("-fx-border-width: 4.5px; -fx-border-color: #dca523; -fx-border-style: solid; -fx-start-margin: 4px; -fx-border-radius: 10px;");
+        basicPlan.setStyle(" -fx-border-width : 0 ;");
+        standardPLan.setStyle(" -fx-border-width : 0 ;");
+        preTxt.setStyle("-fx-text-fill: white;");
+        capP.setStyle("-fx-text-fill: white;");
+        priceP.setStyle("-fx-text-fill: white;");
+        basicTxt.setStyle("-fx-text-fill: #acacac;");
+        capacityB.setStyle("-fx-text-fill: #acacac;");
+        priceB.setStyle("-fx-text-fill: #acacac;");
+        standTxt.setStyle("-fx-text-fill: #acacac;");
+        capStand.setStyle("-fx-text-fill: #acacac;");
+        subBtttn.setStyle("-fx-text-fill: black;");
+        priceStand.setStyle("-fx-text-fill: #acacac;");
+        describeNote.setText("You can watch only 30 movies in 30 days");
+        userPlan = "Premium";
     }
 
     @Override
