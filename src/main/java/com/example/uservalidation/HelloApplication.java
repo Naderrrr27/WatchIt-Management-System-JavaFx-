@@ -40,7 +40,6 @@ public class HelloApplication extends Application {
 
         loadUsersFromFile("users.txt");
 
-
         if(users.isEmpty())
         {
             User.userIdCounter=0;
