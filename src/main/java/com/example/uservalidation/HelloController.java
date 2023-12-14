@@ -8,7 +8,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
-import java.io.File;
+import java.io.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
@@ -130,9 +130,6 @@ public class HelloController implements Initializable {
         {
             if(userNameSignUp.getText().equals(itt.getUserName()))
             {
-                System.out.println(userNameSignUp.getText());
-                System.out.println(itt.getUserName());
-
                 return true;
             }
 
@@ -154,8 +151,7 @@ public class HelloController implements Initializable {
         return false;
     }
 
-    public void signUp()
-    {
+    public void signUp() throws IOException {
         if (firstNameSignUp.getText().isEmpty()||lastNameSignUp.getText().isEmpty()||userNameSignUp.getText().isEmpty()||emailSignUp.getText().isEmpty()||passwordSignUp.getText().isEmpty())
         {
 
@@ -218,23 +214,14 @@ public class HelloController implements Initializable {
         }
         else
         {
-            HelloApplication.users.add(new User(firstNameSignUp.getText(),lastNameSignUp.getText(),userNameSignUp.getText(),emailSignUp.getText(),passwordSignUp.getText()));
+            Subscription sub1 = new Subscription("Basic");
+            HelloApplication.users.add(new User(firstNameSignUp.getText(),lastNameSignUp.getText(),userNameSignUp.getText(),emailSignUp.getText(),passwordSignUp.getText(),sub1));
+
+
+            HelloApplication.saveUsersToFile("users.txt");
+
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     public void emailWriting()
     {

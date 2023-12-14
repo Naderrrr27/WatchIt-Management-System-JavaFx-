@@ -6,7 +6,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 
 public class HelloApplication extends Application {
@@ -14,15 +14,48 @@ public class HelloApplication extends Application {
 
 
     public static ArrayList<User> users = new ArrayList<>();
+    public static File file = new File("users.txt");
+
+
+    public static void saveUsersToFile(String fileName)
+    {
+        try(ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(fileName))) {
+            outputStream.writeObject(users);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void loadUsersFromFile(String fileName)
+    {
+        try(ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(fileName))) {
+            users = (ArrayList<User>) inputStream.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 
     @Override
-    public void start(Stage stage) throws IOException {
+    public void start(Stage stage) throws IOException, ClassNotFoundException {
 
-        users.add(new User("Ahmed","Nader","_Naderr","ahmed412naderr@gmail.com","12345678"));
-        users.add(new User("Farrah","Sherif","_Farrah","farrah23sherif@gmail.com","87654321"));
+        loadUsersFromFile("users.txt");
 
-        users.get(0).getInfo();
-        users.get(1).getInfo();
+
+        if(users.isEmpty())
+        {
+            User.userIdCounter=0;
+        }
+        else
+        {
+            User.userIdCounter=users.get(users.size()-1).userId;
+        }
+
+        for (User it : users)
+        {
+            System.out.println(it);
+        }
+
+
 
 
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
@@ -30,9 +63,9 @@ public class HelloApplication extends Application {
         stage.setTitle("Hello!");
         stage.setWidth(1293);
         stage.setHeight(800);
-
         stage.setScene(scene);
         stage.show();
+
     }
 
     public static void main(String[] args) {

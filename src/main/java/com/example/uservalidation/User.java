@@ -1,6 +1,8 @@
 package com.example.uservalidation;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
 
     //to assign unique userId and to know how many users
     protected static int userIdCounter;
@@ -12,8 +14,9 @@ public class User {
     protected String email;
     protected String password;
     protected boolean active;
+    protected Subscription subscription;
 
-    public User(String fName, String lName, String uName, String mail, String pass)
+    public User(String fName, String lName, String uName, String mail, String pass,Subscription sub)
     {
         this.userId = ++userIdCounter;
         setFirstName(fName);
@@ -21,6 +24,7 @@ public class User {
         setUserName(uName);
         setEmail(mail);
         setPassword(pass);
+        this.subscription=sub;
     }
 
     //Setter
@@ -49,6 +53,11 @@ public class User {
         this.password = password;
     }
 
+
+    public void setSubscription(Subscription subscription) {
+        this.subscription = subscription;
+    }
+
     //Getter
     public int getUserId()
     {
@@ -73,6 +82,20 @@ public class User {
     public String getEmail()
     {
         return email;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId=" + userId +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", userName='" + userName + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", active=" + active +
+                ", subscription=" + subscription +
+                '}';
     }
 
     public String getPassword()

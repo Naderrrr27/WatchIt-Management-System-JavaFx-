@@ -1,9 +1,10 @@
 package com.example.uservalidation;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.HashMap;
-public class Subscription {
+public class Subscription implements Serializable {
     private String subscriptionPlan ;
     private int price ;
     private LocalDate startDate;
@@ -190,5 +191,16 @@ public class Subscription {
         System.out.println("Capacity : " + getCapacity());
         System.out.println("Start date of your subscription plan " + getStartDate());
         System.out.println("End date of your subscription plan " +getEndDate());
+    }
+
+    @Override
+    public String toString() {
+        return "Subscription{" +
+                "subscriptionPlan='" + subscriptionPlan + '\'' +
+                ", price=" + price +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                ", capacity=" + capacity +
+                '}';
     }
 }
