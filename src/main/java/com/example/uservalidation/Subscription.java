@@ -29,12 +29,12 @@ public class Subscription implements Serializable {
         else if(subscriptionPlan == "Standard")
         {
             price = 120;
-            capacity = 10 ;
+            capacity = 10;
         }
-        else if(subscriptionPlan == "Premuim" )
+        else if(subscriptionPlan == "Premium" )
         {
             price = 150;
-            capacity = 30 ;
+            capacity = 15;
         }
 
     }
