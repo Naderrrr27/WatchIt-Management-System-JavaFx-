@@ -1,15 +1,17 @@
 package com.example.uservalidation;
 
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Cast {
+public class Cast implements Serializable {
+
     // declaring
     private String firstName;
     private String lastName;
     private Byte actorAge;
-    private static ArrayList<Movie> actedMovie = new ArrayList();
-    private static ArrayList<TVshow> actedTvShow = new ArrayList();
+    private ArrayList<Movie> actedMovie = new ArrayList();
+//    private ArrayList<TVshow> actedTvShow = new ArrayList();
     private String actorNationality;
     private String actorJob;
 
@@ -35,13 +37,10 @@ public class Cast {
         actorAge = newActorAge;
     }
 
-    public void setActedMovie(ArrayList<Movie> newActedMovie) {
-        actedMovie = newActedMovie;
+    public void setActedMovie(Movie movie) {
+        actedMovie.add(movie);
     }
 
-    public void setActedTvShow(ArrayList<TVshow> newActedTvShow) {
-        actedTvShow = newActedTvShow;
-    }
 
     public void setActorNationality(String newNationality) {
         actorNationality = newNationality;
@@ -73,15 +72,23 @@ public class Cast {
     }
 
     // display methods
-    public static void displayActedMovie() {for (Movie movie : actedMovie) {
+    public void displayActedMovie() {for (Movie movie : actedMovie) {
         System.out.println(movie.getTitle());
     }
     }
-    // display for the Tv show
-    public static void displayActedTvShow(){
-        for(TVshow tvshow : actedTvShow){
-         //   System.out.println(tvshow.getTitle());
-        }
+
+
+
+    @Override
+    public String toString() {
+        return "Cast{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", actorAge=" + actorAge +
+                ", actedMovie=" + actedMovie +
+                ", actorNationality='" + actorNationality + '\'' +
+                ", actorJob='" + actorJob + '\'' +
+                '}';
     }
 }
 

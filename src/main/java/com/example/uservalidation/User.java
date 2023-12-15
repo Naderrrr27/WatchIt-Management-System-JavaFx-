@@ -119,19 +119,6 @@ public class   User implements Serializable {
                 '}';
     }
 
-    //    @Override
-//    public String toString() {
-//        return "User{" +
-//                "userId=" + userId +
-//                ", firstName='" + firstName + '\'' +
-//                ", lastName='" + lastName + '\'' +
-//                ", userName='" + userName + '\'' +
-//                ", email='" + email + '\'' +
-//                ", password='" + password + '\'' +
-//                ", active=" + active +
-//                ", subscription=" + subscription +
-//                '}';
-//    }
 
 
     public String getPassword()

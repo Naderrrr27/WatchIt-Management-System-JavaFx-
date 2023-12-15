@@ -1,31 +1,45 @@
 package com.example.uservalidation;
 
-import org.controlsfx.control.tableview2.filter.filtereditor.SouthFilter;
-
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Movie extends  mediaitem{
-   private int year;
-   private float runningtime;
-   private String movieDescription;
-   private int views;
-   private float budget;
-   private float revenue;
+public class Movie implements Serializable {
 
+    protected static int movieIdCounter;
+    private int movieId;
+    protected String title;
+    private int year;
+    private float runningtime;
+    protected  String language;
+    protected String country;
+    protected float imdbScore;
+    private float budget;
+    private float revenue;
+    protected String poster;
+    private String movieDescription;
+    private int views;
 
-   //objects
-   Genra genre = new Genra();
-   Movie instancemovie = new Movie();
+    protected ArrayList<Byte> ratings = new ArrayList<>();
+    protected ArrayList<String> types = new ArrayList<>();
+    protected ArrayList<Cast> cast = new ArrayList<>();
 
    //constructor
    public Movie(){}
-   public Movie(int movieId, String title, ArrayList<String> types, String language, String country, float imdbscore, int year, float runningtime, String movieDescription, float budget, float revenue,String poster){
-       super(movieId,title,types,language,country,imdbscore,poster);
+   public Movie(String title, ArrayList<String> types, String language, String country, float imdbscore, int year, float runningtime, String movieDescription, float budget, float revenue,String poster){
+
+       this.movieId=++movieIdCounter;
+       this.title=title;
+       this.types=types;
+       this.language=language;
+       this.country=country;
+       this.poster=poster;
+       this.imdbScore=imdbScore;
        this.year=year;
        this.runningtime=runningtime;
        this.movieDescription=movieDescription;
        this.revenue=revenue;
        this.budget=budget;
+
    }
 
    //call this function whenever the user watch a movie
@@ -34,6 +48,9 @@ public class Movie extends  mediaitem{
    }
 
    //setters
+   public void setTitle(String title) {
+       this.title = title;
+   }
    public void setRunningtime(float runningtime) {
        this.runningtime = runningtime;
    }
@@ -49,8 +66,35 @@ public class Movie extends  mediaitem{
    public void setRevenue(float revenue) {
        this.revenue = revenue;
    }
+    public void setLanguage(String language) {
+        this.language = language;
+    }
 
-   //getters
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public void setImdbScore(float imdbScore) {
+        this.imdbScore = imdbScore;
+    }
+
+    public void setTypes(ArrayList<String> types) {
+        this.types = types;
+    }
+
+    public void setRatings(ArrayList<Byte> ratings) {
+        this.ratings = ratings;
+    }
+    public  void addCast(Cast castt){
+        cast.add(castt);
+    }
+
+    public void setMovieId(int movieId) {
+        this.movieId = movieId;
+    }
+
+    //getters
+    public String getTitle() {return title;}
    public float getRevenue() {
        return revenue;
    }
@@ -74,25 +118,36 @@ public class Movie extends  mediaitem{
        return (sum/ratings.size());
    }
 
+    public int getMovieId() {
+        return movieId;
+    }
+
+    public String getLanguage() {return language;}
+    public String getCountry() {return country;}
+    public float getImdbScore() {return imdbScore;}
+    public String getPoster() {
+        return poster;
+    }
+    public ArrayList<String> getTypes() {return types;}
 
     public  void addgenre(){
        for (int i =0 ; i< types.size();i++){
-           if(types.get(i).equals("drama"))
-               genre.addDramaMovie(instancemovie);
-           else if (types.get(i).equals("comedy"))
-               genre.addComedyMovie(instancemovie);
-           else if (types.get(i).equals("action"))
-               genre.addActionyMovie(instancemovie);
-           else if (types.get(i).equals("romance"))
-               genre.addRomanceMovie(instancemovie);
-           else if (types.get(i).equals("horror"))
-               genre.addHorrorMovie(instancemovie);
-           else if (types.get(i).equals("international"))
-               genre.addInternationalMovie(instancemovie);
-           else if (types.get(i).equals("social"))
-               genre.addSocialMovie(instancemovie);
-           else if (types.get(i).equals("forkids"))
-               genre.addForKidsMovie(instancemovie);
+           if(types.get(i).equals("Drama"))
+               Genra.addDramaMovie(this);
+           else if (types.get(i).equals("Comedy"))
+               Genra.addComedyMovie(this);
+           else if (types.get(i).equals("Action"))
+               Genra.addActionyMovie(this);
+           else if (types.get(i).equals("Romance"))
+               Genra.addRomanceMovie(this);
+           else if (types.get(i).equals("Horror"))
+               Genra.addHorrorMovie(this);
+           else if (types.get(i).equals("International"))
+               Genra.addInternationalMovie(this);
+           else if (types.get(i).equals("Social"))
+               Genra.addSocialMovie(this);
+           else if (types.get(i).equals("ForKids"))
+               Genra.addForKidsMovie(this);
        }
    }
 
@@ -111,4 +166,59 @@ public class Movie extends  mediaitem{
            System.out.println("Budget: " +getBudget());
            System.out.println("Revenue"+getRevenue());
            }
+
+
+
+
+
+
+
+
+
+
+
+    public void displaycast(){
+        for(Cast it: cast){
+            if(it.getActorJob().equals("Director:")) {
+                System.out.println("Director:" + it.getFirstName() + " " + it.getLastName());
+                // System.out.println("Director's Nationality: "+it.getActorNationality());
+                //System.out.println("Director's Age: "+ it.getActorAge());
+            }
+            else if(it.getActorJob().equals("Actor")) {
+                System.out.println("Cast:"+ it.getFirstName() + " " + it.getLastName() + ",");
+                //System.out.println("Actor's ");
+            }
+        }
+    }
+    public void displaytypes(){
+        for(String it:types){
+            System.out.print(it+" ");
+        }
+    }
+
+
+
+
+
+
+    @Override
+    public String toString() {
+        return "Movie{" +
+                "movieId=" + movieId +
+                ", year=" + year +
+                ", runningtime=" + runningtime +
+                ", movieDescription='" + movieDescription + '\'' +
+                ", views=" + views +
+                ", budget=" + budget +
+                ", revenue=" + revenue +
+                ", title='" + title + '\'' +
+                ", language='" + language + '\'' +
+                ", country='" + country + '\'' +
+                ", imdbScore=" + imdbScore +
+                ", poster='" + poster + '\'' +
+                ", ratings=" + ratings +
+                ", types=" + types +
+                ", cast=" + cast +
+                '}';
+    }
 }
