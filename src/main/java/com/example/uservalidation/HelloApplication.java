@@ -14,6 +14,8 @@ public class HelloApplication extends Application {
     public static ArrayList<User> users = new ArrayList<>();
     public static ArrayList<Movie> movies = new ArrayList<>();
     public static File file = new File("users.txt");
+    public static File moviefile = new File("movies.txt");
+
 
     public static void saveUsersToFile(String fileName) {
         try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(fileName));

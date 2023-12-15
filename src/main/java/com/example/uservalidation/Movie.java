@@ -12,7 +12,6 @@ public class Movie extends  mediaitem{
    private float budget;
    private float revenue;
 
-
    //objects
    Genra genre = new Genra();
 
