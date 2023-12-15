@@ -12,6 +12,7 @@ import java.util.ArrayList;
 public class HelloApplication extends Application {
 
     public static ArrayList<User> users = new ArrayList<>();
+    public static ArrayList<Movie> movies = new ArrayList<>();
     public static File file = new File("users.txt");
 
     public static void saveUsersToFile(String fileName) {

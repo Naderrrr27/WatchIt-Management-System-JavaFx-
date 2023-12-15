@@ -2,7 +2,7 @@ package com.example.uservalidation;
 
 import java.io.Serializable;
 
-public class User implements Serializable {
+public class   User implements Serializable {
 
     //to assign unique userId and to know how many users
     protected static int userIdCounter;
