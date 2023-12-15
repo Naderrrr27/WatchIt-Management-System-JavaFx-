@@ -15,7 +15,6 @@ public class Movie extends  mediaitem{
 
    //objects
    Genra genre = new Genra();
-   Movie instancemovie = new Movie();
 
    //constructor
    public Movie(){}
@@ -78,21 +77,21 @@ public class Movie extends  mediaitem{
     public  void addgenre(){
        for (int i =0 ; i< types.size();i++){
            if(types.get(i).equals("drama"))
-               genre.addDramaMovie(instancemovie);
+               genre.addDramaMovie(this);
            else if (types.get(i).equals("comedy"))
-               genre.addComedyMovie(instancemovie);
+               genre.addComedyMovie(this);
            else if (types.get(i).equals("action"))
-               genre.addActionyMovie(instancemovie);
+               genre.addActionyMovie(this);
            else if (types.get(i).equals("romance"))
-               genre.addRomanceMovie(instancemovie);
+               genre.addRomanceMovie(this);
            else if (types.get(i).equals("horror"))
-               genre.addHorrorMovie(instancemovie);
+               genre.addHorrorMovie(this);
            else if (types.get(i).equals("international"))
-               genre.addInternationalMovie(instancemovie);
+               genre.addInternationalMovie(this);
            else if (types.get(i).equals("social"))
-               genre.addSocialMovie(instancemovie);
+               genre.addSocialMovie(this);
            else if (types.get(i).equals("forkids"))
-               genre.addForKidsMovie(instancemovie);
+               genre.addForKidsMovie(this);
        }
    }
 
