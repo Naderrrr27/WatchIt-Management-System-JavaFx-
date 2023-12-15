@@ -19,8 +19,8 @@ public class Movie extends  mediaitem{
 
    //constructor
    public Movie(){}
-   public Movie(int movieId, String title, ArrayList<String> types, String language, String country, float imdbscore, int year, float runningtime, String movieDescription, float budget, float revenue){
-       super(movieId,title,types,language,country,imdbscore);
+   public Movie(int movieId, String title, ArrayList<String> types, String language, String country, float imdbscore, int year, float runningtime, String movieDescription, float budget, float revenue,String poster){
+       super(movieId,title,types,language,country,imdbscore,poster);
        this.year=year;
        this.runningtime=runningtime;
        this.movieDescription=movieDescription;
