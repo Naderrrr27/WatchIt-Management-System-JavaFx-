@@ -10,17 +10,19 @@ public abstract class mediaitem {
     protected  String language;
     protected String country;
     protected float imdbScore;
+    private String poster;
     protected ArrayList<Byte> ratings = new ArrayList<>();
     protected ArrayList<String> types = new ArrayList<>();
     protected ArrayList<Cast> cast;
 //constructor
     public mediaitem(){}
-    public mediaitem(int mediaitemid, String title, ArrayList<String> types, String language , String country, float imdbScore){
+    public mediaitem(int mediaitemid, String title, ArrayList<String> types, String language , String country, float imdbScore,String poster){
         this.mediaitemid=mediaitemid;
         this.title=title;
         this.types=types;
         this.language=language;
         this.country=country;
+        this.poster=poster;
         this.imdbScore=imdbScore;
     }
 
@@ -85,7 +87,9 @@ public abstract class mediaitem {
             }
     }
 
-
+    public String getPoster() {
+        return poster;
+    }
 }
 
 

@@ -11,7 +11,7 @@ public class Movie extends  mediaitem{
    private int views;
    private float budget;
    private float revenue;
-   private String poster;
+
 
    //objects
    Genra genre = new Genra();
@@ -74,9 +74,6 @@ public class Movie extends  mediaitem{
        return (sum/ratings.size());
    }
 
-    public String getPoster() {
-        return poster;
-    }
 
     public  void addgenre(){
        for (int i =0 ; i< types.size();i++){
