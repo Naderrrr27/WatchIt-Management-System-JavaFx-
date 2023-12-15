@@ -10,7 +10,7 @@ public abstract class mediaitem {
     protected  String language;
     protected String country;
     protected float imdbScore;
-    private String poster;
+    protected String poster;
     protected ArrayList<Byte> ratings = new ArrayList<>();
     protected ArrayList<String> types = new ArrayList<>();
     protected ArrayList<Cast> cast;

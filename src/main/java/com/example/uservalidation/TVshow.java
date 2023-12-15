@@ -8,8 +8,8 @@ import java.util.ArrayList;
 public class TVshow extends mediaitem {
 
     private ArrayList<Season> seasons;
-    public TVshow(int mediaitemid, String title, ArrayList<String> types, String language, String country, float imdbScore, ArrayList<Season> seasons) {
-        super(mediaitemid, title, types, language, country, imdbScore);
+    public TVshow(int mediaitemid, String title, ArrayList<String> types, String language, String country, float imdbScore, ArrayList<Season> seasons,String poster) {
+        super(mediaitemid, title, types, language, country, imdbScore,poster);
         this.seasons = seasons;
     }
     Genra genre = new Genra();
