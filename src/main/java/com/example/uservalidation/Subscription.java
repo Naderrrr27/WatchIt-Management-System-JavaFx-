@@ -39,6 +39,7 @@ public class Subscription implements Serializable {
 
     }
 
+
     public void setSubscriptionPlan(String subscriptionPlan) {
         this.subscriptionPlan = subscriptionPlan;
     }

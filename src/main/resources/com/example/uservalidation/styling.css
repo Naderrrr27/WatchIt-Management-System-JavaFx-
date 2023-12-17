@@ -9,3 +9,80 @@
 .subnote{
     -fx-text-fill: #ACACAC;
 }
+
+.menubttn{
+    -fx-background-color: transparent ;
+    -fx-background-radius:25px;
+    -fx-padding: 5px;
+    /*-fx-background-color:rgba(172, 172, 172, 0.35);*/
+}
+
+.menubttn2{
+    /*-fx-background-color: transparent ;*/
+    -fx-background-radius:25px;
+    -fx-padding: 5px;
+    -fx-background-color:rgba(172, 172, 172, 0.35);
+}
+
+.menufont{
+    -fx-font-weight: 400;
+    -fx-font-size: 18px;
+    -fx-font-family: "NotoSans-Regular", "Roboto", "Helvetica Neue", sans-serif;
+    -fx-text-fill: white;
+}
+
+.menubttnsearch{
+    /*-fx-background-color: transparent ;*/
+    -fx-background-radius:10px;
+    -fx-padding: 5px;
+    -fx-background-color:rgba(172, 172, 172, 0.1);
+}
+
+.menusearchfont{
+    -fx-font-weight: bold;
+    -fx-font-size: 23px;
+    -fx-font-family: "NotoSans-Regular", "Roboto", "Helvetica Neue", sans-serif;
+    -fx-text-fill: white;
+}
+
+.textfeildSearch{
+    -fx-background-color: transparent ;
+    -fx-font-weight: bold;
+    -fx-font-size: 27px;
+    -fx-font-family: "NotoSans-Regular", "Roboto", "Helvetica Neue", sans-serif;
+    -fx-text-fill: white;
+}
+
+.warningS{
+    -fx-font-family: "NotoSans-Regular", "Roboto", "Helvetica Neue", sans-serif;
+    -fx-font-size: 18px;
+    -fx-font-weight: 700 ;
+    -fx-text-fill: RGB(210, 47, 38);
+}
+
+.searchborder
+{
+    -fx-border-width: 0 0 2.6px 0;
+    -fx-border-color:rgba(172, 172, 172, 0.3);
+    -fx-padding:5px;
+}
+
+.fakeComboBox{
+    -fx-background-color: rgba(54, 53, 53, 0.5);
+}
+
+.username{
+    -fx-font-family: "NotoSans-Regular", "Roboto", "Helvetica Neue", sans-serif;
+    -fx-font-size: 20px;
+    /*-fx-font-weight: 700 ;*/
+    -fx-text-fill: white;
+}
+
+.username1{
+    -fx-font-size: 22px;
+}
+.userrrrrr{
+    -fx-border-width: 0 0 1px 0;
+    -fx-border-color:rgba(172, 172, 172, 0.3);
+}
+
