@@ -5,10 +5,8 @@ import java.time.LocalDate;
 public class UserWatchRecord {
    private int userId;
     private  int movieId;
-    private  int tvShowId;
     private  Movie movie;
 
-    //TvShow tvShow;
     private  LocalDate datOfWatching;
     private  byte rate;
 

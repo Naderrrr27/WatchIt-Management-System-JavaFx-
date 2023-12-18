@@ -8,7 +8,7 @@ public class SearchManager {
 
     public ArrayList<Movie> searchMovie(String searchedItem)
     {
-        ArrayList<Movie> movie=new ArrayList<>();
+        ArrayList<Movie> movie=null;
 
         for (Movie m : HelloApplication.movies)
         {
@@ -25,7 +25,7 @@ public class SearchManager {
     public ArrayList<Cast> searchCast(String searchedItem)
     {
 
-        ArrayList<Cast>cast=new ArrayList<>();
+        ArrayList<Cast>cast=null;
         for (Cast c : HelloApplication.casts)
         {
             if (c.getFirstName().equals(searchedItem))
