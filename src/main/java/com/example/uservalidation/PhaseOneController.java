@@ -225,7 +225,6 @@ public class PhaseOneController implements Initializable {
     public void signUp() throws IOException {
         if (firstNameSignUp.getText().isEmpty()||lastNameSignUp.getText().isEmpty()||userNameSignUp.getText().isEmpty()||emailSignUp.getText().isEmpty()||passwordSignUp.getText().isEmpty())
         {
-
             if (firstNameSignUp.getText().isEmpty())
             {
                 firstNameSignUp.setStyle("-fx-border-width: 0 0 2 0;-fx-border-radius: 10;-fx-text-inner-color:white;-fx-border-color: #D22F26;");

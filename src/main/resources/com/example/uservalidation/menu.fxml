@@ -4,11 +4,13 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -18,7 +20,7 @@
          <children>
             <AnchorPane layoutX="-25.0" layoutY="-10.0" prefHeight="91.0" prefWidth="1305.0">
                <children>
-                  <ImageView fitHeight="75.0" fitWidth="66.0" layoutX="42.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="75.0" fitWidth="66.0" layoutX="42.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@wwww.png" />
                      </image>
@@ -26,7 +28,7 @@
                         <Cursor fx:constant="DEFAULT" />
                      </cursor>
                   </ImageView>
-                  <Label layoutX="110.0" layoutY="24.0" prefHeight="46.0" prefWidth="126.0" text="WATCH IT" textFill="WHITE">
+                  <Label layoutX="110.0" layoutY="28.0" prefHeight="46.0" prefWidth="126.0" text="WATCH IT" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
@@ -127,6 +129,11 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </AnchorPane>
+            <ScrollPane fx:id="scrollPane" layoutY="92.0" prefHeight="650.0" prefWidth="1286.0">
+               <content>
+                  <TilePane fx:id="movieTilePane1" />
+               </content>
+            </ScrollPane>
          </children>
          <cursor>
             <Cursor fx:constant="DEFAULT" />

@@ -87,4 +87,12 @@ public class Genra {
         }
     }
 
+    public static void addToGenres()
+    {
+        for (Movie movie : HelloApplication.movies)
+        {
+            movie.addgenre();
+        }
+    }
+
 }

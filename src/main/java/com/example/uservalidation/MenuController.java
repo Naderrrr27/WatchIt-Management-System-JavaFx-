@@ -2,16 +2,29 @@ package com.example.uservalidation;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Cursor;
+import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.effect.Glow;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.InputMethodEvent;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.*;
 import javafx.scene.control.Label;
-import javafx.scene.layout.VBox;
+import javafx.scene.shape.Rectangle;
 
-public class MenuController {
+import java.io.File;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
+
+public class MenuController implements Initializable{
 
     @FXML
     private AnchorPane genera1;
@@ -63,6 +76,12 @@ public class MenuController {
 
     @FXML
     private Label realUserName;
+
+    @FXML
+    private TilePane movieTilePane1;
+
+    @FXML
+    private ScrollPane scrollPane;
 
     @FXML
     void gPressed(MouseEvent event) {
@@ -168,6 +187,166 @@ public class MenuController {
         fakeIqon.setVisible(false);
     }
 
-    //userNameeeeeee
+
+
+////////
+
+
+    private void loadMovies() {
+        for (int i=0;i<HelloApplication.movies.size();i++)
+        {
+            addMovieToHome(HelloApplication.movies.get(i));
+        }
+    }
+
+    private void addMovieToHome(Movie movie) {
+
+        StackPane movieBox = new StackPane();
+
+
+        File file = new File(movie.getPoster());
+
+
+        ImageView posterImageView = new ImageView();
+        posterImageView.setImage(new Image(file.toURI().toString()));
+        posterImageView.setFitWidth(305);
+        posterImageView.setFitHeight(150);
+        posterImageView.setOpacity(0.85);
+
+        Rectangle clip = new Rectangle(posterImageView.getFitWidth(), posterImageView.getFitHeight());
+        clip.setArcWidth(20);
+        clip.setArcHeight(20);
+        posterImageView.setClip(clip);
+
+        Glow glow = new Glow();
+        glow.setLevel(0.9);
+
+
+
+        Label movieLabel = new Label(movie.getTitle());
+        movieLabel.setStyle("-fx-text-fill: white; -fx-font-size: 19;-fx-font-weight: 700;-fx-padding:10 10 10 10; ");
+        movieLabel.setEffect(glow);
+        movieBox.setStyle("-fx-border-color: black;");
+
+        movieBox.getChildren().addAll(posterImageView,movieLabel);
+
+        movieBox.setOnMouseEntered(event -> {
+            movieBox.setOpacity(0.5);
+            movieBox.setCursor(Cursor.HAND);
+        });
+
+        movieBox.setOnMouseExited(event -> {
+            movieBox.setOpacity(1.0);
+            movieBox.setCursor(Cursor.DEFAULT);
+        });
+
+        movieBox.setOnMouseClicked(event ->{
+            showPoster(movie);
+        });
+
+        movieBox.setAlignment(movieLabel, Pos.BOTTOM_LEFT);
+        movieTilePane1.setHgap(10.0);
+        movieTilePane1.setVgap(10.0);
+
+
+        movieTilePane1.getChildren().add(movieBox);
+
+
+
+    }
+    private void showPoster(Movie movie) {
+
+        VBox movieBox = new VBox();
+
+       
+        File im = new File("C:/Users/ahmed nader ahmed/IdeaProjects/untitled/UserValidation/src/main/resources/com/example/uservalidation/icons/watch.png");
+        File ad = new File("C:/Users/ahmed nader ahmed/IdeaProjects/untitled/UserValidation/src/main/resources/com/example/uservalidation/icons/add.png");
+
+        File file = new File(movie.getPoster());
+
+        movieTilePane1.getChildren().clear();
+
+        ImageView moviePoster = new ImageView(new Image(file.toURI().toString()));
+        moviePoster.setFitWidth(1300);
+        moviePoster.setFitHeight(300);
+
+        Label movieTitle = new Label(movie.getTitle());
+        movieTitle.setStyle("-fx-text-fill: white; -fx-font-size: 19;-fx-font-weight: 700;-fx-padding: 10 10 0 10; ");
+
+        Label movieDescription = new Label(movie.getMovieDescription());
+        movieDescription.setStyle("-fx-text-fill: white;-fx-font-weight: 700;-fx-padding: 0 10 10 10;");
+        movieDescription.setWrapText(true);
+
+        movieTitle.setPadding(new Insets(0, 0, 0, 0));
+        movieDescription.setPadding(new Insets(0, 0, 0, 0));
+
+
+        Button watch = new Button("Watch");
+        Button add = new Button("My List");
+
+        ImageView playIcon = new ImageView(new Image(im.toURI().toString()));
+        ImageView addIcon = new ImageView(new Image(ad.toURI().toString()));
+        addIcon.setFitWidth(20);
+        addIcon.setFitHeight(20);
+
+        playIcon.setFitWidth(20);
+        playIcon.setFitHeight(20);
+
+        watch.setGraphic(playIcon);
+
+        playIcon.setFitWidth(20);
+        playIcon.setFitHeight(20);
+
+        add.setGraphic(addIcon);
+
+
+        movieTilePane1.setPrefWidth(1250);
+
+        movieTilePane1.setPrefHeight(500);
+        movieTilePane1.setPrefTileWidth(1280);
+
+
+        watch.setStyle("-fx-text-fill: black; -fx-font-size: 19;-fx-font-weight: 700; -fx-background-color: white;");
+        watch.setPrefSize(400,50);
+
+        add.setStyle("-fx-text-fill: white; -fx-font-size: 19;-fx-font-weight: 700; -fx-background-color: #383533");
+        add.setPrefSize(150,50);
+
+        HBox buttons = new HBox();
+        buttons.getChildren().addAll(watch,add);
+
+
+
+
+        movieBox.getChildren().addAll(moviePoster,buttons, movieTitle, movieDescription);
+
+        movieBox.setSpacing(10);
+        buttons.setSpacing(20);
+
+        movieTilePane1.getChildren().addAll(movieBox);
+        movieTilePane1.setAlignment(movieTitle, Pos.TOP_LEFT);
+        movieTilePane1.setAlignment(movieDescription, Pos.TOP_LEFT);
+    }
+
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        movieTilePane1.setStyle("-fx-background-color: #0F0A05; -fx-padding: 10px;");
+
+
+        loadMovies();
+
+
+        scrollPane.setContent(movieTilePane1);
+        scrollPane.setStyle("-fx-background-color: #0F0A05;");
+
+        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+
+        scrollPane.setFitToWidth(true);
+        scrollPane.setFitToHeight(true);
+
+        scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+    }
+
 
 }
