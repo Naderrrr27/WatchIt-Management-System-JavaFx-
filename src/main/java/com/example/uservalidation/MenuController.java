@@ -15,6 +15,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.InputMethodEvent;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseDragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.control.Label;
@@ -43,6 +44,9 @@ public class MenuController implements Initializable{
     private AnchorPane movie1;
 
     @FXML
+    private Label subLabel;
+
+    @FXML
     private ImageView search1;
 
     @FXML
@@ -50,6 +54,9 @@ public class MenuController implements Initializable{
 
     @FXML
     private AnchorPane bigConrainer;
+
+    @FXML
+    private Label profileLabel;
 
     @FXML
     private AnchorPane cancelSearch;
@@ -83,6 +90,16 @@ public class MenuController implements Initializable{
 
     @FXML
     private ScrollPane scrollPane;
+
+    @FXML
+    private Label closeLabel;
+
+    @FXML
+    private AnchorPane userNomAnchor;
+
+    @FXML
+    private Label signOutLabel;
+
 
     @FXML
     void gPressed(MouseEvent event) {
@@ -190,8 +207,58 @@ public class MenuController implements Initializable{
 
 
 
+
+
+
 ////////
 
+        @FXML
+    void userrHoverIn(MouseEvent event) {
+        realUserName.setStyle("-fx-text-fill: rgba(220, 165, 35, 6.0);");
+    }
+
+    @FXML
+    void userrHoverOut(MouseEvent event) {
+        realUserName.setStyle("-fx-text-fill: white");
+    }
+    @FXML
+    void profileHoverIn(MouseEvent event) {
+        profileLabel.setStyle("-fx-text-fill: rgba(220, 165, 35, 6.0);");
+    }
+
+    @FXML
+    void profileHoverOut(MouseEvent event) {
+        profileLabel.setStyle("-fx-text-fill: white");
+    }
+    @FXML
+    void hoverSignOutLabelIn(MouseEvent event) {
+        signOutLabel.setStyle("-fx-text-fill: rgba(220, 165, 35, 6.0);");
+    }
+
+    @FXML
+    void hoverSignOutLabelOut(MouseEvent event) {
+        signOutLabel.setStyle("-fx-text-fill: white;");
+    }
+
+    @FXML
+    void subHoverIn(MouseEvent event) {
+        subLabel.setStyle("-fx-text-fill: rgba(220, 165, 35, 6.0);");
+    }
+
+    @FXML
+    void subHoverOut(MouseEvent event) {
+        subLabel.setStyle("-fx-text-fill: white");
+    }
+
+    @FXML
+    void closeHoverrIn(MouseEvent event) {
+        closeLabel.setStyle("-fx-text-fill: rgba(220, 165, 35, 6.0);");
+    }
+
+    @FXML
+    void closeHoverrOut(MouseEvent event) {
+        closeLabel.setStyle("-fx-text-fill: white;");
+    }
 
     private void loadMovies() {
         for (int i=0;i<HelloApplication.movies.size();i++)
@@ -387,6 +454,7 @@ public class MenuController implements Initializable{
 
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
     }
+
 
 
 }

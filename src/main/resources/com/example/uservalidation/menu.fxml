@@ -180,9 +180,9 @@
       </AnchorPane>
       <VBox fx:id="fakeCombo" layoutX="1043.0" layoutY="74.0" prefHeight="186.0" prefWidth="227.0" styleClass="fakeComboBox" stylesheets="@styling.css" visible="false">
          <children>
-            <AnchorPane prefHeight="45.0" prefWidth="200.0" styleClass="userrrrrr" stylesheets="@styling.css">
+            <AnchorPane fx:id="userNomAnchor" prefHeight="45.0" prefWidth="200.0" styleClass="userrrrrr" stylesheets="@styling.css">
                <children>
-                  <Label fx:id="realUserName" layoutX="47.0" layoutY="6.0" prefHeight="34.0" prefWidth="153.0" styleClass="username" stylesheets="@styling.css" text="Username" />
+                  <Label fx:id="realUserName" layoutX="47.0" layoutY="6.0" onMouseEntered="#userrHoverIn" onMouseExited="#userrHoverOut" prefHeight="34.0" prefWidth="153.0" styleClass="username" stylesheets="@styling.css" text="Username" />
                   <ImageView fx:id="fakeIqon11" fitHeight="38.0" fitWidth="34.0" layoutX="6.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@userKing.png" />
@@ -203,7 +203,7 @@
                         <Image url="@profile.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="51.0" layoutY="6.0" prefHeight="34.0" prefWidth="88.0" stylesheets="@styling.css" text="Profile">
+                  <Label fx:id="profileLabel" layoutX="51.0" layoutY="6.0" onMouseEntered="#profileHoverIn" onMouseExited="#profileHoverOut" prefHeight="34.0" prefWidth="88.0" stylesheets="@styling.css" text="Profile">
                      <styleClass>
                         <String fx:value="username" />
                         <String fx:value="username1" />
@@ -221,7 +221,7 @@
                         <Image url="@subInfo.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="52.0" layoutY="6.0" prefHeight="34.0" prefWidth="144.0" stylesheets="@styling.css" text="Subscription">
+                  <Label fx:id="subLabel" layoutX="52.0" layoutY="6.0" onMouseEntered="#subHoverIn" onMouseExited="#subHoverOut" prefHeight="34.0" prefWidth="144.0" stylesheets="@styling.css" text="Subscription">
                      <styleClass>
                         <String fx:value="username" />
                         <String fx:value="username1" />
@@ -242,7 +242,7 @@
                         <ColorAdjust brightness="0.4" contrast="1.0" hue="1.0" />
                      </effect>
                   </ImageView>
-                  <Label layoutX="53.0" layoutY="11.0" prefHeight="34.0" prefWidth="88.0" stylesheets="@styling.css" text="Sign Out">
+                  <Label fx:id="signOutLabel" layoutX="53.0" layoutY="11.0" onMouseEntered="#hoverSignOutLabelIn" onMouseExited="#hoverSignOutLabelOut" prefHeight="34.0" prefWidth="88.0" stylesheets="@styling.css" text="Sign Out">
                      <styleClass>
                         <String fx:value="username" />
                         <String fx:value="username1" />
@@ -260,7 +260,7 @@
                         <Image url="@cross.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="52.0" layoutY="11.0" prefHeight="34.0" prefWidth="88.0" stylesheets="@styling.css" text="Close">
+                  <Label fx:id="closeLabel" layoutX="52.0" layoutY="11.0" onMouseEntered="#closeHoverrIn" onMouseExited="#closeHoverrOut" prefHeight="34.0" prefWidth="88.0" stylesheets="@styling.css" text="Close">
                      <styleClass>
                         <String fx:value="username" />
                         <String fx:value="username1" />

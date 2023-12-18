@@ -82,7 +82,6 @@
     -fx-font-size: 22px;
 }
 .userrrrrr{
-    -fx-border-width: 0 0 1px 0;
-    -fx-border-color:rgba(172, 172, 172, 0.3);
+  -fx-padding: 2px;
 }
 
