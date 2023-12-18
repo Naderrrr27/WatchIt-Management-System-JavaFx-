@@ -6,6 +6,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
@@ -259,19 +260,25 @@ public class MenuController implements Initializable{
         VBox movieBox = new VBox();
 
        
-        File im = new File("C:/Users/ahmed nader ahmed/IdeaProjects/untitled/UserValidation/src/main/resources/com/example/uservalidation/icons/watch.png");
-        File ad = new File("C:/Users/ahmed nader ahmed/IdeaProjects/untitled/UserValidation/src/main/resources/com/example/uservalidation/icons/add.png");
+        File im = new File("src/main/resources/com/example/uservalidation/icons/watch.png");
+        File ad = new File("src/main/resources/com/example/uservalidation/icons/add.png");
 
         File file = new File(movie.getPoster());
 
         movieTilePane1.getChildren().clear();
 
+
         ImageView moviePoster = new ImageView(new Image(file.toURI().toString()));
-        moviePoster.setFitWidth(1300);
-        moviePoster.setFitHeight(300);
+        moviePoster.setFitWidth(800);
+        moviePoster.setFitHeight(400);
+
+        Rectangle clip = new Rectangle(moviePoster.getFitWidth(), moviePoster.getFitHeight());
+        clip.setArcWidth(25);
+        clip.setArcHeight(25);
+        moviePoster.setClip(clip);
 
         Label movieTitle = new Label(movie.getTitle());
-        movieTitle.setStyle("-fx-text-fill: white; -fx-font-size: 19;-fx-font-weight: 700;-fx-padding: 10 10 0 10; ");
+        movieTitle.setStyle("-fx-text-fill: white; -fx-font-size: 19;-fx-font-weight: 700;");
 
         Label movieDescription = new Label(movie.getMovieDescription());
         movieDescription.setStyle("-fx-text-fill: white;-fx-font-weight: 700;-fx-padding: 0 10 10 10;");
@@ -307,25 +314,58 @@ public class MenuController implements Initializable{
 
 
         watch.setStyle("-fx-text-fill: black; -fx-font-size: 19;-fx-font-weight: 700; -fx-background-color: white;");
-        watch.setPrefSize(400,50);
+        watch.setPrefSize(150,50);
 
-        add.setStyle("-fx-text-fill: white; -fx-font-size: 19;-fx-font-weight: 700; -fx-background-color: #383533");
+        add.setStyle("-fx-text-fill: white; -fx-font-size: 19;-fx-font-weight: 700; -fx-background-color: #383533;");
         add.setPrefSize(150,50);
+
+        ArrayList<ImageView> rates = new ArrayList<>();
+        for (int i=0;i<5;i++)
+        {
+            File beforeRateIm=new File("src/main/resources/com/example/uservalidation/icons/beforeRating.png");
+            rates.add(new ImageView(new Image(beforeRateIm.toURI().toString())));
+            rates.get(i).setFitWidth(50);
+            rates.get(i).setFitHeight(50);
+        }
+
+        VBox rightInfo = new VBox();
+
+
+
+
+        movieBox.setStyle("-fx-padding:20px");
+
+        HBox ratees = new HBox();
+        ratees.getChildren().addAll(rates);
+
 
         HBox buttons = new HBox();
         buttons.getChildren().addAll(watch,add);
 
+        Label year = new Label(Integer.toString(movie.getYear())+" "+movie.getRunningtime());
+        year.setStyle("-fx-text-fill: white; -fx-font-size: 19;-fx-font-weight: 700;");
+
+
+        rightInfo.getChildren().addAll(movieTitle,year,buttons);
+
+
+        HBox head = new HBox();
+        head.setSpacing(10);
 
 
 
-        movieBox.getChildren().addAll(moviePoster,buttons, movieTitle, movieDescription);
+
+        head.getChildren().addAll(moviePoster,rightInfo);
+
+
+        movieBox.getChildren().addAll(head, movieDescription);
 
         movieBox.setSpacing(10);
         buttons.setSpacing(20);
 
+
+
         movieTilePane1.getChildren().addAll(movieBox);
-        movieTilePane1.setAlignment(movieTitle, Pos.TOP_LEFT);
-        movieTilePane1.setAlignment(movieDescription, Pos.TOP_LEFT);
     }
 
 
