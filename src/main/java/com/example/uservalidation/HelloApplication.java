@@ -93,6 +93,11 @@ public class HelloApplication extends Application {
 
 
 
+
+
+
+
+
         saveMoviesToFile("movies.txt");
 
         saveCastToFile("casts.txt");
@@ -123,11 +128,12 @@ public class HelloApplication extends Application {
             User.userIdCounter=users.get(users.size()-1).userId;
         }
 
+        Genra.addToGenres();
 
-//        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
 
-        //run this fille lama te3mel el guiiiiii
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("menu.fxml"));
+
+//        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("menu.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 320, 240);
         stage.setTitle("Hello!");
         stage.setWidth(1293);
