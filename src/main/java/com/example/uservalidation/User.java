@@ -1,8 +1,11 @@
 package com.example.uservalidation;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class   User implements Serializable {
+
+    protected static int whoIsActive=-1;
 
     //to assign unique userId and to know how many users
     protected static int userIdCounter;
@@ -13,10 +16,10 @@ public class   User implements Serializable {
     protected String userName;
     protected String email;
     protected String password;
-    protected boolean active;
-    protected Subscription subscription;
 
+    protected Subscription subscription;
     protected boolean isSubscriptionDone;
+    protected ArrayList<Movie> movieList = new ArrayList<>();
 
     public User(String fName, String lName, String uName, String mail, String pass)
     {
@@ -54,16 +57,17 @@ public class   User implements Serializable {
         this.password = password;
     }
 
-    public void setActive(boolean active) {
-        this.active = active;
-    }
-
     public void setSubscriptionActive(boolean subscriptionActive) {
         isSubscriptionDone = subscriptionActive;
     }
 
     public void setSubscription(Subscription subscription) {
         this.subscription = subscription;
+    }
+
+    public void addToMovieList(Movie movie)
+    {
+        movieList.add(movie);
     }
 
     //Getter
@@ -92,16 +96,16 @@ public class   User implements Serializable {
         return email;
     }
 
-    public boolean isActive() {
-        return active;
-    }
-
     public Subscription getSubscription() {
         return subscription;
     }
 
     public boolean isSubscriptionActive() {
         return isSubscriptionDone;
+    }
+
+    public ArrayList<Movie> getMovieList() {
+        return movieList;
     }
 
     @Override
@@ -113,13 +117,10 @@ public class   User implements Serializable {
                 ", userName='" + userName + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
-                ", active=" + active +
                 ", subscription=" + subscription +
                 ", isSubscriptionDone=" + isSubscriptionDone +
                 '}';
     }
-
-
 
     public String getPassword()
     {

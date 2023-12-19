@@ -4,14 +4,14 @@ import java.util.ArrayList;
 public class Genra {
     // declaring parameters for Movies
     int genreId;
-    private static ArrayList<Movie> dramaMovie = new ArrayList();
-    private static ArrayList<Movie> comedyMovie = new ArrayList();
-    private static ArrayList<Movie> romancMovie = new ArrayList();
-    private static ArrayList<Movie> actionMovie = new ArrayList();
-    private static  ArrayList<Movie> horrorMovie = new ArrayList();
-    private static ArrayList<Movie> internationalMovie = new ArrayList();
-    private static ArrayList<Movie> socialMovie = new ArrayList();
-    private static  ArrayList<Movie> forkidsMovie = new ArrayList();
+    private static ArrayList<Movie> dramaMovie = new ArrayList<>();
+    private static ArrayList<Movie> comedyMovie = new ArrayList<>();
+    private static ArrayList<Movie> romancMovie = new ArrayList<>();
+    private static ArrayList<Movie> actionMovie = new ArrayList<>();
+    private static  ArrayList<Movie> horrorMovie = new ArrayList<>();
+    private static ArrayList<Movie> internationalMovie = new ArrayList<>();
+    private static ArrayList<Movie> socialMovie = new ArrayList<>();
+    private static  ArrayList<Movie> forkidsMovie = new ArrayList<>();
 
 
     //using the default constructor

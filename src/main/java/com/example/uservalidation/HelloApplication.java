@@ -16,7 +16,6 @@ public class HelloApplication extends Application {
 
     public static ArrayList<User> users = new ArrayList<>();
     public static ArrayList<Movie> movies = new ArrayList<>();
-
     public static ArrayList<Cast> casts = new ArrayList<>();
 
 
@@ -83,17 +82,11 @@ public class HelloApplication extends Application {
 
 
 
-        loadUsersFromFile("users.txt");
+        loadUsersFromFile("Users.txt");
 
         loadMoviesFromFile("movies.txt");
 
         loadCastFromFile("casts.txt");
-
-
-
-
-
-
 
 
 
@@ -121,6 +114,11 @@ public class HelloApplication extends Application {
         }
 
 
+        for (User it : users)
+        {
+            System.out.println(it);
+        }
+
 
 
         if(users.isEmpty())
@@ -129,14 +127,15 @@ public class HelloApplication extends Application {
         }
         else
         {
-            User.userIdCounter=users.get(users.size()-1).userId;
+            User.userIdCounter=users.get(users.size()-1).getUserId();
         }
+
+
 
         Genra.addToGenres();
 
 
 
-//        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("menu.fxml"));
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 320, 240);
         stage.setTitle("Hello!");

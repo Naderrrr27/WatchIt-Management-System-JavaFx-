@@ -169,14 +169,6 @@ public class Movie implements Serializable {
 
 
 
-
-
-
-
-
-
-
-
     public void displaycast(){
         for(Cast it: cast){
             if(it.getActorJob().equals("Director:")) {
@@ -193,10 +185,6 @@ public class Movie implements Serializable {
     public ArrayList<String> displaytypes(){
         return types;
     }
-
-
-
-
 
 
     @Override
