@@ -8,6 +8,7 @@ public class SearchManager {
 
     public ArrayList<Movie> searchMovie(String searchedItem)
     {
+
         int counter;
 
         ArrayList<Movie> movie=null;
