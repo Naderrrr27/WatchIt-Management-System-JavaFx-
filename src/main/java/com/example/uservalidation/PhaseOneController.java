@@ -1,11 +1,13 @@
 package com.example.uservalidation;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.effect.Glow;
 import javafx.scene.image.Image;
@@ -773,68 +775,103 @@ public class PhaseOneController implements Initializable {
     }
     private void showPoster(Movie movie) {
 
-        VBox movieBox = new VBox();
-
-
-        File im = new File("src/main/resources/com/example/uservalidation/icons/watch.png");
-        File ad = new File("src/main/resources/com/example/uservalidation/icons/add.png");
-
-        File file = new File(movie.getPoster());
-
+        //Clear the current page
         movieTilePane1.getChildren().clear();
 
 
+        //Files
+        File im = new File("src/main/resources/com/example/uservalidation/icons/watch.png");
+        File ad = new File("src/main/resources/com/example/uservalidation/icons/add.png");
+        File file = new File(movie.getPoster());
+
+        //Images
         ImageView moviePoster = new ImageView(new Image(file.toURI().toString()));
         moviePoster.setFitWidth(800);
         moviePoster.setFitHeight(400);
+        ImageView playIcon = new ImageView(new Image(im.toURI().toString()));
+        playIcon.setFitWidth(20);
+        playIcon.setFitHeight(20);
+        ImageView addIcon = new ImageView(new Image(ad.toURI().toString()));
+        addIcon.setFitWidth(20);
+        addIcon.setFitHeight(20);
 
+        //Buttons
+        HBox buttons = new HBox();
+        Button watch = new Button("Watch");
+        Button add = new Button("My List");
+        watch.setGraphic(playIcon);
+        add.setGraphic(addIcon);
+        buttons.setSpacing(25);
+        watch.setOnMouseEntered(event -> {
+            watch.setOpacity(0.5);
+            watch.setCursor(Cursor.HAND);
+        });
+        watch.setOnMouseExited(event -> {
+            watch.setOpacity(1.0);
+            watch.setCursor(Cursor.DEFAULT);
+        });
+        add.setOnMouseEntered(event -> {
+            add.setOpacity(0.5);
+            add.setCursor(Cursor.HAND);
+        });
+        add.setOnMouseExited(event -> {
+            add.setOpacity(1.0);
+            add.setCursor(Cursor.DEFAULT);
+        });
+
+        //Buttons styling
+        watch.setStyle("-fx-text-fill: black; -fx-font-size: 19;-fx-font-weight: 700; -fx-background-color: white;");
+        watch.setPrefSize(150,50);
+        add.setStyle("-fx-text-fill: white; -fx-font-size: 19;-fx-font-weight: 700; -fx-background-color: #383533;");
+        add.setPrefSize(150,50);
+        buttons.getChildren().addAll(watch,add);
+
+        //Labels
+        Label movieTitle = new Label(movie.getTitle());
+        movieTitle.setStyle("-fx-text-fill: white; -fx-font-size: 40;-fx-font-weight: 700;-fx-padding:0 30px 10px 0");
+        movieTitle.setPrefWidth(400);
+        movieTitle.setAlignment(Pos.CENTER_LEFT);
+        Label year = new Label(Integer.toString(movie.getYear())+" "+Float.toString(movie.getRunningtime()).charAt(0)+" Hour "+Float.toString(movie.getRunningtime()).charAt(2)+Float.toString(movie.getRunningtime()).charAt(3)+" Minutes");
+        year.setStyle("-fx-text-fill: white; -fx-font-size: 19;-fx-font-weight: 700;-fx-padding:0 0 0 7px;");
+        Label movieDescription = new Label(movie.getMovieDescription());
+        movieDescription.setStyle("-fx-text-fill: white;-fx-font-weight: 700;");
+
+        //Movie genre label
+        String typess = new String("");
+
+        for (int i=0;i<movie.getTypes().size();i++)
+        {
+            if(i!=movie.getTypes().size()-1&&i!=1)
+            {
+                typess+=movie.getTypes().get(i)+"/";
+            }
+            else
+            {
+                typess+=movie.getTypes().get(i);
+            }
+            if(i==1)
+            {
+                break;
+            }
+        }
+        Label type = new Label(typess);
+        type.setStyle("-fx-text-fill: white; -fx-font-size: 19;-fx-font-weight: 700;-fx-padding:0 0 140px 7px;");
+
+
+
+
+
+
+        //To set Border
         Rectangle clip = new Rectangle(moviePoster.getFitWidth(), moviePoster.getFitHeight());
         clip.setArcWidth(25);
         clip.setArcHeight(25);
         moviePoster.setClip(clip);
 
-        Label movieTitle = new Label(movie.getTitle());
-        movieTitle.setStyle("-fx-text-fill: white; -fx-font-size: 19;-fx-font-weight: 700;");
-
-        Label movieDescription = new Label(movie.getMovieDescription());
-        movieDescription.setStyle("-fx-text-fill: white;-fx-font-weight: 700;-fx-padding: 0 10 10 10;");
-        movieDescription.setWrapText(true);
-
-        movieTitle.setPadding(new Insets(0, 0, 0, 0));
-        movieDescription.setPadding(new Insets(0, 0, 0, 0));
 
 
-        Button watch = new Button("Watch");
-        Button add = new Button("My List");
 
-        ImageView playIcon = new ImageView(new Image(im.toURI().toString()));
-        ImageView addIcon = new ImageView(new Image(ad.toURI().toString()));
-        addIcon.setFitWidth(20);
-        addIcon.setFitHeight(20);
-
-        playIcon.setFitWidth(20);
-        playIcon.setFitHeight(20);
-
-        watch.setGraphic(playIcon);
-
-        playIcon.setFitWidth(20);
-        playIcon.setFitHeight(20);
-
-        add.setGraphic(addIcon);
-
-
-        movieTilePane1.setPrefWidth(1250);
-
-        movieTilePane1.setPrefHeight(500);
-        movieTilePane1.setPrefTileWidth(1280);
-
-
-        watch.setStyle("-fx-text-fill: black; -fx-font-size: 19;-fx-font-weight: 700; -fx-background-color: white;");
-        watch.setPrefSize(150,50);
-
-        add.setStyle("-fx-text-fill: white; -fx-font-size: 19;-fx-font-weight: 700; -fx-background-color: #383533;");
-        add.setPrefSize(150,50);
-
+        //Rates
         ArrayList<ImageView> rates = new ArrayList<>();
         for (int i=0;i<5;i++)
         {
@@ -844,64 +881,54 @@ public class PhaseOneController implements Initializable {
             rates.get(i).setFitHeight(50);
         }
 
-        VBox rightInfo = new VBox();
-
-
-
-
-        movieBox.setStyle("-fx-padding:20px");
-
         HBox ratees = new HBox();
         ratees.getChildren().addAll(rates);
+        ratees.setStyle("-fx-padding:20px 0 0 0 40px;");
 
 
-        HBox buttons = new HBox();
-        buttons.getChildren().addAll(watch,add);
-
-        Label year = new Label(Integer.toString(movie.getYear())+" "+movie.getRunningtime());
-        year.setStyle("-fx-text-fill: white; -fx-font-size: 19;-fx-font-weight: 700;");
 
 
-        rightInfo.getChildren().addAll(movieTitle,year,buttons);
 
+        //Rates container
+        VBox rightInfo = new VBox();
+        rightInfo.getChildren().addAll(movieTitle,year,type,buttons,ratees);
 
+        //Right info container
         HBox head = new HBox();
-        head.setSpacing(10);
-
-
-
-
         head.getChildren().addAll(moviePoster,rightInfo);
+        head.setSpacing(15);
 
 
+
+        //All
+        VBox movieBox = new VBox();
+        movieBox.setStyle("-fx-padding:20px");
+        movieBox.setSpacing(10);
         movieBox.getChildren().addAll(head, movieDescription);
 
-        movieBox.setSpacing(10);
-        buttons.setSpacing(20);
 
 
-
+        //All container
         movieTilePane1.getChildren().addAll(movieBox);
+        movieTilePane1.setPrefWidth(1250);
+        movieTilePane1.setPrefHeight(500);
     }
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        movieTilePane1.setStyle("-fx-background-color: #0F0A05; -fx-padding: 10px;");
 
 
         loadMovies();
 
+        movieTilePane1.setStyle("-fx-background-color: #0F0A05; -fx-padding: 10px;");
 
         scrollPane.setContent(movieTilePane1);
         scrollPane.setStyle("-fx-background-color: #0F0A05;");
-
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-
+        scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         scrollPane.setFitToWidth(true);
         scrollPane.setFitToHeight(true);
-
-        scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
     }
 
 

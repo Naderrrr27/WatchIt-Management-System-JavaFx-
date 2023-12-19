@@ -87,6 +87,39 @@ public class Genra {
         }
     }
 
+
+    public static ArrayList<Movie> getDramaMovie() {
+        return dramaMovie;
+    }
+
+    public static ArrayList<Movie> getComedyMovie() {
+        return comedyMovie;
+    }
+
+    public static ArrayList<Movie> getRomancMovie() {
+        return romancMovie;
+    }
+
+    public static ArrayList<Movie> getActionMovie() {
+        return actionMovie;
+    }
+
+    public static ArrayList<Movie> getHorrorMovie() {
+        return horrorMovie;
+    }
+
+    public static ArrayList<Movie> getInternationalMovie() {
+        return internationalMovie;
+    }
+
+    public static ArrayList<Movie> getSocialMovie() {
+        return socialMovie;
+    }
+
+    public static ArrayList<Movie> getForkidsMovie() {
+        return forkidsMovie;
+    }
+
     public static void addToGenres()
     {
         for (Movie movie : HelloApplication.movies)

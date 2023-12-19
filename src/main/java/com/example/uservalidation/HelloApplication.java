@@ -7,8 +7,10 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.io.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 
 public class HelloApplication extends Application {
 
@@ -86,6 +88,8 @@ public class HelloApplication extends Application {
         loadMoviesFromFile("movies.txt");
 
         loadCastFromFile("casts.txt");
+
+
 
 
 

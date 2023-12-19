@@ -190,10 +190,8 @@ public class Movie implements Serializable {
             }
         }
     }
-    public void displaytypes(){
-        for(String it:types){
-            System.out.print(it+" ");
-        }
+    public ArrayList<String> displaytypes(){
+        return types;
     }
 
 
