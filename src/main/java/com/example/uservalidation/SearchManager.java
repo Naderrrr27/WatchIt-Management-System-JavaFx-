@@ -8,32 +8,47 @@ public class SearchManager {
 
     public ArrayList<Movie> searchMovie(String searchedItem)
     {
+        int counter;
         ArrayList<Movie> movie=null;
 
         for (Movie m : HelloApplication.movies)
         {
-            if (m.getTitle().equals(searchedItem))
+            counter=0;
+            for(int i=0;i<searchedItem.length();i++)
             {
-                movie.add(m);
+                if(searchedItem.charAt(i)==m.getTitle().charAt(i))
+                    counter++;
             }
 
+            if(counter==searchedItem.length())
+                movie.add(m);
+
         }
+
         return movie;
     }
 
 
     public ArrayList<Cast> searchCast(String searchedItem)
     {
-
+        int counter;
         ArrayList<Cast>cast=null;
         for (Cast c : HelloApplication.casts)
         {
-            if (c.getFirstName().equals(searchedItem))
-            {
-                cast.add(c);
-            }
+           counter=0;
+
+           for(int i=0;i<searchedItem.length();i++)
+           {
+               if(searchedItem.charAt(i)==c.getFirstName().charAt(i))
+                   counter++;
+
+           }
+
+           if(counter==searchedItem.length())
+               cast.add(c);
 
         }
+
         return cast ;
     }
 
