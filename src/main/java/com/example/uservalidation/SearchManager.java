@@ -9,11 +9,13 @@ public class SearchManager {
     public ArrayList<Movie> searchMovie(String searchedItem)
     {
         int counter;
+
         ArrayList<Movie> movie=null;
 
         for (Movie m : HelloApplication.movies)
         {
             counter=0;
+
             for(int i=0;i<searchedItem.length();i++)
             {
                 if(searchedItem.charAt(i)==m.getTitle().charAt(i))
@@ -32,7 +34,9 @@ public class SearchManager {
     public ArrayList<Cast> searchCast(String searchedItem)
     {
         int counter;
+
         ArrayList<Cast>cast=null;
+
         for (Cast c : HelloApplication.casts)
         {
            counter=0;
@@ -44,8 +48,8 @@ public class SearchManager {
 
            }
 
-           if(counter==searchedItem.length())
-               cast.add(c);
+            if(counter==searchedItem.length())
+                cast.add(c);
 
         }
 
