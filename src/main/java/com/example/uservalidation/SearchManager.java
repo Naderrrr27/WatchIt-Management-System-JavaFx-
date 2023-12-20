@@ -32,11 +32,12 @@ public class SearchManager {
     }
 
 
+
     public ArrayList<Cast> searchCast(String searchedItem)
     {
         int counter;
 
-        ArrayList<Cast>cast=null;
+        ArrayList<Cast> cast=null;
 
         for (Cast c : HelloApplication.casts)
         {
@@ -61,7 +62,9 @@ public class SearchManager {
     public ArrayList<Movie> searchGenra(String searchedItem)
     {
 
+
         ArrayList<Movie>movie=null;
+
         if(searchedItem.equals("Comedy")||searchedItem.equals("comedy"))
             movie=Genra.getComedyMovie();
 
