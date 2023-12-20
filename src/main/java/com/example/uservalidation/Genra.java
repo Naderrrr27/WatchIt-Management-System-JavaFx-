@@ -1,9 +1,13 @@
 package com.example.uservalidation;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Genra {
     // declaring parameters for Movies
     int genreId;
+
+    protected static ArrayList<String> genres = new ArrayList<>(Arrays.asList("Drama", "Comedy", "Action","Romance","ForKids", "Horror","International","Social","Mystery","Classic","Originals","Marvel","Animation","Thriller","Documentaries"));
+
     private static ArrayList<Movie> dramaMovie = new ArrayList<>();
     private static ArrayList<Movie> comedyMovie = new ArrayList<>();
     private static ArrayList<Movie> romancMovie = new ArrayList<>();
@@ -118,6 +122,10 @@ public class Genra {
 
     public static ArrayList<Movie> getForkidsMovie() {
         return forkidsMovie;
+    }
+
+    public static ArrayList<String> getGenres() {
+        return genres;
     }
 
     public static void addToGenres()

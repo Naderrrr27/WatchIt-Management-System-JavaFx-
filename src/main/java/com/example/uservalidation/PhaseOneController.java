@@ -569,6 +569,10 @@ public class PhaseOneController implements Initializable {
         home1.setStyle("-fx-background-color: transparent ;");
         fakeCombo.setVisible(false);
         fakeIqon.setVisible(false);
+        movieTilePane1.getChildren().clear();
+        scrollPane.setContent(movieTilePane1);
+        movieTilePane1.setStyle("-fx-background-color:#0F0A05;");
+        displayGenre(Genra.getGenres());
     }
 
     @FXML
@@ -1360,6 +1364,98 @@ public class PhaseOneController implements Initializable {
         controlled.setMargin(moviePoster,new Insets(50,10,0,0));
 
     }
+
+
+
+    private void displayGenre(ArrayList<String> genres) {
+
+        for (String genre : genres)
+        {
+            displayGenrePoster(genre);
+        }
+
+    }
+
+    private void displayGenrePoster(String genre)
+    {
+        File file = new File("src/main/resources/com/example/uservalidation/icons/genraBackground.jpg");
+        ImageView imageView = new ImageView(new Image(file.toURI().toString()));
+        imageView.setFitWidth(405);
+        imageView.setFitHeight(150);
+
+
+        Label genreName = new Label(genre);
+        genreName.setStyle("-fx-background-color:transparent; -fx-font-size:25px; -fx-text-fill:white ; -fx-font-weight:900;");
+
+
+        Rectangle clip = new Rectangle(imageView.getFitWidth(), imageView.getFitHeight());
+        clip.setArcWidth(20);
+        clip.setArcHeight(20);
+        imageView.setClip(clip);
+        imageView.setOpacity(0.5);
+
+
+
+        StackPane genrePoster = new StackPane();
+
+
+        genrePoster.setOnMouseEntered(event -> {
+            imageView.setOpacity(0.7);
+            imageView.setCursor(Cursor.HAND);
+        });
+
+        genrePoster.setOnMouseExited(event -> {
+            imageView.setOpacity(0.5);
+            imageView.setCursor(Cursor.DEFAULT);
+        });
+
+        genrePoster.setOnMouseClicked(event -> {
+            movieTilePane1.getChildren().clear();
+            container.getChildren().clear();
+
+            movieTilePane1.setStyle("-fx-background-color: #0F0A05; -fx-padding: 0;");
+
+            Label genreTitle = new Label(genre);
+            genreTitle.setStyle("-fx-background-color:transparent; -fx-font-size:30px; -fx-text-fill:white ; -fx-font-weight:900;");
+
+            container.getChildren().addAll(genreTitle,movieTilePane1);
+            container.setStyle("-fx-background-color: #0F0A05; -fx-padding: 20px 10px 0 10px;");
+
+            container.setSpacing(10);
+
+            scrollPane.setContent(container);
+
+            for(Movie movie : HelloApplication.movies)
+            {
+                if(genre.equals(movie.getTypes().get(0)))
+                {
+                    addMovieToHome(movie);
+                }
+            }
+
+        });
+
+
+
+        genrePoster.getChildren().addAll(imageView,genreName);
+        genrePoster.setAlignment(genreName, Pos.CENTER);
+
+        movieTilePane1.getChildren().addAll(genrePoster);
+        movieTilePane1.setStyle("-fx-padding:50px 10px 0 22px;-fx-background-color:#0F0A05;");
+        movieTilePane1.setVgap(10);
+        movieTilePane1.setHgap(10);
+
+    }
+
+
+
+
+
+
+
+
+
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
