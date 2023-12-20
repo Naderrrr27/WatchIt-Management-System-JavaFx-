@@ -362,7 +362,7 @@
 
       <AnchorPane fx:id="searchPage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" styleClass="fullContainer" stylesheets="@styling.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
          <children>
-            <AnchorPane fx:id="bigConrainer" layoutX="-3.0" layoutY="15.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="70.0" prefWidth="1280.0" styleClass="fullContainer" stylesheets="@styling.css">
+            <AnchorPane fx:id="bigConrainer" layoutY="14.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="70.0" prefWidth="1280.0" styleClass="fullContainer" stylesheets="@styling.css">
                <children>
                   <AnchorPane layoutX="-25.0" layoutY="-10.0" prefHeight="91.0" prefWidth="1305.0">
                      <children>
