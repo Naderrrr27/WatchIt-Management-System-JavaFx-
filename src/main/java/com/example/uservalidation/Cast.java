@@ -10,8 +10,7 @@ public class Cast implements Serializable {
     private String firstName;
     private String lastName;
     private Byte actorAge;
-    private ArrayList<Movie> actedMovie = new ArrayList();
-//    private ArrayList<TVshow> actedTvShow = new ArrayList();
+    private ArrayList<Movie> actedMovie = new ArrayList<>();
     private String actorNationality;
     private String actorJob;
 
@@ -69,6 +68,10 @@ public class Cast implements Serializable {
 
     public String getActorNationality() {
         return actorNationality;
+    }
+
+    public ArrayList<Movie> getActedMovie() {
+        return actedMovie;
     }
 
     // display methods

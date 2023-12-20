@@ -119,6 +119,7 @@ public class   User implements Serializable {
                 ", password='" + password + '\'' +
                 ", subscription=" + subscription +
                 ", isSubscriptionDone=" + isSubscriptionDone +
+                ", movieList=" + movieList +
                 '}';
     }
 
@@ -127,14 +128,5 @@ public class   User implements Serializable {
         return password;
     }
 
-    public void getInfo()
-    {
-        System.out.println("Id : "+Integer.toString(getUserId()));
-        System.out.println("First Name : "+getFirstName());
-        System.out.println("Last Name : "+getLastName());
-        System.out.println("Username : "+getUserName());
-        System.out.println("Email : "+getEmail());
-        System.out.println("Password : "+getPassword());
-    }
 
 }

@@ -12,6 +12,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 
+
+
+
+
+
+
+
+
 public class HelloApplication extends Application {
 
     public static ArrayList<User> users = new ArrayList<>();
@@ -74,9 +82,6 @@ public class HelloApplication extends Application {
         }
     }
 
-
-
-
     @Override
     public void start(Stage stage) throws IOException, ClassNotFoundException {
 
@@ -95,9 +100,16 @@ public class HelloApplication extends Application {
 
 
 
-        saveMoviesToFile("movies.txt");
 
-        saveCastToFile("casts.txt");
+        stage.setOnCloseRequest(event -> {
+            saveMoviesToFile("movies.txt");
+            saveCastToFile("casts.txt");
+            saveUsersToFile("Users.txt");
+        });
+
+
+
+
 
 
 
@@ -108,16 +120,23 @@ public class HelloApplication extends Application {
         }
 
 
+
+
         for (Movie it : movies)
         {
             System.out.println(it);
         }
 
 
+
+
         for (User it : users)
         {
             System.out.println(it);
         }
+
+
+
 
 
 
@@ -132,7 +151,16 @@ public class HelloApplication extends Application {
 
 
 
+
+
+
+
+
+
+
         Genra.addToGenres();
+
+
 
 
 
@@ -143,7 +171,6 @@ public class HelloApplication extends Application {
         stage.setHeight(800);
         stage.setScene(scene);
         stage.show();
-
     }
 
     public static void main(String[] args) {

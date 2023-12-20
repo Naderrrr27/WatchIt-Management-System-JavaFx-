@@ -223,7 +223,19 @@ public class PhaseOneController implements Initializable {
 
     VBox container = new VBox();
 
+
     Label headerLabel = new Label("");
+
+    //Controlled
+    TilePane controlled = new TilePane();
+
+
+    //details
+    StackPane details = new StackPane();
+
+    //likeThis
+    StackPane likeThis = new StackPane();
+
 
 
 
@@ -303,7 +315,7 @@ public class PhaseOneController implements Initializable {
             HelloApplication.users.get(User.whoIsActive-1).setSubscriptionActive(true);
             HelloApplication.users.get(User.whoIsActive-1).setSubscription(new Subscription(userPlan));
 
-            HelloApplication.saveUsersToFile("Users.txt");
+//            HelloApplication.saveUsersToFile("Users.txt");
 
         }
     }
@@ -372,9 +384,10 @@ public class PhaseOneController implements Initializable {
         {
 
             HelloApplication.users.add(new User(firstNameSignUp.getText(),lastNameSignUp.getText(),userNameSignUp.getText(),emailSignUp.getText(),passwordSignUp.getText()));
-            HelloApplication.saveUsersToFile("Users.txt");
+//            HelloApplication.saveUsersToFile("Users.txt");
 
-            User.whoIsActive = HelloApplication.users.getLast().getUserId();
+            User.whoIsActive = HelloApplication.users.get(HelloApplication.users.size()-1).getUserId();
+
             subscriptionPlanss.setVisible(true);
             signInForm.setVisible(false);
             signUpForm.setVisible(false);
@@ -714,17 +727,23 @@ public class PhaseOneController implements Initializable {
     private void loadMovies() {
 
         headerLabel.setText("Cinema Collection");
-        headerLabel.setStyle("-fx-text-fill: white; -fx-font-size: 24; -fx-font-weight: bold;-fx-padding:30 0 30px 0;");
+        headerLabel.setStyle("-fx-text-fill: white; -fx-font-size: 24; -fx-font-weight: bold;-fx-padding:30px 0 30px 20px;");
 
         movieTilePane1.getChildren().clear();
+        movieTilePane1.setPrefWidth(1700);
+        movieTilePane1.setStyle("-fx-background-color: #0F0A05; -fx-padding: 0;");
+
+
+
         container.getChildren().clear();
 
         container.getChildren().addAll(headerLabel, movieTilePane1);
-        scrollPane.setStyle("-fx-background-color: #0F0A05;-fx-border-width:1px 0 0 0;-fx-border-radius:20px;-fx-border-color:yellow;");
+        scrollPane.setStyle("-fx-background-color: #0F0A05;-fx-border-width:0 0 0 0;-fx-border-radius:20px;-fx-border-color:yellow;");
 
-        container.setStyle("-fx-background-color: #0F0A05; -fx-padding: 0px;");
+        container.setStyle("-fx-background-color: #0F0A05; -fx-padding: 20px 10px 0 10px;");
 
         scrollPane.setContent(container);
+        scrollPane.setVvalue(0.0);
 
         for (int i=0;i<HelloApplication.movies.size();i++)
         {
@@ -734,7 +753,7 @@ public class PhaseOneController implements Initializable {
 
     private void addMovieToHome(Movie movie) {
 
-        StackPane movieBox = new StackPane();
+        StackPane stackBox = new StackPane();
 
 
         File file = new File(movie.getPoster());
@@ -759,35 +778,39 @@ public class PhaseOneController implements Initializable {
         Label movieLabel = new Label(movie.getTitle());
         movieLabel.setStyle("-fx-text-fill: white; -fx-font-size: 19;-fx-font-weight: 700;-fx-padding:10 10 10 10; ");
         movieLabel.setEffect(glow);
-        movieBox.setStyle("-fx-border-color: black;");
+        stackBox.setStyle("-fx-border-color: black;");
 
-        movieBox.getChildren().addAll(posterImageView,movieLabel);
+        stackBox.getChildren().addAll(posterImageView,movieLabel);
 
-        movieBox.setOnMouseEntered(event -> {
-            movieBox.setOpacity(0.5);
-            movieBox.setCursor(Cursor.HAND);
+        stackBox.setOnMouseEntered(event -> {
+            stackBox.setOpacity(0.5);
+            stackBox.setCursor(Cursor.HAND);
         });
 
-        movieBox.setOnMouseExited(event -> {
-            movieBox.setOpacity(1.0);
-            movieBox.setCursor(Cursor.DEFAULT);
+        stackBox.setOnMouseExited(event -> {
+            stackBox.setOpacity(1.0);
+            stackBox.setCursor(Cursor.DEFAULT);
         });
 
-        movieBox.setOnMouseClicked(event ->{
+        stackBox.setOnMouseClicked(event ->{
             showPoster(movie);
         });
 
-        movieBox.setAlignment(movieLabel, Pos.BOTTOM_LEFT);
+        stackBox.setAlignment(movieLabel, Pos.BOTTOM_LEFT);
         movieTilePane1.setHgap(10.0);
         movieTilePane1.setVgap(10.0);
 
 
-        movieTilePane1.getChildren().add(movieBox);
+        movieTilePane1.getChildren().add(stackBox);
 
 
 
     }
     private void showPoster(Movie movie) {
+
+        scrollPane.setVvalue(0.0);
+
+        VBox movieBox = new VBox();
 
         //Clear the current page
         movieTilePane1.getChildren().clear();
@@ -851,6 +874,10 @@ public class PhaseOneController implements Initializable {
             add.setCursor(Cursor.DEFAULT);
         });
 
+        watch.setOnMouseClicked(event -> {
+            movie.watchemovie();
+            System.out.println(movie.getTitle()+" : "+movie.getViews());
+        });
 
 
 
@@ -978,10 +1005,17 @@ public class PhaseOneController implements Initializable {
 
                 isRated=true;
 
+
                 double mouseX = event.getX();
                 double imageSize = 50;
                 int clickedImageIndex = (int) (mouseX / imageSize) + 1;
 
+                movie.ratings.add((byte) clickedImageIndex);
+                System.out.println(movie.getTitle()+" : ");
+                for (byte it : movie.ratings)
+                {
+                    System.out.println(it);
+                }
 
                 for (int i = 0; i < rates.size(); i++) {
                     File ratingImageFile;
@@ -1006,8 +1040,6 @@ public class PhaseOneController implements Initializable {
 
 
 
-
-
         //Right info container
         VBox rightInfo = new VBox();
         rightInfo.getChildren().addAll(movieTitle,year,type,movieDescription,buttons,ratees);
@@ -1020,6 +1052,94 @@ public class PhaseOneController implements Initializable {
 
 
 
+        //controls
+        Button castControl = new Button("Cast");
+        Button detailsControl = new Button("Details");
+        Button likeControl = new Button("More like this");
+        castControl.setStyle("-fx-text-fill: white; -fx-font-size: 14;-fx-font-weight: 700; -fx-background-color: transparent;-fx-border-width:0 0 1px 0; -fx-border-color:yellow;");
+        castControl.setPrefSize(50,50);
+        detailsControl.setStyle("-fx-text-fill: #666462; -fx-font-size: 14;-fx-font-weight: 700; -fx-background-color: transparent;");
+        detailsControl.setPrefSize(70,50);
+        likeControl.setStyle("-fx-text-fill: #666462; -fx-font-size: 14;-fx-font-weight: 700; -fx-background-color: transparent;");
+        likeControl.setPrefSize(120,50);
+
+        castControl.setOnMouseEntered(event -> {
+            castControl.setCursor(Cursor.HAND);
+        });
+        castControl.setOnMouseExited(event -> {
+            castControl.setCursor(Cursor.DEFAULT);
+        });
+        detailsControl.setOnMouseEntered(event -> {
+            detailsControl.setCursor(Cursor.HAND);
+        });
+        detailsControl.setOnMouseExited(event -> {
+            detailsControl.setCursor(Cursor.DEFAULT);
+        });
+        likeControl.setOnMouseEntered(event -> {
+            likeControl.setCursor(Cursor.HAND);
+        });
+        likeControl.setOnMouseExited(event -> {
+            likeControl.setCursor(Cursor.DEFAULT);
+        });
+
+        castControl.setOnMouseClicked(event -> {
+            castControl.setStyle("-fx-text-fill: white; -fx-font-size: 14;-fx-font-weight: 700; -fx-background-color: transparent; -fx-border-width:0 0 1px 0; -fx-border-color:yellow");
+            detailsControl.setStyle("-fx-text-fill: #666462; -fx-font-size: 14;-fx-font-weight: 700; -fx-background-color: transparent; -fx-border-width:0;");
+            likeControl.setStyle("-fx-text-fill: #666462; -fx-font-size: 14;-fx-font-weight: 700; -fx-background-color: transparent; -fx-border-width:0;");
+
+            addCastToDisplay(movie.getCast());
+        });
+
+        detailsControl.setOnMouseClicked(event -> {
+            detailsControl.setStyle("-fx-text-fill: white; -fx-font-size: 14;-fx-font-weight: 700; -fx-background-color: transparent; -fx-border-width:0 0 1px 0; -fx-border-color:yellow;");
+            castControl.setStyle("-fx-text-fill: #666462; -fx-font-size: 14;-fx-font-weight: 700; -fx-background-color: transparent; -fx-border-width:0;");
+            likeControl.setStyle("-fx-text-fill: #666462; -fx-font-size: 14;-fx-font-weight: 700; -fx-background-color: transparent; -fx-border-width:0;");
+
+            addDetailsToDisplay(movie);
+        });
+
+        likeControl.setOnMouseClicked(event -> {
+            likeControl.setStyle("-fx-text-fill: white; -fx-font-size: 14;-fx-font-weight: 700; -fx-background-color: transparent; -fx-border-width:0 0 1px 0; -fx-border-color:yellow;");
+            detailsControl.setStyle("-fx-text-fill: #666462; -fx-font-size: 14;-fx-font-weight: 700; -fx-background-color: transparent; -fx-border-width:0;");
+            castControl.setStyle("-fx-text-fill: #666462; -fx-font-size: 14;-fx-font-weight: 700; -fx-background-color: transparent; -fx-border-width:0;");
+
+            addMoreLikeThisToDisplay(movie);
+        });
+
+
+
+
+
+
+
+
+        //cast
+        addCastToDisplay(movie.getCast());
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        HBox controls = new HBox();
+        controls.getChildren().addAll(castControl,detailsControl,likeControl);
+        controls.setSpacing(10);
+
+
+
 
 
 
@@ -1028,10 +1148,10 @@ public class PhaseOneController implements Initializable {
 
 
         //All
-        VBox movieBox = new VBox();
         movieBox.setStyle("-fx-padding:20px");
         movieBox.setSpacing(10);
-        movieBox.getChildren().addAll(head);
+        movieBox.getChildren().addAll(head,controls,controlled);
+        movieBox.setMargin(controls,new Insets(70,0,0,0));
 
 
 
@@ -1045,6 +1165,201 @@ public class PhaseOneController implements Initializable {
         movieTilePane1.setPrefHeight(500);
     }
 
+    private void addCastToDisplay(ArrayList<Cast> casts) {
+        controlled.getChildren().clear();
+        for (Cast actor : casts)
+        {
+            showCast(actor);
+        }
+    }
+    private void showCast(Cast actor) {
+
+        StackPane casts = new StackPane();
+
+        File file = new File("src/main/resources/com/example/uservalidation/icons/castFrame.png");
+        ImageView person = new ImageView(new Image(file.toURI().toString()));
+        person.setFitWidth(155);
+        person.setFitHeight(180);
+
+        Label actorName=new Label(actor.getFirstName()+" "+actor.getLastName());
+        actorName.setStyle("-fx-text-fill:white;-fx-font-size:17px; -fx-padding:0 0 30px 0;-fx-font-weight:700;");
+
+        casts.getChildren().addAll(person,actorName);
+        casts.setAlignment(actorName,Pos.BOTTOM_CENTER);
+
+        casts.setStyle("-fx-margin:30px; -fx-border-width:1px;  -fx-border-radius:20px; -fx-background-color:transparent");
+
+        casts.setOnMouseEntered(event -> {
+            casts.setOpacity(0.5);
+            casts.setCursor(Cursor.HAND);
+        });
+
+        casts.setOnMouseExited(event -> {
+            casts.setOpacity(1.0);
+            casts.setCursor(Cursor.DEFAULT);
+        });
+
+        casts.setOnMouseClicked(event ->{
+            addActedMoviesForThisCast(actor);
+        });
+
+
+        controlled.getChildren().add(casts);
+        controlled.setMargin(casts,new Insets(50,18,0,0));
+    }
+    private void addActedMoviesForThisCast(Cast actor) {
+        movieTilePane1.getChildren().clear();
+
+        Label firstName = new Label(actor.getFirstName());
+        firstName.setStyle("-fx-text-fill: white; -fx-font-size: 60;-fx-font-weight: 500;-fx-background-color:#0F0A05; -fx-padding:0 0 0 20px;");
+        firstName.setPrefWidth(350);
+
+        Label lastName = new Label(actor.getLastName());
+        lastName.setStyle("-fx-text-fill: white; -fx-font-size: 60;-fx-font-weight: 900;-fx-background-color:#0F0A05; -fx-padding:0 0 0 20px;");
+        lastName.setPrefWidth(350);
+
+        VBox fullName = new VBox();
+        fullName.getChildren().addAll(firstName,lastName);
+
+
+        HBox castsss = new HBox();
+        castsss.setStyle("-fx-background-color:#0F0A05");
+
+        movieTilePane1.setPrefWidth(1000);
+        castsss.getChildren().addAll(fullName,movieTilePane1);
+        scrollPane.setContent(castsss);
+        scrollPane.setVvalue(0.0);
+
+        for (int i=0 ; i<HelloApplication.movies.size() ; i++)
+        {
+            for(int j=0 ; j<HelloApplication.movies.get(i).getCast().size() ; j++)
+            {
+                if((HelloApplication.movies.get(i).getCast().get(j).getFirstName()+" "+HelloApplication.movies.get(i).getCast().get(j).getLastName()).equals(actor.getFirstName()+" "+actor.getLastName()))
+                {
+                    addMovieToHome(HelloApplication.movies.get(i));
+                }
+            }
+        }
+    }
+
+
+
+    private void addDetailsToDisplay(Movie movie) {
+        controlled.getChildren().clear();
+        Label title = new Label(movie.getTitle());
+        title.setStyle("-fx-text-fill: white; -fx-font-size: 16;-fx-font-weight: 900; -fx-background-color: transparent;-fx-padding:0 0 15px;");
+
+        Label type_year = new Label(movie.getTypes().get(0)+" "+movie.getYear());
+        type_year.setStyle("-fx-text-fill: c1bdb9; -fx-font-size: 13;-fx-font-weight: 200; -fx-background-color: transparent;-fx-padding:0 0 15px;");
+
+        Label country = new Label("Country: "+movie.getCountry());
+        country.setStyle("-fx-text-fill: white; -fx-font-size: 13;-fx-font-weight: 200; -fx-background-color: transparent;-fx-padding:0 0 15px;");
+
+        Label description = new Label(movie.getMovieDescription());
+        description.setStyle("-fx-text-fill: white; -fx-font-size: 13;-fx-font-weight: 200; -fx-background-color: transparent;-fx-padding:0 0 15px;");
+
+        String castString = "Actor: ";
+        for (int i=0 ; i<movie.getCast().size() ; i++)
+        {
+            if(i!=movie.getCast().size()-1)
+            {
+                castString += movie.getCast().get(i).getFirstName()+" "+movie.getCast().get(i).getLastName()+", ";
+            }
+            else
+            {
+                castString += movie.getCast().get(i).getFirstName()+" "+movie.getCast().get(i).getLastName();
+            }
+        }
+
+        Label casts = new Label(castString);
+        casts.setStyle("-fx-text-fill: white; -fx-font-size: 13;-fx-font-weight: 200; -fx-background-color: transparent;-fx-padding:0 0 15px;");
+
+        Label budget = new Label("Budget: "+Float.toString(movie.getBudget()));
+        budget.setStyle("-fx-text-fill: white; -fx-font-size: 13;-fx-font-weight: 200; -fx-background-color: transparent;-fx-padding:0 0 15px;");
+
+        Label Revenue = new Label("Revenue :"+Float.toString(+movie.getRevenue()));
+        Revenue.setStyle("-fx-text-fill: white; -fx-font-size: 13;-fx-font-weight: 200; -fx-background-color: transparent;-fx-padding:0 0 15px;");
+
+        VBox details = new VBox();
+        details.getChildren().addAll(title,type_year,country,description,casts,budget,Revenue);
+
+        controlled.getChildren().add(details);
+        controlled.setMargin(details,new Insets(30,0,0,0));
+
+    }
+
+
+
+
+    private void addMoreLikeThisToDisplay(Movie movie) {
+        controlled.getChildren().clear();
+        int c=0;
+        for (Movie m : HelloApplication.movies)
+        {
+            if((movie.getTypes().get(0).equals(m.getTypes().get(0))||movie.getCast().get(0).getLastName().equals(m.getCast().get(0).getLastName()))&&!movie.getTitle().equals(m.getTitle()))
+            {
+                c++;
+                showLikeThis(m);
+            }
+            if(c==4)
+            {
+                break;
+            }
+        }
+    }
+
+
+
+    private void showLikeThis(Movie movie)
+    {
+        StackPane moviePoster = new StackPane();
+
+        File file = new File(movie.getPoster());
+        ImageView poster = new ImageView(new Image(file.toURI().toString()));
+        poster.setFitWidth(292);
+        poster.setFitHeight(150);
+        poster.setOpacity(0.85);
+
+        Rectangle clip = new Rectangle(poster.getFitWidth(), poster.getFitHeight());
+        clip.setArcWidth(20);
+        clip.setArcHeight(20);
+        poster.setClip(clip);
+
+        Glow glow = new Glow();
+        glow.setLevel(0.9);
+
+        Label movieTitle = new Label(movie.getTitle());
+        movieTitle.setStyle("-fx-text-fill: white; -fx-font-size: 19;-fx-font-weight: 700;");
+        movieTitle.setEffect(glow);
+        moviePoster.setStyle("-fx-border-color: black;");
+
+
+        moviePoster.setStyle("-fx-border-color: black;");
+
+        moviePoster.getChildren().addAll(poster,movieTitle);
+
+        moviePoster.setOnMouseEntered(event -> {
+            moviePoster.setOpacity(0.5);
+            moviePoster.setCursor(Cursor.HAND);
+        });
+
+        moviePoster.setOnMouseExited(event -> {
+            moviePoster.setOpacity(1.0);
+            moviePoster.setCursor(Cursor.DEFAULT);
+        });
+
+        moviePoster.setOnMouseClicked(event ->{
+            showPoster(movie);
+        });
+
+        moviePoster.setAlignment(movieTitle, Pos.BOTTOM_LEFT);
+
+        controlled.getChildren().add(moviePoster);
+        controlled.setPrefWidth(1224);
+
+        controlled.setMargin(moviePoster,new Insets(50,10,0,0));
+
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
