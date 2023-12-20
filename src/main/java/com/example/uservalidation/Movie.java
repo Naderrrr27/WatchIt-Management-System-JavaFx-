@@ -130,6 +130,10 @@ public class Movie implements Serializable {
     }
     public ArrayList<String> getTypes() {return types;}
 
+    public ArrayList<Cast> getCast() {
+        return cast;
+    }
+
     public  void addgenre(){
        for (int i =0 ; i< types.size();i++){
            if(types.get(i).equals("Drama"))
