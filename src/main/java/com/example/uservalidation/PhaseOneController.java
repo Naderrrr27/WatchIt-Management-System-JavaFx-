@@ -236,7 +236,10 @@ public class PhaseOneController implements Initializable {
     //likeThis
     StackPane likeThis = new StackPane();
 
+    TilePane searchTilPane =new TilePane();
 
+    @FXML
+    ScrollPane scrollPaneSearch=new ScrollPane();
 
 
     public boolean validEmail()
@@ -651,12 +654,50 @@ public class PhaseOneController implements Initializable {
 
     @FXML
     void validateSearch(KeyEvent event) {
+
+        ArrayList<Movie>movie =SearchManager.searchMovie(searchFeild.getText());
+        ArrayList<Cast> cast=SearchManager.searchCast(searchFeild.getText());
+        ArrayList<Movie> genraMovies=SearchManager.searchGenra(searchFeild.getText());
+
+
+
 //        System.out.println(searchFeild.getText().length());
         if(searchFeild.getText().length()  < 3 && searchFeild.getText().length() > 0)
             warningSearch.setVisible(true);
-        else
+        else {
             warningSearch.setVisible(false);
+
+            scrollPaneSearch.setContent(searchTilPane);
+
+            Search(cast,movie,genraMovies);
+
+        }
     }
+
+
+
+    private void Search (ArrayList<Cast> cast,ArrayList<Movie> movie ,ArrayList<Movie>genraMovie)
+    {
+
+        if(movie.size()==0&&cast.size()==0&&genraMovie.size()==0)
+        {
+            Label notFound=new Label("We couldn't find any results that match your search");
+            notFound.setStyle("-fx-text-fill:grey;");
+            searchTilPane.getChildren().clear();
+            searchTilPane.getChildren().add(notFound);
+        }
+        else
+        {
+
+            for(Movie m: movie )
+
+                addMovieToHome(m,searchTilPane);
+
+           }
+
+
+    }
+
 
     @FXML
     void hoverSearch(MouseEvent event) {

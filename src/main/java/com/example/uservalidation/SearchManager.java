@@ -6,7 +6,7 @@ public class SearchManager {
 
     SearchManager(){};
 
-    public ArrayList<Movie> searchMovie(String searchedItem)
+    public static ArrayList<Movie> searchMovie(String searchedItem)
     {
 
         int counter;
@@ -33,7 +33,7 @@ public class SearchManager {
 
 
 
-    public ArrayList<Cast> searchCast(String searchedItem)
+    public static ArrayList<Cast> searchCast(String searchedItem)
     {
         int counter;
 
@@ -59,7 +59,7 @@ public class SearchManager {
     }
 
 
-    public ArrayList<Movie> searchGenra(String searchedItem)
+    public static ArrayList<Movie> searchGenra(String searchedItem)
     {
 
 
