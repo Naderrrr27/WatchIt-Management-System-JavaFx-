@@ -100,7 +100,6 @@ public class HelloApplication extends Application {
 
 
 
-
         stage.setOnCloseRequest(event -> {
             saveMoviesToFile("movies.txt");
             saveCastToFile("casts.txt");
