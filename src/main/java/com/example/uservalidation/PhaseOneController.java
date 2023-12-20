@@ -675,9 +675,6 @@ public class PhaseOneController implements Initializable {
 
 
 
-
-
-
 ////////
 
     @FXML
@@ -751,11 +748,11 @@ public class PhaseOneController implements Initializable {
 
         for (int i=0;i<HelloApplication.movies.size();i++)
         {
-            addMovieToHome(HelloApplication.movies.get(i));
+            addMovieToHome(HelloApplication.movies.get(i),movieTilePane1);
         }
     }
 
-    private void addMovieToHome(Movie movie) {
+    private void addMovieToHome(Movie movie,TilePane tilePane) {
 
         StackPane stackBox = new StackPane();
 
@@ -801,15 +798,15 @@ public class PhaseOneController implements Initializable {
         });
 
         stackBox.setAlignment(movieLabel, Pos.BOTTOM_LEFT);
-        movieTilePane1.setHgap(10.0);
-        movieTilePane1.setVgap(10.0);
+        tilePane.setHgap(10.0);
+        tilePane.setVgap(10.0);
 
-
-        movieTilePane1.getChildren().add(stackBox);
-
-
+        tilePane.getChildren().add(stackBox);
 
     }
+
+
+
     private void showPoster(Movie movie) {
 
         scrollPane.setVvalue(0.0);
@@ -1240,7 +1237,7 @@ public class PhaseOneController implements Initializable {
             {
                 if((HelloApplication.movies.get(i).getCast().get(j).getFirstName()+" "+HelloApplication.movies.get(i).getCast().get(j).getLastName()).equals(actor.getFirstName()+" "+actor.getLastName()))
                 {
-                    addMovieToHome(HelloApplication.movies.get(i));
+                    addMovieToHome(HelloApplication.movies.get(i),movieTilePane1);
                 }
             }
         }
@@ -1429,7 +1426,7 @@ public class PhaseOneController implements Initializable {
             {
                 if(genre.equals(movie.getTypes().get(0)))
                 {
-                    addMovieToHome(movie);
+                    addMovieToHome(movie,movieTilePane1);
                 }
             }
 
