@@ -11,11 +11,13 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.effect.Glow;
 import javafx.scene.image.Image;
+import javafx.scene.input.InputMethodEvent;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Rectangle;
+
 
 import java.io.*;
 import java.net.URL;
@@ -216,7 +218,76 @@ public class PhaseOneController implements Initializable {
     private Label signOutLabel;
 
     @FXML
+    private Label alreadyHaveAccLabel;
+
+    @FXML
+    private Button backToMainBttn;
+
+    @FXML
+    private Label subTitlePS;
+
+    @FXML
+    private Label titlePS;
+
+    @FXML
     private AnchorPane subscriptionPlanss;
+
+    @FXML
+    private AnchorPane mainMenu;
+
+
+    @FXML
+    private AnchorPane signOut;
+
+    @FXML
+    private Button signOutSubButtn;
+
+    @FXML
+    private AnchorPane userProfile;
+
+    @FXML
+    private ImageView profImg;
+
+    @FXML
+    private Label endDatee;
+
+    @FXML
+    private Label planNomm;
+
+    @FXML
+    private Label planPriccc;
+
+    @FXML
+    private Label remaningDyss;
+
+    @FXML
+    private Label remaningMvs;
+
+    @FXML
+    private AnchorPane subscriptionInfo;
+
+    @FXML
+    private Label startDatee;
+
+    @FXML
+    private Button backToMainBttn1;
+
+    @FXML
+    private AnchorPane displaySubInfo;
+
+    @FXML
+    private ImageView fifteenMvsImg;
+
+    @FXML
+    private ImageView fivMvsImg;
+
+    @FXML
+    private ImageView tenMvsImg;
+
+
+
+    boolean checkEntered = false;
+
     String userPlan = "";
 
     boolean isRated = false;
@@ -236,11 +307,10 @@ public class PhaseOneController implements Initializable {
     //likeThis
     StackPane likeThis = new StackPane();
 
-    TilePane searchTilPane =new TilePane();
+    TilePane searchTilPane = new TilePane();
 
     @FXML
-    ScrollPane scrollPaneSearch=new ScrollPane();
-
+    ScrollPane scrollPaneSearch = new ScrollPane();
 
     public boolean validEmail()
     {
@@ -315,89 +385,19 @@ public class PhaseOneController implements Initializable {
     {
         if(User.whoIsActive!=-1 && !userPlan.isEmpty())
         {
+            //setSubscriptionActive when the user choose plane
             HelloApplication.users.get(User.whoIsActive-1).setSubscriptionActive(true);
             HelloApplication.users.get(User.whoIsActive-1).setSubscription(new Subscription(userPlan));
-
-//            HelloApplication.saveUsersToFile("Users.txt");
-
-        }
-    }
-
-    public void signUp() throws IOException {
-        if (firstNameSignUp.getText().isEmpty()||lastNameSignUp.getText().isEmpty()||userNameSignUp.getText().isEmpty()||emailSignUp.getText().isEmpty()||passwordSignUp.getText().isEmpty())
-        {
-            if (firstNameSignUp.getText().isEmpty())
-            {
-                firstNameSignUp.setStyle("-fx-border-width: 0 0 2 0;-fx-border-radius: 10;-fx-text-inner-color:white;-fx-border-color: #D22F26;");
-                fullNameValid.setText("Full Name is required");
-                fullNameValid.setVisible(true);
-            }
-            if (lastNameSignUp.getText().isEmpty())
-            {
-                lastNameSignUp.setStyle("-fx-border-width: 0 0 2 0;-fx-border-radius: 10;-fx-text-inner-color:white;-fx-border-color: #D22F26;");
-                fullNameValid.setText("Full Name is required");
-                fullNameValid.setVisible(true);
-            }
-            if (userNameSignUp.getText().isEmpty())
-            {
-                userNameSignUp.setStyle("-fx-border-width: 0 0 2 0;-fx-border-radius: 10;-fx-text-inner-color:white;-fx-border-color: #D22F26;");
-                userNameValid.setText("This field is required");
-                userNameValid.setVisible(true);
-            }
-            if (emailSignUp.getText().isEmpty())
-            {
-                emailSignUp.setStyle("-fx-border-width: 0 0 2 0;-fx-border-radius: 10;-fx-text-inner-color:white;-fx-border-color: #D22F26;");
-                emailSignUpValid.setText("This field is required");
-                emailSignUpValid.setVisible(true);
-            }
-            if (passwordSignUp.getText().isEmpty())
-            {
-                passwordSignUp.setStyle("-fx-border-width: 0 0 2 0;-fx-border-radius: 10;-fx-text-inner-color:white;-fx-border-color: #D22F26;");
-                passwordSignUpValid.setText("This field is required");
-                passwordSignUpValid.setVisible(true);
-            }
-        }
-        else if (isUsernameExist())
-        {
-            userNameSignUp.setStyle("-fx-border-width: 0 0 2 0;-fx-border-radius: 10;-fx-text-inner-color:white;-fx-border-color: #D22F26;");
-            userNameValid.setText("This already existing");
-            userNameValid.setVisible(true);
-        }
-        else if (isEmailExist())
-        {
-            emailSignUp.setStyle("-fx-border-width: 0 0 2 0;-fx-border-radius: 10;-fx-text-inner-color:white;-fx-border-color: #D22F26;");
-            emailSignUpValid.setText("This already existing");
-            emailSignUpValid.setVisible(true);
-        }
-        else if(validEmail()==false)
-        {
-            System.out.println(11);
-            emailSignUp.setStyle("-fx-border-width: 0 0 2 0;-fx-border-radius: 10;-fx-text-inner-color:white;-fx-border-color: #D22F26;");
-            emailSignUpValid.setStyle("-fx-font-size: 15;");
-            emailSignUpValid.setText("Invalid email address");
-            emailSignUpValid.setVisible(true);
-        }
-        else if(passwordSignUp.getText().length()<8)
-        {
-            passwordSignUp.setStyle("-fx-border-width: 0 0 2 0;-fx-border-radius: 10;-fx-text-inner-color:white;-fx-border-color: #D22F26;");
-            passwordSignUpValid.setText("At least 8 characters");
-            passwordSignUpValid.setVisible(true);
-        }
-        else
-        {
-
-            HelloApplication.users.add(new User(firstNameSignUp.getText(),lastNameSignUp.getText(),userNameSignUp.getText(),emailSignUp.getText(),passwordSignUp.getText()));
-//            HelloApplication.saveUsersToFile("Users.txt");
-
-            User.whoIsActive = HelloApplication.users.get(HelloApplication.users.size()-1).getUserId();
-
-            subscriptionPlanss.setVisible(true);
+            mainMenu.setVisible(true);
             signInForm.setVisible(false);
             signUpForm.setVisible(false);
-
+            subscriptionPlanss.setVisible(false);
         }
     }
 
+
+
+    //mola7azat?
     public void signOut(ActionEvent event)
     {
         signInForm.setVisible(true);
@@ -452,10 +452,11 @@ public class PhaseOneController implements Initializable {
                     }
                     else
                     {
-                        emailSignIn.setStyle("-fx-border-width: 0 0 2 0;-fx-border-radius: 10;-fx-text-inner-color:white;-fx-border-color: #1de03a;");
-                        passwordSignIn.setStyle("-fx-border-width: 0 0 2 0;-fx-border-radius: 10;-fx-text-inner-color:white;-fx-border-color: #1de03a;");
                         emailValid.setVisible(false);
                         passwordValid.setVisible(false);
+                        mainMenu.setVisible(true);
+                        signInForm.setVisible(false);
+                        User.whoIsActive = it.getUserId();
                     }
 
                     this.valid=true;
@@ -477,8 +478,184 @@ public class PhaseOneController implements Initializable {
         }
     }
 
+    public void signUp() throws IOException {
+        if (firstNameSignUp.getText().isEmpty()||lastNameSignUp.getText().isEmpty()||userNameSignUp.getText().isEmpty()||emailSignUp.getText().isEmpty()||passwordSignUp.getText().isEmpty())
+        {
+            if (firstNameSignUp.getText().isEmpty())
+            {
+                firstNameSignUp.setStyle("-fx-border-width: 0 0 2 0;-fx-border-radius: 10;-fx-text-inner-color:white;-fx-border-color: #D22F26;");
+                fullNameValid.setText("Full Name is required");
+                fullNameValid.setVisible(true);
+            }
+            if (lastNameSignUp.getText().isEmpty())
+            {
+                lastNameSignUp.setStyle("-fx-border-width: 0 0 2 0;-fx-border-radius: 10;-fx-text-inner-color:white;-fx-border-color: #D22F26;");
+                fullNameValid.setText("Full Name is required");
+                fullNameValid.setVisible(true);
+            }
+            if (userNameSignUp.getText().isEmpty())
+            {
+                userNameSignUp.setStyle("-fx-border-width: 0 0 2 0;-fx-border-radius: 10;-fx-text-inner-color:white;-fx-border-color: #D22F26;");
+                userNameValid.setText("This field is required");
+                userNameValid.setVisible(true);
+            }
+            if (emailSignUp.getText().isEmpty())
+            {
+                emailSignUp.setStyle("-fx-border-width: 0 0 2 0;-fx-border-radius: 10;-fx-text-inner-color:white;-fx-border-color: #D22F26;");
+                emailSignUpValid.setText("This field is required");
+                emailSignUpValid.setVisible(true);
+            }
+            if (passwordSignUp.getText().isEmpty())
+            {
+                passwordSignUp.setStyle("-fx-border-width: 0 0 2 0;-fx-border-radius: 10;-fx-text-inner-color:white;-fx-border-color: #D22F26;");
+                passwordSignUpValid.setText("This field is required");
+                passwordSignUpValid.setVisible(true);
+            }
+        }
+
+        //Valid username in both cases
+         if (isUsernameExist() == true && userNameSignUp.getText().isEmpty() == false && (User.whoIsActive == -1 || ( checkEntered == true && User.whoIsActive != -1 && HelloApplication.users.get(User.whoIsActive-1).getUserName().equals(userNameSignUp.getText()) == false)))
+        {
+            userNameSignUp.setStyle("-fx-border-width: 0 0 2 0;-fx-border-radius: 10;-fx-text-inner-color:white;-fx-border-color: #D22F26;");
+            userNameValid.setText("This already existing");
+            userNameValid.setVisible(true);
+        }
+         //update userName
+         else if(isUsernameExist() == false && (checkEntered == true &&  User.whoIsActive != -1 && HelloApplication.users.get(User.whoIsActive-1).getUserName().equals(userNameSignUp.getText()) == false))
+         {
+             HelloApplication.users.get(User.whoIsActive-1).setUserName(userNameSignUp.getText());
+             userNameSignUp.setStyle("-fx-border-width: 0 0 2 0;-fx-border-radius: 10;-fx-text-inner-color:white;-fx-border-color: #4a944a;");
+             userNameValid.setText("Username updated ✅");
+             userNameValid.setStyle(" -fx-text-fill:#4a944a;");
+             userNameValid.setVisible(true);
+         }
+          //check if email exist in both cases
+        if (isEmailExist()  && emailSignUp.getText().isEmpty() == false && (User.whoIsActive == -1 || ( checkEntered == true &&  User.whoIsActive != -1 && HelloApplication.users.get(User.whoIsActive-1).getEmail().equals(emailSignUp.getText()) == false)))
+        {
+            emailSignUp.setStyle("-fx-border-width: 0 0 2 0;-fx-border-radius: 10;-fx-text-inner-color:white;-fx-border-color: #D22F26;");
+            emailSignUpValid.setText("This already existing");
+            emailSignUpValid.setVisible(true);
+        }
+        //check if email valid in both cases
+         if(validEmail()==false && emailSignUp.getText().isEmpty() == false && (User.whoIsActive == -1 || ( checkEntered == true &&  User.whoIsActive != -1 && HelloApplication.users.get(User.whoIsActive-1).getEmail().equals(emailSignUp.getText()) == false)))
+        {
+            System.out.println(11);
+            emailSignUp.setStyle("-fx-border-width: 0 0 2 0;-fx-border-radius: 10;-fx-text-inner-color:white;-fx-border-color: #D22F26;");
+            emailSignUpValid.setStyle("-fx-font-size: 15;");
+            emailSignUpValid.setText("Invalid email address");
+            emailSignUpValid.setVisible(true);
+        }
+         //UPDATE EMAIL
+         if (isEmailExist() == false && validEmail() == true && (checkEntered == true && User.whoIsActive != -1 && HelloApplication.users.get(User.whoIsActive-1).getEmail().equals(emailSignUp.getText()) == false))
+         {
+             HelloApplication.users.get(User.whoIsActive-1).setEmail(emailSignUp.getText());
+             emailSignUp.setStyle("-fx-border-width: 0 0 2 0;-fx-border-radius: 10;-fx-text-inner-color:white;-fx-border-color: #4a944a;");
+             emailSignUpValid.setText("Email updated ✅");
+             emailSignUpValid.setStyle(" -fx-text-fill:#4a944a;");
+             emailSignUpValid.setVisible(true);
+         }
+         //UPDATE FIRST AND LAST NAME
+        if ( checkEntered == true &&  User.whoIsActive != -1 && firstNameSignUp.getText().equals(HelloApplication.users.get(User.whoIsActive-1).getFirstName()) == false)
+        {
+            HelloApplication.users.get(User.whoIsActive-1).setFirstName(firstNameSignUp.getText());
+            firstNameSignUp.setStyle("-fx-border-width: 0 0 2 0;-fx-border-radius: 10;-fx-text-inner-color:white;-fx-border-color: #4a944a;");
+            fullNameValid.setText("Update to full-name completed ✅");
+            fullNameValid.setStyle(" -fx-text-fill:#4a944a;");
+            fullNameValid.setVisible(true);
+        }
+        if ( checkEntered == true &&  User.whoIsActive != -1 && lastNameSignUp.getText().equals(HelloApplication.users.get(User.whoIsActive-1).getLastName()) == false)
+        {
+            HelloApplication.users.get(User.whoIsActive-1).setLastName(lastNameSignUp.getText());
+            lastNameSignUp.setStyle("-fx-border-width: 0 0 2 0;-fx-border-radius: 10;-fx-text-inner-color:white;-fx-border-color: #4a944a;");
+            fullNameValid.setText("Update to full-name completed ✅");
+            fullNameValid.setStyle(" -fx-text-fill:#4a944a;");
+            fullNameValid.setVisible(true);
+        }
+
+        //make sure that the password is ok
+        if(passwordSignUp.getText().length() < 8 &&  passwordSignUp.getText().isEmpty() == false && (User.whoIsActive == -1 ||(checkEntered == true && HelloApplication.users.get(User.whoIsActive-1).getPassword().equals(passwordSignUp.getText()) == false)))
+        {
+            passwordSignUp.setStyle("-fx-border-width: 0 0 2 0;-fx-border-radius: 10;-fx-text-inner-color:white;-fx-border-color: #D22F26;");
+            passwordSignUpValid.setText("At least 8 characters");
+            passwordSignUpValid.setVisible(true);
+        }
+        //update password
+        else if(passwordSignUp.getText().length() >= 8  && checkEntered == true   && HelloApplication.users.get(User.whoIsActive-1).getPassword().equals(passwordSignUp.getText()) == false)
+         {
+             HelloApplication.users.get(User.whoIsActive-1).setPassword(passwordSignUp.getText());
+             passwordSignUp.setStyle("-fx-border-width: 0 0 2 0;-fx-border-radius: 10;-fx-text-inner-color:white;-fx-border-color: #4a944a;");
+             passwordSignUpValid.setText("Password updated ✅");
+             passwordSignUpValid.setStyle(" -fx-text-fill:#4a944a;");
+             passwordSignUpValid.setVisible(true);
+         }
+         if(firstNameSignUp.getText().isEmpty() == false  && lastNameSignUp.getText().isEmpty() == false && userNameSignUp.getText().isEmpty() == false && passwordSignUp.getText().isEmpty() == false && emailSignUp.getText().isEmpty() == false  && isUsernameExist() == false && isEmailExist() == false  && validEmail()== true && passwordSignUp.getText().length() >= 8 && User.whoIsActive == -1)
+        {
+            HelloApplication.users.add(new User(firstNameSignUp.getText(),lastNameSignUp.getText(),userNameSignUp.getText(),emailSignUp.getText(),passwordSignUp.getText()));
+            User.whoIsActive = HelloApplication.users.get(HelloApplication.users.size()-1).getUserId();
+            subscriptionPlanss.setVisible(true);
+            System.out.println(HelloApplication.users.size());
+            signInForm.setVisible(false);
+            signUpForm.setVisible(false);
+            firstNameSignUp.clear();
+            firstNameSignUp.setStyle("-fx-border-width: 0");
+            lastNameSignUp.clear();
+            lastNameSignUp.setStyle("-fx-border-width: 0");
+            emailSignUp.clear();
+            emailSignUp.setStyle("-fx-border-width: 0");
+            passwordSignUp.clear();
+            passwordSignUp.setStyle("-fx-border-width: 0");
+            userNameSignUp.clear();
+            userNameSignUp.setStyle("-fx-border-width: 0");
+        }
+    }
+
+
+    @FXML
+        //sign out when subscriptionPlanes are displayed
+    void sugnOutSub(ActionEvent event) {
+        signInForm.setVisible(true);
+        signUpForm.setVisible(false);
+        subscriptionPlanss.setVisible(false);
+        User.whoIsActive = -1 ;
+        emailSignIn.clear();
+        emailSignIn.setStyle("-fx-border-width: 0");
+        passwordSignIn.clear();
+        passwordSignIn.setStyle("-fx-border-width: 0");
+
+        firstNameSignUp.clear();
+        firstNameSignUp.setStyle("-fx-border-width: 0");
+        lastNameSignUp.clear();
+        lastNameSignUp.setStyle("-fx-border-width: 0");
+        emailSignUp.clear();
+        emailSignUp.setStyle("-fx-border-style: none; ");
+        passwordSignUp.clear();
+        passwordSignUp.setStyle("-fx-border-width: 0");
+        userNameSignUp.clear();
+        userNameSignUp.setStyle("-fx-border-width: 0");
+    }
+
     public void switchForm(ActionEvent event)
     {
+        fullNameValid.setVisible(false);
+        emailSignUpValid.setVisible(false);
+        userNameValid.setVisible(false);
+        passwordSignUpValid.setVisible(false);
+        emailValid.setVisible(false);
+        passwordValid.setVisible(false);
+        emailSignIn.setStyle("-fx-border-width: 0 ; -fx-border-style: none;  ");
+        passwordSignIn.clear();
+        passwordSignIn.setStyle("-fx-border-width: 0; -fx-border-style: none;");
+        firstNameSignUp.clear();
+        firstNameSignUp.setStyle("-fx-border-width: 0");
+        lastNameSignUp.clear();
+        lastNameSignUp.setStyle("-fx-border-width: 0");
+        emailSignUp.clear();
+        emailSignUp.setStyle("-fx-border-style: none; ");
+        passwordSignUp.clear();
+        passwordSignUp.setStyle("-fx-border-width: 0");
+        userNameSignUp.clear();
+        userNameSignUp.setStyle("-fx-border-width: 0");
+
         if(event.getSource()==signInHyper||event.getSource()==topSignInButton)
         {
             signUpForm.setVisible(true);
@@ -650,6 +827,7 @@ public class PhaseOneController implements Initializable {
     void userAccPressed(MouseEvent event) {
         fakeCombo.setVisible(true);
         fakeIqon.setVisible(true);
+        realUserName.setText(HelloApplication.users.get(User.whoIsActive-1).getUserName());
     }
 
     @FXML
@@ -658,7 +836,6 @@ public class PhaseOneController implements Initializable {
         ArrayList<Movie>movie =SearchManager.searchMovie(searchFeild.getText());
         ArrayList<Cast> cast=SearchManager.searchCast(searchFeild.getText());
         ArrayList<Movie> genraMovies=SearchManager.searchGenra(searchFeild.getText());
-
 
 
 //        System.out.println(searchFeild.getText().length());
@@ -694,8 +871,6 @@ public class PhaseOneController implements Initializable {
                 addMovieToHome(m,searchTilPane);
 
            }
-
-
     }
 
 
@@ -714,9 +889,108 @@ public class PhaseOneController implements Initializable {
         fakeIqon.setVisible(false);
     }
 
+    @FXML
+    void signOutt(MouseEvent event) {
+        signInForm.setVisible(true);
+        mainMenu.setVisible(false);
+        fakeCombo.setVisible(false);
+        fakeIqon.setVisible(false);
+        User.whoIsActive = -1;
+        emailSignIn.clear();
+        emailSignIn.setStyle("-fx-border-width: 0");
+        passwordSignIn.clear();
+        passwordSignIn.setStyle("-fx-border-width: 0");
+        firstNameSignUp.clear();
+        firstNameSignUp.setStyle("-fx-border-width: 0");
+        lastNameSignUp.clear();
+        lastNameSignUp.setStyle("-fx-border-width: 0");
+        emailSignUp.clear();
+        emailSignUp.setStyle("-fx-border-width: 0");
+        passwordSignUp.clear();
+        passwordSignUp.setStyle("-fx-border-width: 0");
+        userNameSignUp.clear();
+        userNameSignUp.setStyle("-fx-border-width: 0");
+    }
 
+    @FXML
+    void displayProfileInfo(MouseEvent event) {
+        checkEntered = true ;
+        fakeCombo.setVisible(false);
+        fakeIqon.setVisible(false);
+        mainMenu.setVisible(false);
+        signUpForm.setVisible(true);
+        titlePS.setText("Profile Info ");
+        subTitlePS.setVisible(false);
+        submitSignUp.setText("Save Changes");
+        topSingUpButton.setVisible(false);
+        alreadyHaveAccLabel.setVisible(false);
+        signUpHyper.setVisible(false);
+        profImg.setVisible(true);
+        backToMainBttn.setVisible(true);
+        firstNameSignUp.setText(HelloApplication.users.get(User.whoIsActive-1).getFirstName());
+        firstNameSignUp.setStyle(" -fx-text-inner-color:#DCA523; -fx-border-width: 0");
+        lastNameSignUp.setText(HelloApplication.users.get(User.whoIsActive-1).getLastName());
+        lastNameSignUp.setStyle(" -fx-text-inner-color:#DCA523; -fx-border-width: 0");
+        emailSignUp.setText(HelloApplication.users.get(User.whoIsActive-1).getEmail());
+        emailSignUp.setStyle(" -fx-text-inner-color:#DCA523; -fx-border-width: 0");
+        userNameSignUp.setText(HelloApplication.users.get(User.whoIsActive-1).getUserName());
+        userNameSignUp.setStyle(" -fx-text-inner-color:#DCA523; -fx-border-width: 0");
+        passwordSignUp.setText(HelloApplication.users.get(User.whoIsActive-1).getPassword());
+        passwordSignUp.setStyle(" -fx-text-inner-color:#DCA523; -fx-border-width: 0");
+        fullNameValid.setVisible(false);
+        emailSignUpValid.setVisible(false);
+        userNameValid.setVisible(false);
+        passwordSignUpValid.setVisible(false);
 
-////////
+    }
+
+    @FXML
+    void backToMain(MouseEvent event) {
+        checkEntered = false ;
+        mainMenu.setVisible(true);
+        signUpForm.setVisible(false);
+        titlePS.setText("Create your Account");
+        subTitlePS.setVisible(true);
+        submitSignUp.setText("Next");
+        topSingUpButton.setVisible(true);
+        alreadyHaveAccLabel.setVisible(true);
+        signUpHyper.setVisible(true);
+        backToMainBttn.setVisible(false);
+        firstNameSignUp.clear();
+        lastNameSignUp.clear();
+        emailSignUp.clear();
+        userNameSignUp.clear();
+        passwordSignUp.clear();
+        profImg.setVisible(false);
+    }
+
+    @FXML
+    void displaySubscriptionInfo(MouseEvent event) {
+        subscriptionInfo.setVisible(true);
+        mainMenu.setVisible(false);
+        planNomm.setText(HelloApplication.users.get(User.whoIsActive-1).subscription.getSubscriptionPlan());
+        planPriccc.setText(String.valueOf(HelloApplication.users.get(User.whoIsActive-1).subscription.getPrice()));
+        startDatee.setText(HelloApplication.users.get(User.whoIsActive-1).subscription.getStartDate().toString());
+        endDatee.setText(HelloApplication.users.get(User.whoIsActive-1).subscription.getEndDate().toString());
+        remaningDyss.setText(String.valueOf(HelloApplication.users.get(User.whoIsActive-1).subscription.getRemaningDays()));
+        remaningMvs.setText(String.valueOf(HelloApplication.users.get(User.whoIsActive-1).subscription.getCapacity()));
+        if(HelloApplication.users.get(User.whoIsActive-1).subscription.getSubscriptionPlan() == "Basic")
+            fivMvsImg.setVisible(true);
+        else if(HelloApplication.users.get(User.whoIsActive-1).subscription.getSubscriptionPlan() == "Standard")
+            tenMvsImg.setVisible(true);
+        else
+            fifteenMvsImg.setVisible(true);
+
+    }
+
+    @FXML
+    void closeSubInfo(MouseEvent event) {
+        subscriptionInfo.setVisible(false);
+        mainMenu.setVisible(true);
+        fakeCombo.setVisible(false);
+        fakeIqon.setVisible(false);
+    }
+
 
     @FXML
     void userrHoverIn(MouseEvent event) {
@@ -860,17 +1134,10 @@ public class PhaseOneController implements Initializable {
         movieTilePane1.setStyle("-fx-background-color: #0F0A05; -fx-padding: 10px;");
 
 
-
         //Files
         File im = new File("src/main/resources/com/example/uservalidation/icons/watch.png");
         File ad = new File("src/main/resources/com/example/uservalidation/icons/add.png");
         File file = new File(movie.getPoster());
-
-
-
-
-
-
 
 
         //Images
@@ -883,11 +1150,6 @@ public class PhaseOneController implements Initializable {
         ImageView addIcon = new ImageView(new Image(ad.toURI().toString()));
         addIcon.setFitWidth(20);
         addIcon.setFitHeight(20);
-
-
-
-
-
 
 
 
@@ -923,21 +1185,12 @@ public class PhaseOneController implements Initializable {
 
 
 
-
-
-
-
         //Buttons styling
         watch.setStyle("-fx-text-fill: black; -fx-font-size: 19;-fx-font-weight: 700; -fx-background-color: white;");
         watch.setPrefSize(150,50);
         add.setStyle("-fx-text-fill: white; -fx-font-size: 19;-fx-font-weight: 700; -fx-background-color: #383533;");
         add.setPrefSize(150,50);
         buttons.getChildren().addAll(watch,add);
-
-
-
-
-
 
 
 
@@ -952,14 +1205,6 @@ public class PhaseOneController implements Initializable {
         movieDescription.setStyle("-fx-text-fill: white;-fx-font-size:15.9px;-fx-font-weight: 700;-fx-padding:0 0 30px 4px;");
         movieDescription.setPrefWidth(moviePoster.getFitWidth()-400);
         movieDescription.setWrapText(true);
-
-
-
-
-
-
-
-
 
 
 
@@ -989,24 +1234,11 @@ public class PhaseOneController implements Initializable {
 
 
 
-
-
-
-
-
-
         //To set Border
         Rectangle clip = new Rectangle(moviePoster.getFitWidth(), moviePoster.getFitHeight());
         clip.setArcWidth(25);
         clip.setArcHeight(25);
         moviePoster.setClip(clip);
-
-
-
-
-
-
-
 
 
 
@@ -1073,12 +1305,6 @@ public class PhaseOneController implements Initializable {
             }
 
         });
-
-
-
-
-
-
 
 
 
@@ -1161,29 +1387,9 @@ public class PhaseOneController implements Initializable {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         HBox controls = new HBox();
         controls.getChildren().addAll(castControl,detailsControl,likeControl);
         controls.setSpacing(10);
-
-
-
-
-
 
 
 
@@ -1484,8 +1690,6 @@ public class PhaseOneController implements Initializable {
         movieTilePane1.setHgap(10);
 
     }
-
-
 
 
 

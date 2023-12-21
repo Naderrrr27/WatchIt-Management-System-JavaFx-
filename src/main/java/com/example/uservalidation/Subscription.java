@@ -84,12 +84,9 @@ public class Subscription implements Serializable {
         return ChronoUnit.DAYS.between(today, endDate) ;
     }
 
-    public Byte getRemanaingMovies(){
-        return  1;
-    }
 
-    public boolean isSubscriptionActive(){
-        if(getRemaningDays() == 0 || getRemanaingMovies() == 0 )
+    public boolean isPlaneActive(){
+        if(getRemaningDays() == 0 || getCapacity() == 0 )
             return false;
         else
             return true;

@@ -10,17 +10,19 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.effect.Shadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.uservalidation.PhaseOneController">
    <children>
-      <AnchorPane fx:id="signInForm" prefHeight="800.0" prefWidth="1280.0" styleClass="back-signIn" stylesheets="@sign_in.css" visible="false">
+      <AnchorPane fx:id="signInForm" prefHeight="800.0" prefWidth="1280.0" styleClass="back-signIn" stylesheets="@sign_in.css">
          <children>
             <ImageView fitHeight="75.0" fitWidth="66.0" layoutX="42.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -126,22 +128,17 @@
                   <Font name="System Bold" size="17.0" />
                </font>
             </Button>
-            <Label layoutX="411.0" layoutY="106.0" prefHeight="54.0" prefWidth="414.0" text="Create your Account" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="37.0" />
-               </font>
-            </Label>
-            <Label contentDisplay="CENTER" layoutX="411.0" layoutY="166.0" prefHeight="34.0" prefWidth="395.0" text="Enter an email and password to create your account" textFill="#c1bdb9" wrapText="true">
+            <Label fx:id="subTitlePS" contentDisplay="CENTER" layoutX="418.0" layoutY="166.0" prefHeight="34.0" prefWidth="395.0" text="Enter an email and password to create your account" textFill="#c1bdb9" wrapText="true">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <TextField fx:id="emailSignUp" layoutX="412.0" layoutY="397.0" onMouseClicked="#emailUpWriting" prefHeight="34.0" prefWidth="466.0" promptText="Email" styleClass="email-signUp" stylesheets="@sign_in.css">
+            <TextField fx:id="emailSignUp" focusTraversable="false" layoutX="412.0" layoutY="397.0" onMouseClicked="#emailUpWriting" prefHeight="34.0" prefWidth="466.0" promptText="Email" styleClass="email-signUp" stylesheets="@sign_in.css">
                <font>
                   <Font size="16.0" />
                </font>
             </TextField>
-            <PasswordField fx:id="passwordSignUp" layoutX="412.0" layoutY="478.0" onMouseClicked="#passwordUpWriting" prefHeight="34.0" prefWidth="466.0" promptText="Password" styleClass="password-signUp" stylesheets="@sign_in.css">
+            <PasswordField fx:id="passwordSignUp" focusTraversable="false" layoutX="412.0" layoutY="478.0" onMouseClicked="#passwordUpWriting" prefHeight="34.0" prefWidth="466.0" promptText="Password" styleClass="password-signUp" stylesheets="@sign_in.css">
                <font>
                   <Font size="16.0" />
                </font>
@@ -164,7 +161,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Label layoutX="533.0" layoutY="609.0" text="Already have an account?" textFill="WHITE">
+            <Label fx:id="alreadyHaveAccLabel" layoutX="533.0" layoutY="609.0" text="Already have an account?" textFill="WHITE">
                <font>
                   <Font size="16.0" />
                </font>
@@ -199,38 +196,56 @@
                   <Font size="17.0" />
                </font>
             </Label>
-            <Label fx:id="fullNameValid" layoutX="726.0" layoutY="278.0" prefHeight="26.0" prefWidth="154.0" textFill="#dc0f0f" visible="false">
+            <Label fx:id="fullNameValid" layoutX="709.0" layoutY="278.0" prefHeight="26.0" prefWidth="244.0" textFill="#dc0f0f" visible="false">
                <font>
                   <Font name="Roboto" size="16.0" />
                </font>
             </Label>
-            <Label fx:id="passwordSignUpValid" layoutX="736.0" layoutY="514.0" prefHeight="26.0" prefWidth="148.0" textFill="#dc0f0f" visible="false">
+            <Label fx:id="passwordSignUpValid" layoutX="736.0" layoutY="514.0" prefHeight="26.0" prefWidth="256.0" textFill="#dc0f0f" visible="false">
                <font>
                   <Font name="Roboto" size="16.0" />
                </font>
             </Label>
-            <Label fx:id="emailSignUpValid" layoutX="736.0" layoutY="433.0" prefHeight="26.0" prefWidth="148.0" textFill="#dc0f0f" visible="false">
+            <Label fx:id="emailSignUpValid" layoutX="736.0" layoutY="433.0" prefHeight="26.0" prefWidth="278.0" textFill="#dc0f0f" visible="false">
                <font>
                   <Font name="Roboto" size="16.0" />
                </font>
             </Label>
-            <Label fx:id="userNameValid" layoutX="736.0" layoutY="352.0" prefHeight="26.0" prefWidth="148.0" textFill="#dc0f0f">
+            <Label fx:id="userNameValid" layoutX="736.0" layoutY="352.0" prefHeight="26.0" prefWidth="256.0" textFill="#dc0f0f">
                <font>
                   <Font name="Roboto" size="16.0" />
                </font>
             </Label>
+            <Label fx:id="titlePS" layoutX="414.0" layoutY="118.0" prefHeight="54.0" prefWidth="414.0" text="Create your account :" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="37.0" />
+               </font>
+            </Label>
+            <Button fx:id="backToMainBttn" layoutX="1148.0" layoutY="26.0" mnemonicParsing="false" onMousePressed="#backToMain" prefHeight="38.0" prefWidth="88.0" styleClass="signUpSwitch" stylesheets="@sign_in.css" text="Back" visible="false">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <ImageView fx:id="profImg" fitHeight="75.0" fitWidth="90.0" layoutX="602.0" layoutY="111.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@pInfoo.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="subscriptionPlanss" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" styleClass="fullContainer" stylesheets="@styling.css" visible="false" xmlns="http://javafx.com/javafx/21">
          <children>
-            <Label alignment="CENTER" layoutX="-13.0" layoutY="171.0" prefHeight="83.0" prefWidth="1262.0" text="Subscription Plans" textFill="WHITE">
+            <Label alignment="CENTER" layoutX="1.0" layoutY="146.0" prefHeight="83.0" prefWidth="1262.0" text="Subscription Plans" textFill="WHITE">
                <font>
-                  <Font name="System Bold" size="40.0" />
+                  <Font name="System Bold" size="41.0" />
                </font>
             </Label>
-            <HBox alignment="CENTER" layoutX="-3.0" layoutY="287.0" prefHeight="242.0" prefWidth="1353.0" spacing="40.0">
+            <HBox alignment="CENTER" layoutX="-5.0" layoutY="261.0" prefHeight="242.0" prefWidth="1353.0" spacing="42.0">
                <children>
-                  <AnchorPane fx:id="basicPlan" onMousePressed="#basicSelected" prefHeight="237.0" prefWidth="297.0" stylesheets="@styling.css">
+                  <AnchorPane fx:id="basicPlan" onMousePressed="#basicSelected" prefHeight="238.0" prefWidth="294.0" stylesheets="@styling.css">
                      <children>
                         <Label fx:id="basicTxt" alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="11.0" layoutY="14.0" prefHeight="62.0" prefWidth="128.0" text="Basic " textFill="#acacac">
                            <font>
@@ -259,7 +274,7 @@
                         </ImageView>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="standardPLan" layoutX="540.0" layoutY="12.0" onMousePressed="#standardSelected" prefHeight="237.0" prefWidth="297.0" stylesheets="@styling.css">
+                  <AnchorPane fx:id="standardPLan" layoutX="540.0" layoutY="12.0" onMousePressed="#standardSelected" prefHeight="238.0" prefWidth="297.0" stylesheets="@styling.css">
                      <children>
                         <Label fx:id="standTxt" alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="11.0" layoutY="14.0" prefHeight="62.0" prefWidth="192.0" text="Standard" textFill="#acacac">
                            <font>
@@ -288,7 +303,7 @@
                         </ImageView>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="prePlan" layoutX="714.0" layoutY="12.0" onMousePressed="#premiumSelected" prefHeight="237.0" prefWidth="297.0" stylesheets="@styling.css">
+                  <AnchorPane fx:id="prePlan" layoutX="714.0" layoutY="12.0" onMousePressed="#premiumSelected" prefHeight="238.0" prefWidth="290.0" stylesheets="@styling.css">
                      <children>
                         <Label fx:id="preTxt" alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="11.0" layoutY="14.0" prefHeight="62.0" prefWidth="192.0" text="Premium" textFill="#acacac">
                            <font>
@@ -322,12 +337,12 @@
                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                </padding>
             </HBox>
-            <Label fx:id="describeNote" alignment="CENTER" layoutX="-69.0" layoutY="575.0" prefHeight="26.0" prefWidth="1430.0" styleClass="subnote" stylesheets="@styling.css">
+            <Label fx:id="describeNote" alignment="CENTER" layoutX="-69.0" layoutY="662.0" prefHeight="26.0" prefWidth="1430.0" styleClass="subnote" stylesheets="@styling.css">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
-            <Button fx:id="subBtttn" alignment="CENTER" layoutX="493.0" layoutY="634.0" mnemonicParsing="false" onAction="#subscribeNow" prefHeight="56.0" prefWidth="303.0" styleClass="subbttn" stylesheets="@styling.css" text="Subscribe Now">
+            <Button fx:id="subBtttn" alignment="CENTER" layoutX="495.0" layoutY="584.0" mnemonicParsing="false" onAction="#subscribeNow" prefHeight="56.0" prefWidth="303.0" styleClass="subbttn" stylesheets="@styling.css" text="Subscribe Now">
                <font>
                   <Font name="System Bold" size="22.0" />
                </font>
@@ -342,7 +357,7 @@
                   <Font name="System Bold" size="24.0" />
                </font>
             </Label>
-            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="1129.0" layoutY="31.0" lineSpacing="1.0" mnemonicParsing="false" onAction="#signOut" prefHeight="38.0" prefWidth="120.0" styleClass="signUpSwitch" stylesheets="@sign_in.css" text="Sign Out">
+            <Button fx:id="signOutSubButtn" alignment="CENTER" contentDisplay="CENTER" layoutX="1129.0" layoutY="31.0" lineSpacing="1.0" mnemonicParsing="false" onAction="#sugnOutSub" prefHeight="38.0" prefWidth="120.0" styleClass="signUpSwitch" stylesheets="@sign_in.css" text="Sign Out">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -353,14 +368,10 @@
                   <Font name="System Bold" size="17.0" />
                </font>
             </Button>
-            <ImageView fitHeight="62.0" fitWidth="59.0" layoutX="792.0" layoutY="189.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@choose.png" />
-               </image></ImageView>
          </children>
       </AnchorPane>
 
-      <AnchorPane fx:id="searchPage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" styleClass="fullContainer" stylesheets="@styling.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+      <AnchorPane fx:id="mainMenu" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" styleClass="fullContainer" stylesheets="@styling.css" visible="false" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
          <children>
             <AnchorPane fx:id="bigConrainer" layoutY="14.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="70.0" prefWidth="1280.0" styleClass="fullContainer" stylesheets="@styling.css">
                <children>
@@ -541,10 +552,10 @@
                         </ImageView>
                      </children>
                      <cursor>
-                        <Cursor fx:constant="HAND" />
+                        <Cursor fx:constant="DEFAULT" />
                      </cursor>
                   </AnchorPane>
-                  <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="45.0" prefWidth="200.0" styleClass="userrrrrr" stylesheets="@styling.css">
+                  <AnchorPane fx:id="userProfile" layoutX="10.0" layoutY="10.0" onMousePressed="#displayProfileInfo" prefHeight="45.0" prefWidth="200.0" styleClass="userrrrrr" stylesheets="@styling.css">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
@@ -562,7 +573,7 @@
                         </Label>
                      </children>
                   </AnchorPane>
-                  <AnchorPane layoutX="10.0" layoutY="55.0" prefHeight="45.0" prefWidth="200.0" styleClass="userrrrrr" stylesheets="@styling.css">
+                  <AnchorPane fx:id="displaySubInfo" layoutX="10.0" layoutY="55.0" onMousePressed="#displaySubscriptionInfo" prefHeight="45.0" prefWidth="200.0" styleClass="userrrrrr" stylesheets="@styling.css">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
@@ -580,12 +591,12 @@
                         </Label>
                      </children>
                   </AnchorPane>
-                  <AnchorPane layoutX="10.0" layoutY="100.0" prefHeight="37.0" prefWidth="227.0" styleClass="userrrrrr" stylesheets="@styling.css">
+                  <AnchorPane fx:id="signOut" layoutX="10.0" layoutY="100.0" onMousePressed="#signOutt" prefHeight="37.0" prefWidth="227.0" styleClass="userrrrrr" stylesheets="@styling.css">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                      <children>
-                        <ImageView fx:id="fakeIqon121" fitHeight="39.0" fitWidth="33.0" layoutX="5.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="fakeIqon121" fitHeight="37.0" fitWidth="34.0" layoutX="5.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@logout.png" />
                            </image>
@@ -621,6 +632,120 @@
                   </AnchorPane>
                </children>
             </VBox>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="subscriptionInfo" layoutX="-3.0" prefHeight="807.0" prefWidth="1286.0" styleClass="fullContainer" stylesheets="@styling.css" visible="false">
+         <children>
+            <Label layoutX="113.0" layoutY="29.0" prefHeight="46.0" prefWidth="126.0" text="WATCH IT" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="75.0" fitWidth="66.0" layoutX="45.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@wwww.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="331.0" fitWidth="343.0" layoutX="26.0" layoutY="203.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@SINFO.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="429.0" layoutY="219.0" prefHeight="34.0" prefWidth="128.0" text="Plan :" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+               <effect>
+                  <Shadow height="1.0" radius="0.0" width="0.0">
+                     <color>
+                        <Color red="0.9854776859283447" green="1.0" blue="0.9399999976158142" />
+                     </color>
+                  </Shadow>
+               </effect>
+            </Label>
+            <Label fx:id="planNomm" layoutX="503.0" layoutY="218.0" prefHeight="39.0" prefWidth="126.0" text="33" textFill="#b6891a">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="427.0" layoutY="271.0" prefHeight="34.0" prefWidth="128.0" text="Price :" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="30.0" fitWidth="49.0" layoutX="547.0" layoutY="275.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@EGP.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="planPriccc" layoutX="498.0" layoutY="264.0" prefHeight="50.0" prefWidth="71.0" text="150" textFill="#b6891a">
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+            </Label>
+            <Label layoutX="426.0" layoutY="310.0" prefHeight="56.0" prefWidth="166.0" text="Start Date :" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="21.0" />
+               </font>
+            </Label>
+            <Label fx:id="startDatee" layoutX="568.0" layoutY="314.0" prefHeight="50.0" prefWidth="210.0" text="kk" textFill="#b6891a">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="428.0" layoutY="364.0" prefHeight="56.0" prefWidth="210.0" text="End  Date  :" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="21.0" />
+               </font>
+            </Label>
+            <Label fx:id="endDatee" layoutX="573.0" layoutY="370.0" prefHeight="50.0" prefWidth="192.0" text="jj" textFill="#b6891a">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="429.0" layoutY="416.0" prefHeight="56.0" prefWidth="278.0" text="Remaning Days  :" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="429.0" layoutY="462.0" prefHeight="56.0" prefWidth="278.0" text="Remaning Movies  :" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="remaningMvs" layoutX="644.0" layoutY="468.0" prefHeight="50.0" prefWidth="61.0" text="44" textFill="#b6891a">
+               <font>
+                  <Font name="System Bold" size="21.0" />
+               </font>
+            </Label>
+            <Label fx:id="remaningDyss" layoutX="643.0" layoutY="419.0" prefHeight="50.0" prefWidth="61.0" text="55" textFill="#b6891a">
+               <font>
+                  <Font name="System Bold" size="21.0" />
+               </font>
+            </Label>
+            <Button fx:id="backToMainBttn1" layoutX="1168.0" layoutY="32.0" mnemonicParsing="false" onMousePressed="#closeSubInfo" prefHeight="38.0" prefWidth="88.0" styleClass="signUpSwitch" stylesheets="@sign_in.css" text="Back">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <ImageView fx:id="fivMvsImg" fitHeight="238.0" fitWidth="343.0" layoutX="818.0" layoutY="441.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@5mvs.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="tenMvsImg" fitHeight="238.0" fitWidth="343.0" layoutX="818.0" layoutY="441.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@10mvs.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="fifteenMvsImg" fitHeight="238.0" fitWidth="343.0" layoutX="818.0" layoutY="441.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@15mvs.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
 

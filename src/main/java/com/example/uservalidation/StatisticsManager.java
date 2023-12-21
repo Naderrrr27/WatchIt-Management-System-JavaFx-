@@ -94,14 +94,13 @@ public class StatisticsManager {
          }
      }
 
-        public static HashMap<String, Integer> getMonthsRevenue() {
+    public static HashMap<String, Integer> getMonthsRevenue() {
         return monthsRevenue;
     }
 
     public static HashMap<String , HashMap<String, Integer>> getHighestPlan() {
         return highestPlan;
     }
-
 
 
 }
