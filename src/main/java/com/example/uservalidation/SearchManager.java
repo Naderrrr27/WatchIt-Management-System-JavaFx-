@@ -11,7 +11,7 @@ public class SearchManager {
 
         int counter;
 
-        ArrayList<Movie> movie=null;
+        ArrayList<Movie> movies = new ArrayList<>();
 
         for (Movie m : HelloApplication.movies)
         {
@@ -24,11 +24,11 @@ public class SearchManager {
             }
 
             if(counter==searchedItem.length())
-                movie.add(m);
+                movies.add(m);
 
         }
 
-        return movie;
+        return movies;
     }
 
 
@@ -37,7 +37,7 @@ public class SearchManager {
     {
         int counter;
 
-        ArrayList<Cast> cast=null;
+        ArrayList<Cast> casts = new ArrayList<>();
 
         for (Cast c : HelloApplication.casts)
         {
@@ -51,11 +51,11 @@ public class SearchManager {
            }
 
             if(counter==searchedItem.length())
-                cast.add(c);
+                casts.add(c);
 
         }
 
-        return cast ;
+        return casts ;
     }
 
 
@@ -63,34 +63,27 @@ public class SearchManager {
     {
 
 
-        ArrayList<Movie>movie=null;
+        ArrayList<Movie>movies=new ArrayList<>();
 
-        if(searchedItem.equals("Comedy")||searchedItem.equals("comedy"))
-            movie=Genra.getComedyMovie();
-
-       else if(searchedItem.equals("Drama")||searchedItem.equals("drama"))
-            movie=Genra.getDramaMovie();
-
-       else if(searchedItem.equals("Romanc")||searchedItem.equals("romanc"))
-            movie=Genra.getRomancMovie();
-
-        else if(searchedItem.equals("Action")||searchedItem.equals("action"))
-            movie=Genra.getActionMovie();
-
-        else if(searchedItem.equals("Horror")||searchedItem.equals("horror"))
-            movie=Genra.getHorrorMovie();
-
-        else if(searchedItem.equals("For kids")||searchedItem.equals("for kids"))
-            movie=Genra.getForkidsMovie();
-
-        else if(searchedItem.equals("International")||searchedItem.equals("international"))
-            movie=Genra.getInternationalMovie();
-
-        else if(searchedItem.equals("Social")||searchedItem.equals("social"))
-            movie=Genra.getSocialMovie();
+        if (searchedItem.equalsIgnoreCase("Comedy"))
+            movies = Genra.getComedyMovie();
+        else if (searchedItem.equalsIgnoreCase("Drama"))
+            movies = Genra.getDramaMovie();
+        else if (searchedItem.equalsIgnoreCase("Romance"))
+            movies = Genra.getRomancMovie();
+        else if (searchedItem.equalsIgnoreCase("Action"))
+            movies = Genra.getActionMovie();
+        else if (searchedItem.equalsIgnoreCase("Horror"))
+            movies = Genra.getHorrorMovie();
+        else if (searchedItem.equalsIgnoreCase("For kids"))
+            movies = Genra.getForkidsMovie();
+        else if (searchedItem.equalsIgnoreCase("International"))
+            movies = Genra.getInternationalMovie();
+        else if (searchedItem.equalsIgnoreCase("Social"))
+            movies = Genra.getSocialMovie();
 
 
-        return movie;
+        return movies;
 
 
     }

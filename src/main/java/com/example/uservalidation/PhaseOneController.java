@@ -242,6 +242,7 @@ public class PhaseOneController implements Initializable {
     ScrollPane scrollPaneSearch=new ScrollPane();
 
 
+
     public boolean validEmail()
     {
         Pattern emailPat = Pattern.compile("^[A-z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$",Pattern.CASE_INSENSITIVE);
@@ -317,9 +318,6 @@ public class PhaseOneController implements Initializable {
         {
             HelloApplication.users.get(User.whoIsActive-1).setSubscriptionActive(true);
             HelloApplication.users.get(User.whoIsActive-1).setSubscription(new Subscription(userPlan));
-
-//            HelloApplication.saveUsersToFile("Users.txt");
-
         }
     }
 
@@ -387,7 +385,6 @@ public class PhaseOneController implements Initializable {
         {
 
             HelloApplication.users.add(new User(firstNameSignUp.getText(),lastNameSignUp.getText(),userNameSignUp.getText(),emailSignUp.getText(),passwordSignUp.getText()));
-//            HelloApplication.saveUsersToFile("Users.txt");
 
             User.whoIsActive = HelloApplication.users.get(HelloApplication.users.size()-1).getUserId();
 
@@ -573,9 +570,8 @@ public class PhaseOneController implements Initializable {
         fakeCombo.setVisible(false);
         fakeIqon.setVisible(false);
         movieTilePane1.getChildren().clear();
-        scrollPane.setContent(movieTilePane1);
-        movieTilePane1.setStyle("-fx-background-color:#0F0A05;");
-        displayGenre(Genra.getGenres());
+        movieTilePane1.setLayoutX(0);
+        displayGenre(Genra.genres);
     }
 
     @FXML
@@ -621,9 +617,6 @@ public class PhaseOneController implements Initializable {
         fakeCombo.setVisible(false);
         fakeIqon.setVisible(false);
 
-
-
-
         loadMovies();
     }
 
@@ -655,47 +648,12 @@ public class PhaseOneController implements Initializable {
     @FXML
     void validateSearch(KeyEvent event) {
 
-        ArrayList<Movie>movie =SearchManager.searchMovie(searchFeild.getText());
-        ArrayList<Cast> cast=SearchManager.searchCast(searchFeild.getText());
-        ArrayList<Movie> genraMovies=SearchManager.searchGenra(searchFeild.getText());
 
-
-
-//        System.out.println(searchFeild.getText().length());
         if(searchFeild.getText().length()  < 3 && searchFeild.getText().length() > 0)
             warningSearch.setVisible(true);
         else {
             warningSearch.setVisible(false);
-
-            scrollPaneSearch.setContent(searchTilPane);
-
-            Search(cast,movie,genraMovies);
-
         }
-    }
-
-
-
-    private void Search (ArrayList<Cast> cast,ArrayList<Movie> movie ,ArrayList<Movie>genraMovie)
-    {
-
-        if(movie.size()==0&&cast.size()==0&&genraMovie.size()==0)
-        {
-            Label notFound=new Label("We couldn't find any results that match your search");
-            notFound.setStyle("-fx-text-fill:grey;");
-            searchTilPane.getChildren().clear();
-            searchTilPane.getChildren().add(notFound);
-        }
-        else
-        {
-
-            for(Movie m: movie )
-
-                addMovieToHome(m,searchTilPane);
-
-           }
-
-
     }
 
 
@@ -769,7 +727,7 @@ public class PhaseOneController implements Initializable {
     private void loadMovies() {
 
         headerLabel.setText("Cinema Collection");
-        headerLabel.setStyle("-fx-text-fill: white; -fx-font-size: 24; -fx-font-weight: bold;-fx-padding:30px 0 30px 20px;");
+        headerLabel.setStyle("-fx-text-fill: white; -fx-font-size: 24; -fx-font-weight: bold;-fx-ping:30px 0 30px 20px;");
 
         movieTilePane1.getChildren().clear();
         movieTilePane1.setPrefWidth(1700);
@@ -789,11 +747,11 @@ public class PhaseOneController implements Initializable {
 
         for (int i=0;i<HelloApplication.movies.size();i++)
         {
-            addMovieToHome(HelloApplication.movies.get(i),movieTilePane1);
+            addMovieToHome(HelloApplication.movies.get(i));
         }
     }
 
-    private void addMovieToHome(Movie movie,TilePane tilePane) {
+    private void addMovieToHome(Movie movie) {
 
         StackPane stackBox = new StackPane();
 
@@ -834,15 +792,15 @@ public class PhaseOneController implements Initializable {
             stackBox.setCursor(Cursor.DEFAULT);
         });
 
-        stackBox.setOnMouseClicked(event ->{
+        stackBox.setOnMouseClicked(event -> {
             showPoster(movie);
         });
 
         stackBox.setAlignment(movieLabel, Pos.BOTTOM_LEFT);
-        tilePane.setHgap(10.0);
-        tilePane.setVgap(10.0);
+        movieTilePane1.setHgap(10.0);
+        movieTilePane1.setVgap(10.0);
 
-        tilePane.getChildren().add(stackBox);
+        movieTilePane1.getChildren().add(stackBox);
 
     }
 
@@ -1203,7 +1161,7 @@ public class PhaseOneController implements Initializable {
 
         //All container
         movieTilePane1.getChildren().addAll(movieBox);
-        movieTilePane1.setPrefWidth(1250);
+        movieTilePane1.setPrefWidth(1300);
         movieTilePane1.setPrefHeight(500);
     }
 
@@ -1278,7 +1236,7 @@ public class PhaseOneController implements Initializable {
             {
                 if((HelloApplication.movies.get(i).getCast().get(j).getFirstName()+" "+HelloApplication.movies.get(i).getCast().get(j).getLastName()).equals(actor.getFirstName()+" "+actor.getLastName()))
                 {
-                    addMovieToHome(HelloApplication.movies.get(i),movieTilePane1);
+                    addMovieToHome(HelloApplication.movies.get(i));
                 }
             }
         }
@@ -1467,7 +1425,7 @@ public class PhaseOneController implements Initializable {
             {
                 if(genre.equals(movie.getTypes().get(0)))
                 {
-                    addMovieToHome(movie,movieTilePane1);
+                    addMovieToHome(movie);
                 }
             }
 
@@ -1479,9 +1437,10 @@ public class PhaseOneController implements Initializable {
         genrePoster.setAlignment(genreName, Pos.CENTER);
 
         movieTilePane1.getChildren().addAll(genrePoster);
-        movieTilePane1.setStyle("-fx-padding:50px 10px 0 22px;-fx-background-color:#0F0A05;");
+        movieTilePane1.setStyle("-fx-padding:50px 10px 0 20px;-fx-background-color:#0F0A05;");
         movieTilePane1.setVgap(10);
         movieTilePane1.setHgap(10);
+        scrollPane.setContent(movieTilePane1);
 
     }
 
@@ -1498,7 +1457,7 @@ public class PhaseOneController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-
+        movieTilePane1.setStyle("-fx-background-color: #0F0A05;");
 
 
 
