@@ -13,6 +13,13 @@ import java.util.Arrays;
 import java.util.Date;
 
 
+
+
+
+
+
+
+
 public class HelloApplication extends Application {
 
     public static ArrayList<User> users = new ArrayList<>();
@@ -87,6 +94,13 @@ public class HelloApplication extends Application {
         loadCastFromFile("casts.txt");
 
 
+
+
+
+
+
+
+
         stage.setOnCloseRequest(event -> {
             saveMoviesToFile("movies.txt");
             saveCastToFile("casts.txt");
@@ -97,13 +111,13 @@ public class HelloApplication extends Application {
 
 
 
+
+
+
         for (Cast it : casts)
         {
             System.out.println(it);
         }
-
-
-
 
 
 
@@ -142,7 +156,11 @@ public class HelloApplication extends Application {
 
 
 
+
+
         Genra.addToGenres();
+
+
 
 
 

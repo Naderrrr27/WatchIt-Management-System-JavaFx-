@@ -85,3 +85,12 @@
   -fx-padding: 2px;
 }
 
+
+
+
+.scrollPane {
+ -fx-background-color : #0F0A05;
+}
+#scrollPane{
+    -fx-background-color: #0F0A05 ;
+}

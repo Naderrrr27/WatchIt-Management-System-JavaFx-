@@ -312,6 +312,7 @@ public class PhaseOneController implements Initializable {
     @FXML
     ScrollPane scrollPaneSearch = new ScrollPane();
 
+
     public boolean validEmail()
     {
         Pattern emailPat = Pattern.compile("^[A-z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$",Pattern.CASE_INSENSITIVE);
@@ -591,6 +592,8 @@ public class PhaseOneController implements Initializable {
          if(firstNameSignUp.getText().isEmpty() == false  && lastNameSignUp.getText().isEmpty() == false && userNameSignUp.getText().isEmpty() == false && passwordSignUp.getText().isEmpty() == false && emailSignUp.getText().isEmpty() == false  && isUsernameExist() == false && isEmailExist() == false  && validEmail()== true && passwordSignUp.getText().length() >= 8 && User.whoIsActive == -1)
         {
             HelloApplication.users.add(new User(firstNameSignUp.getText(),lastNameSignUp.getText(),userNameSignUp.getText(),emailSignUp.getText(),passwordSignUp.getText()));
+//            HelloApplication.saveUsersToFile("Users.txt");
+
             User.whoIsActive = HelloApplication.users.get(HelloApplication.users.size()-1).getUserId();
             subscriptionPlanss.setVisible(true);
             System.out.println(HelloApplication.users.size());
@@ -838,6 +841,7 @@ public class PhaseOneController implements Initializable {
         ArrayList<Movie> genraMovies=SearchManager.searchGenra(searchFeild.getText());
 
 
+
 //        System.out.println(searchFeild.getText().length());
         if(searchFeild.getText().length()  < 3 && searchFeild.getText().length() > 0)
             warningSearch.setVisible(true);
@@ -871,6 +875,8 @@ public class PhaseOneController implements Initializable {
                 addMovieToHome(m,searchTilPane);
 
            }
+
+
     }
 
 
