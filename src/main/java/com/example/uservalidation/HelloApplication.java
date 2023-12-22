@@ -3,6 +3,7 @@ package com.example.uservalidation;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -149,20 +150,11 @@ public class HelloApplication extends Application {
 
 
 
-
-
-
-
-
-        Genra.addToGenres();
-
-
-
-
-
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-        stage.setTitle("Hello!");
+        stage.setTitle("Watch it");
+        Image icon = new Image(getClass().getResourceAsStream("/com/example/uservalidation/wwww.png"));
+        stage.getIcons().add(icon);
         stage.setWidth(1293);
         stage.setHeight(800);
         stage.setScene(scene);
