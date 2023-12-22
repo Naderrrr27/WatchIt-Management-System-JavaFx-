@@ -861,7 +861,7 @@ public class PhaseOneController implements Initializable {
 
 
 
-    private void Search (ArrayList<Movie> movie,ArrayList<Movie> castMovie ,ArrayList<Movie>genraMovie)
+    private void Search (ArrayList<Movie> movie,ArrayList<Movie> castMovie ,ArrayList<Movie> genraMovie)
     {
 
         if(movie.size()==0&&castMovie.size()==0&&genraMovie.size()==0)
@@ -873,13 +873,13 @@ public class PhaseOneController implements Initializable {
         else
         {
 
-            for(Movie m: movie )
+            for(Movie m: movie)
                 addMovieToHome(m,searchTilPane,scrollPaneSearch);
 
-            for(Movie m: movie )
+            for(Movie m: castMovie)
                 addMovieToHome(m,searchTilPane,scrollPaneSearch);
 
-            for(Movie m: movie )
+            for(Movie m: genraMovie)
                 addMovieToHome(m,searchTilPane,scrollPaneSearch);
 
            }
@@ -1204,6 +1204,7 @@ public class PhaseOneController implements Initializable {
 
 
 
+
         //Buttons styling
         watch.setStyle("-fx-text-fill: black; -fx-font-size: 19;-fx-font-weight: 700; -fx-background-color: white;");
         watch.setPrefSize(150,50);
@@ -1305,10 +1306,7 @@ public class PhaseOneController implements Initializable {
 
                 movie.ratings.add((byte) clickedImageIndex);
                 System.out.println(movie.getTitle()+" : ");
-                for (byte it : movie.ratings)
-                {
-                    System.out.println(it);
-                }
+                System.out.println(movie.getRate());
 
                 for (int i = 0; i < rates.size(); i++) {
                     File ratingImageFile;

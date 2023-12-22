@@ -87,12 +87,12 @@ public class HelloApplication extends Application {
 
 
 
+
         loadUsersFromFile("Users.txt");
 
         loadMoviesFromFile("movies.txt");
 
         loadCastFromFile("casts.txt");
-
 
 
 
