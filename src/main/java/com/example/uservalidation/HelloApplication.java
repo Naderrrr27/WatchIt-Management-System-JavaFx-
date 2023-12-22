@@ -88,11 +88,11 @@ public class HelloApplication extends Application {
 
 
 
-        loadUsersFromFile("allUsers.txt");
+        loadUsersFromFile("ALLUSERS.txt");
 
-        loadMoviesFromFile("allMovies.txt");
+        loadMoviesFromFile("ALLMOVIES.txt");
 
-        loadCastFromFile("allCasts.txt");
+        loadCastFromFile("ALLCASTS.txt");
 
 
 
@@ -101,9 +101,9 @@ public class HelloApplication extends Application {
 
 
         stage.setOnCloseRequest(event -> {
-            saveMoviesToFile("allMovies.txt");
-            saveCastToFile("allCasts.txt");
-            saveUsersToFile("allUsers.txt");
+            saveMoviesToFile("ALLMOVIES.txt");
+            saveCastToFile("ALLCASTS.txt");
+            saveUsersToFile("ALLUSERS.txtt");
         });
 
 
