@@ -86,25 +86,22 @@ public class HelloApplication extends Application {
     public void start(Stage stage) throws IOException, ClassNotFoundException {
 
 
-
-
-        loadUsersFromFile("ALLUSERS.txt");
-
-        loadMoviesFromFile("ALLMOVIES.txt");
-
-        loadCastFromFile("ALLCASTS.txt");
+        loadUsersFromFile("USERSS.txt");
+        loadMoviesFromFile("MOVIESS.txt");
+        loadCastFromFile("CASTSS.txt");
 
 
 
 
 
 
-
-        stage.setOnCloseRequest(event -> {
-            saveMoviesToFile("ALLMOVIES.txt");
-            saveCastToFile("ALLCASTS.txt");
-            saveUsersToFile("ALLUSERS.txtt");
+        stage.setOnCloseRequest(windowEvent -> {
+            saveUsersToFile("USERSS.txt");
+            saveMoviesToFile("MOVIESS.txt");
+            saveCastToFile("CASTSS.txt");
         });
+
+
 
 
 
