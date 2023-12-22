@@ -245,7 +245,7 @@
             </Label>
             <HBox alignment="CENTER" layoutX="-5.0" layoutY="261.0" prefHeight="242.0" prefWidth="1353.0" spacing="42.0">
                <children>
-                  <AnchorPane fx:id="basicPlan" onMousePressed="#basicSelected" prefHeight="238.0" prefWidth="294.0" stylesheets="@styling.css">
+                  <AnchorPane fx:id="basicPlan" onMousePressed="#basicSelected" prefHeight="238.0" prefWidth="294.0" styleClass="planSub" stylesheets="@styling.css">
                      <children>
                         <Label fx:id="basicTxt" alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="11.0" layoutY="14.0" prefHeight="62.0" prefWidth="128.0" text="Basic " textFill="#acacac">
                            <font>
@@ -273,8 +273,11 @@
                            </image>
                         </ImageView>
                      </children>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </AnchorPane>
-                  <AnchorPane fx:id="standardPLan" layoutX="540.0" layoutY="12.0" onMousePressed="#standardSelected" prefHeight="238.0" prefWidth="297.0" stylesheets="@styling.css">
+                  <AnchorPane fx:id="standardPLan" layoutX="540.0" layoutY="12.0" onMousePressed="#standardSelected" prefHeight="238.0" prefWidth="297.0" styleClass="planSub" stylesheets="@styling.css">
                      <children>
                         <Label fx:id="standTxt" alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="11.0" layoutY="14.0" prefHeight="62.0" prefWidth="192.0" text="Standard" textFill="#acacac">
                            <font>
@@ -302,8 +305,11 @@
                            </image>
                         </ImageView>
                      </children>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </AnchorPane>
-                  <AnchorPane fx:id="prePlan" layoutX="714.0" layoutY="12.0" onMousePressed="#premiumSelected" prefHeight="238.0" prefWidth="290.0" stylesheets="@styling.css">
+                  <AnchorPane fx:id="prePlan" layoutX="714.0" layoutY="12.0" onMousePressed="#premiumSelected" prefHeight="238.0" prefWidth="290.0" styleClass="planSub" stylesheets="@styling.css">
                      <children>
                         <Label fx:id="preTxt" alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="11.0" layoutY="14.0" prefHeight="62.0" prefWidth="192.0" text="Premium" textFill="#acacac">
                            <font>
@@ -331,6 +337,9 @@
                            </image>
                         </ImageView>
                      </children>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </AnchorPane>
                </children>
                <padding>
@@ -342,7 +351,7 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <Button fx:id="subBtttn" alignment="CENTER" layoutX="495.0" layoutY="584.0" mnemonicParsing="false" onAction="#subscribeNow" prefHeight="56.0" prefWidth="303.0" styleClass="subbttn" stylesheets="@styling.css" text="Subscribe Now">
+            <Button fx:id="subBtttn" alignment="CENTER" layoutX="479.0" layoutY="584.0" mnemonicParsing="false" onAction="#subscribeNow" prefHeight="56.0" prefWidth="303.0" styleClass="subbttn" stylesheets="@styling.css" text="Subscribe Now">
                <font>
                   <Font name="System Bold" size="22.0" />
                </font>
@@ -371,7 +380,7 @@
          </children>
       </AnchorPane>
 
-      <AnchorPane fx:id="mainMenu" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" styleClass="fullContainer" stylesheets="@styling.css" visible="false" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+      <AnchorPane fx:id="mainMenu" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" styleClass="fullContainer" stylesheets="@styling.css" visible="false">
          <children>
             <AnchorPane fx:id="bigConrainer" layoutY="14.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="70.0" prefWidth="1280.0" styleClass="fullContainer" stylesheets="@styling.css">
                <children>
@@ -409,6 +418,11 @@
                         <ImageView fx:id="fakeIqon" fitHeight="10.0" fitWidth="20.0" layoutX="1270.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true" visible="false">
                            <image>
                               <Image url="@arrow.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="stattIcon" fitHeight="41.0" fitWidth="44.0" layoutX="1160.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@statIconn.png" />
                            </image>
                         </ImageView>
                      </children>
@@ -744,6 +758,45 @@
             </ImageView>
          </children>
       </AnchorPane>
+      <AnchorPane fx:id="statPage" prefHeight="807.0" prefWidth="1362.0" styleClass="fullContainer" stylesheets="@styling.css" visible="false">
+         <children>
+            <Label layoutX="113.0" layoutY="29.0" prefHeight="46.0" prefWidth="126.0" text="WATCH IT" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="75.0" fitWidth="66.0" layoutX="45.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@wwww.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="analysisTxt" layoutX="155.0" layoutY="189.0" text="Tap here if you want analysis of the revenue for each month" textFill="#d3d1d1">
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Label>
+            <ImageView fx:id="anaylsisImg" fitHeight="54.0" fitWidth="56.0" layoutX="93.0" layoutY="177.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@analysis.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="analysisTxt1" layoutX="154.0" layoutY="275.0" text="Tap here if you want  to get the highest plan for specific month " textFill="#d3d1d1">
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Label>
+            <ImageView fx:id="anaylsisImg1" fitHeight="54.0" fitWidth="56.0" layoutX="89.0" layoutY="264.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@analysis.png" />
+               </image>
+            </ImageView>
+         </children></AnchorPane>
 
    </children>
 </AnchorPane>

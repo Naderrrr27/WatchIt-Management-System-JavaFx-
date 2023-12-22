@@ -4,12 +4,17 @@
 
 .subbttn {
     -fx-background-color: #dca523;
-    -fx-text-fill: #363535;
+    -fx-text-fill: #1e1d1d;
 }
 .subnote{
     -fx-text-fill: #ACACAC;
 }
 
+.planSub{
+    -fx-background-color: #0f0e0e;
+    -fx-border-radius: 10px;
+    -fx-padding: 2px;
+}
 .menubttn{
     -fx-background-color: transparent ;
     -fx-background-radius:25px;

@@ -15,13 +15,8 @@ import java.util.Date;
 
 
 
-
-
-
-
-
-
 public class HelloApplication extends Application {
+
 
     public static ArrayList<User> users = new ArrayList<>();
     public static ArrayList<Movie> movies = new ArrayList<>();
@@ -74,6 +69,7 @@ public class HelloApplication extends Application {
         }
     }
 
+
     public static void loadCastFromFile(String fileName) {
         try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(fileName));
              BufferedInputStream bufferedInputStream = new BufferedInputStream(inputStream)) {
@@ -108,9 +104,6 @@ public class HelloApplication extends Application {
 
 
 
-
-
-
         for (Cast it : casts)
         {
             System.out.println(it);
@@ -134,6 +127,9 @@ public class HelloApplication extends Application {
 
 
 
+        //WHEN THE admin  LOG IN
+        // this must run onceeee
+//        StatisticsManager.analyseMonthRevenue();
 
 
 
