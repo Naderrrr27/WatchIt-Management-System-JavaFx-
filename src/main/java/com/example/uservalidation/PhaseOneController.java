@@ -813,6 +813,10 @@ public class PhaseOneController implements Initializable {
         bigConSearch.setVisible(true);
         fakeCombo.setVisible(false);
         fakeIqon.setVisible(false);
+        searchTilPane.setPrefWidth(1500);
+        searchTilPane.setPrefHeight(800);
+        searchTilPane.setStyle("-fx-background-color: #0F0A05; -fx-padding: 0 0 0 0;");
+        scrollPaneSearch.setContent(searchTilPane);
     }
 
     @FXML
@@ -823,6 +827,7 @@ public class PhaseOneController implements Initializable {
         fakeIqon.setVisible(false);
         warningSearch.setVisible(false);
         searchFeild.clear();
+        searchTilPane.getChildren().clear();
     }
 
 
@@ -835,46 +840,54 @@ public class PhaseOneController implements Initializable {
 
     @FXML
     void validateSearch(KeyEvent event) {
+        String s =searchFeild.getText();
+        searchTilPane.getChildren().clear();
+        ArrayList<Movie>movies =SearchManager.searchMovie(s);
+        ArrayList<Movie> castMovies=SearchManager.searchCast(s);
+        ArrayList<Movie> genraMovies=SearchManager.searchGenra(s);
 
-        ArrayList<Movie>movie =SearchManager.searchMovie(searchFeild.getText());
-        ArrayList<Cast> cast=SearchManager.searchCast(searchFeild.getText());
-        ArrayList<Movie> genraMovies=SearchManager.searchGenra(searchFeild.getText());
 
 
-
-//        System.out.println(searchFeild.getText().length());
+//
         if(searchFeild.getText().length()  < 3 && searchFeild.getText().length() > 0)
             warningSearch.setVisible(true);
         else {
             warningSearch.setVisible(false);
-
+            Search(movies,castMovies,genraMovies);
             scrollPaneSearch.setContent(searchTilPane);
-
-            Search(cast,movie,genraMovies);
 
         }
     }
 
 
 
-    private void Search (ArrayList<Cast> cast,ArrayList<Movie> movie ,ArrayList<Movie>genraMovie)
+    private void Search (ArrayList<Movie> movie,ArrayList<Movie> castMovie ,ArrayList<Movie>genraMovie)
     {
 
-        if(movie.size()==0&&cast.size()==0&&genraMovie.size()==0)
+        if(movie.size()==0&&castMovie.size()==0&&genraMovie.size()==0)
         {
-            Label notFound=new Label("We couldn't find any results that match your search");
-            notFound.setStyle("-fx-text-fill:grey;");
-            searchTilPane.getChildren().clear();
-            searchTilPane.getChildren().add(notFound);
+            Label notfound=new Label("We couldn't find any results that match your search");
+            notfound.setStyle("-fx-text-fill:white;-fx-font-size:25;-fx-font-weight:900;-fx-padding:30;");
+            searchTilPane.getChildren().add(notfound);
         }
         else
         {
 
             for(Movie m: movie )
+                addMovieToHome(m,searchTilPane,scrollPaneSearch);
 
-                addMovieToHome(m,searchTilPane);
+            for(Movie m: movie )
+                addMovieToHome(m,searchTilPane,scrollPaneSearch);
+
+            for(Movie m: movie )
+                addMovieToHome(m,searchTilPane,scrollPaneSearch);
 
            }
+
+
+
+
+
 
 
     }
@@ -1069,11 +1082,11 @@ public class PhaseOneController implements Initializable {
 
         for (int i=0;i<HelloApplication.movies.size();i++)
         {
-            addMovieToHome(HelloApplication.movies.get(i),movieTilePane1);
+            addMovieToHome(HelloApplication.movies.get(i),movieTilePane1,scrollPane);
         }
     }
 
-    private void addMovieToHome(Movie movie,TilePane tilePane) {
+    private void addMovieToHome(Movie movie,TilePane tilePane,ScrollPane scrollPanee) {
 
         StackPane stackBox = new StackPane();
 
@@ -1115,7 +1128,7 @@ public class PhaseOneController implements Initializable {
         });
 
         stackBox.setOnMouseClicked(event ->{
-            showPoster(movie);
+            showPoster(movie,tilePane,scrollPanee);
         });
 
         stackBox.setAlignment(movieLabel, Pos.BOTTOM_LEFT);
@@ -1128,16 +1141,16 @@ public class PhaseOneController implements Initializable {
 
 
 
-    private void showPoster(Movie movie) {
+    private void showPoster(Movie movie,TilePane tilePane,ScrollPane scrollPanee) {
 
         scrollPane.setVvalue(0.0);
 
         VBox movieBox = new VBox();
 
         //Clear the current page
-        movieTilePane1.getChildren().clear();
-        scrollPane.setContent(movieTilePane1);
-        movieTilePane1.setStyle("-fx-background-color: #0F0A05; -fx-padding: 10px;");
+        tilePane.getChildren().clear();
+        scrollPanee.setContent(tilePane);
+        tilePane.setStyle("-fx-background-color: #0F0A05; -fx-padding: 10px;");
 
 
         //Files
@@ -1414,9 +1427,9 @@ public class PhaseOneController implements Initializable {
 
 
         //All container
-        movieTilePane1.getChildren().addAll(movieBox);
-        movieTilePane1.setPrefWidth(1250);
-        movieTilePane1.setPrefHeight(500);
+        tilePane.getChildren().addAll(movieBox);
+        tilePane.setPrefWidth(1250);
+        tilePane.setPrefHeight(500);
     }
 
     private void addCastToDisplay(ArrayList<Cast> casts) {
@@ -1490,7 +1503,7 @@ public class PhaseOneController implements Initializable {
             {
                 if((HelloApplication.movies.get(i).getCast().get(j).getFirstName()+" "+HelloApplication.movies.get(i).getCast().get(j).getLastName()).equals(actor.getFirstName()+" "+actor.getLastName()))
                 {
-                    addMovieToHome(HelloApplication.movies.get(i),movieTilePane1);
+                    addMovieToHome(HelloApplication.movies.get(i),movieTilePane1,scrollPane);
                 }
             }
         }
@@ -1603,7 +1616,7 @@ public class PhaseOneController implements Initializable {
         });
 
         moviePoster.setOnMouseClicked(event ->{
-            showPoster(movie);
+            showPoster(movie,movieTilePane1,scrollPane);
         });
 
         moviePoster.setAlignment(movieTitle, Pos.BOTTOM_LEFT);
@@ -1679,7 +1692,7 @@ public class PhaseOneController implements Initializable {
             {
                 if(genre.equals(movie.getTypes().get(0)))
                 {
-                    addMovieToHome(movie,movieTilePane1);
+                    addMovieToHome(movie,movieTilePane1,scrollPane);
                 }
             }
 

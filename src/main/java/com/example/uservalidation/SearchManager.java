@@ -9,21 +9,13 @@ public class SearchManager {
     public static ArrayList<Movie> searchMovie(String searchedItem)
     {
 
-        int counter;
 
         ArrayList<Movie> movies = new ArrayList<>();
 
         for (Movie m : HelloApplication.movies)
         {
-            counter=0;
 
-            for(int i=0;i<searchedItem.length();i++)
-            {
-                if(searchedItem.charAt(i)==m.getTitle().charAt(i))
-                    counter++;
-            }
-
-            if(counter==searchedItem.length())
+            if(searchedItem.equalsIgnoreCase(m.getTitle()))
                 movies.add(m);
 
         }
@@ -33,29 +25,19 @@ public class SearchManager {
 
 
 
-    public static ArrayList<Cast> searchCast(String searchedItem)
+    public static ArrayList<Movie> searchCast(String searchedItem)
     {
-        int counter;
 
-        ArrayList<Cast> casts = new ArrayList<>();
+
+        ArrayList<Movie> castMovies = new ArrayList<>();
 
         for (Cast c : HelloApplication.casts)
         {
-           counter=0;
-
-           for(int i=0;i<searchedItem.length();i++)
-           {
-               if(searchedItem.charAt(i)==c.getFirstName().charAt(i))
-                   counter++;
-
-           }
-
-            if(counter==searchedItem.length())
-                casts.add(c);
-
+            if(searchedItem.equalsIgnoreCase(c.getFirstName()+" "+c.getLastName()))
+                castMovies=c.getActedMovie();
         }
 
-        return casts ;
+        return castMovies ;
     }
 
 
@@ -65,28 +47,23 @@ public class SearchManager {
 
         ArrayList<Movie>movies=new ArrayList<>();
 
-        if (searchedItem.equalsIgnoreCase("Comedy"))
-            movies = Genra.getComedyMovie();
-        else if (searchedItem.equalsIgnoreCase("Drama"))
-            movies = Genra.getDramaMovie();
-        else if (searchedItem.equalsIgnoreCase("Romance"))
-            movies = Genra.getRomancMovie();
-        else if (searchedItem.equalsIgnoreCase("Action"))
-            movies = Genra.getActionMovie();
-        else if (searchedItem.equalsIgnoreCase("Horror"))
-            movies = Genra.getHorrorMovie();
-        else if (searchedItem.equalsIgnoreCase("For kids"))
-            movies = Genra.getForkidsMovie();
-        else if (searchedItem.equalsIgnoreCase("International"))
-            movies = Genra.getInternationalMovie();
-        else if (searchedItem.equalsIgnoreCase("Social"))
-            movies = Genra.getSocialMovie();
+
+        for(Movie m:HelloApplication.movies)
+        {
+            if(searchedItem.equalsIgnoreCase(m.getTypes().get(0)))
+            {
+                movies.add(m);
+            }
+        }
+
 
 
         return movies;
 
 
     }
+
+
 
 
 }
