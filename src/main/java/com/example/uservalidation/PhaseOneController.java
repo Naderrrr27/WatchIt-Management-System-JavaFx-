@@ -262,7 +262,16 @@ public class PhaseOneController implements Initializable {
     private Label planNomm;
 
     @FXML
+    TextField monthTextField = new TextField();
+
+    @FXML
+    Label resultLabel = new Label();
+
+    @FXML
     private Label planPriccc;
+
+    @FXML
+    Button getButton = new Button("Get");
 
     @FXML
     private Label remaningDyss;
@@ -296,6 +305,9 @@ public class PhaseOneController implements Initializable {
     private Label analysisTxt;
 
     Button closee = new Button();
+
+    @FXML
+    private Button backStatMain;
 
     Label BigT = new Label();
 
@@ -1300,6 +1312,19 @@ public class PhaseOneController implements Initializable {
     }
 
 
+    @FXML
+    void closeStat(MouseEvent event) {
+        statPage.setVisible(false);
+        mainMenu.setVisible(true);
+        backStatMain.setVisible(false);
+    }
+    @FXML
+     void toStatPage(MouseEvent event) {
+       statPage.setVisible(true);
+       mainMenu.setVisible(false);
+        backStatMain.setVisible(true);
+        StatisticsManager.analyseMonthRevenue();
+   }
 
     void setvboxxx(){
         vboxxx.setSpacing(10);
@@ -1316,6 +1341,7 @@ public class PhaseOneController implements Initializable {
         anaylsisImg.setVisible(false);
         analysisTxt1.setVisible(false);
         anaylsisImg1.setVisible(false);
+        backStatMain.setVisible(false);
         for (Map.Entry<String, Integer> entry : StatisticsManager.getMonthsRevenue().entrySet()) {
             String month = entry.getKey();
             Integer revenue = entry.getValue();
@@ -1352,18 +1378,79 @@ public class PhaseOneController implements Initializable {
     void closeboxx (){
         analysisTxt.setVisible(true);
         anaylsisImg.setVisible(true);
+        analysisTxt1.setVisible(true);
+        anaylsisImg1.setVisible(true);
+        backStatMain.setVisible(true);
         vboxxx.setVisible(false);
         vboxxx2.setVisible(false);
         closee.setVisible(false);
+        getButton.setVisible(false);
         BigT.setVisible(false);
         statPage.getChildren().remove(vboxxx);
         statPage.getChildren().remove(vboxxx2);
         statPage.getChildren().remove(BigT);
         statPage.getChildren().remove(closee);
+        statPage.getChildren().remove(monthTextField);
+        statPage.getChildren().remove(resultLabel);
+        statPage.getChildren().remove(getButton);
+        resultLabel.setVisible(false);
         vboxxx.getChildren().removeAll();
         vboxxx.getChildren().clear();
         vboxxx2.getChildren().removeAll();
         vboxxx2.getChildren().clear();
+        monthTextField.setVisible(false);
+        monthTextField.clear();
+        resultLabel.setText("");
+    }
+
+    @FXML
+    void getHIghesttttPlannn(MouseEvent event) {
+
+        vboxxx.setSpacing(10);
+        closee.setCursor(Cursor.HAND);
+        closee.setText("Back");
+        closee.setStyle("  -fx-background-color: #dca523; -fx-text-fill: #090909; -fx-font-weight: bold;");
+        BigT.setText("Enter the month for which you want to access his highest plan....");
+        BigT.setStyle("-fx-font-size: 25px;  -fx-font-family: 'NotoSans-Regular', 'Roboto', 'Helvetica Neue', 'sans-serif'; -fx-font-weight: bold; -fx-text-fill: #dca523; ");
+        BigT.setLayoutX(30);
+        BigT.setLayoutY(100);
+        closee.setLayoutX(1200);
+        closee.setLayoutY(20);
+        //
+        monthTextField.setPromptText("Enter your month in number please");
+        monthTextField.setStyle("-fx-text-fill: white; -fx-prompt-text-fill: white; -fx-background-color: #1a1919; -fx-font-weight: bold; -fx-border-width: 2px; -fx-border-color: white; -fx-border-radius: 2px; -fx-pref-width: 350px;");
+        monthTextField.setLayoutX(30);
+        monthTextField.setLayoutY(147);
+
+
+        getButton.setOnAction(e -> {
+            String enteredMonth = monthTextField.getText();
+            String result = StatisticsManager.getetHighestPlanInEachMonth(enteredMonth);
+            resultLabel.setText(result);
+        });
+        resultLabel.setStyle("-fx-font-size: 20px; -fx-font-family: 'NotoSans-Regular', 'Roboto', 'Helvetica Neue', 'sans-serif'; -fx-font-weight: bold; -fx-text-fill: white;");
+        resultLabel.setLayoutX(30);
+        resultLabel.setLayoutY(200);
+
+        getButton.setStyle(" -fx-background-color: black; -fx-text-fill: white;  -fx-font-weight: bold; -fx-border-width: 4px; -fx-border-color: #666363; -fx-border-radius: 2px; -fx-pref-width: 90px;");
+        getButton.setCursor(Cursor.HAND);
+        getButton.setLayoutX(400);
+        getButton.setLayoutY(147);
+        analysisTxt.setVisible(false);
+        anaylsisImg.setVisible(false);
+        analysisTxt1.setVisible(false);
+        anaylsisImg1.setVisible(false);
+        backStatMain.setVisible(false);
+        statPage.getChildren().add(resultLabel);
+        statPage.getChildren().add(getButton);
+        statPage.getChildren().add(monthTextField);
+        statPage.getChildren().add(closee);
+        statPage.getChildren().add(BigT);
+        getButton.setVisible(true);
+        closee.setVisible(true);
+        BigT.setVisible(true);
+        monthTextField.setVisible(true);
+        resultLabel.setVisible(true);
     }
 
 
