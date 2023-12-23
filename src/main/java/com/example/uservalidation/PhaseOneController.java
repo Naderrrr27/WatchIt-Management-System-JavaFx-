@@ -21,9 +21,9 @@ import javafx.scene.shape.Rectangle;
 
 import java.io.*;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Iterator;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -61,12 +61,6 @@ public class PhaseOneController implements Initializable {
     private Hyperlink signUpHyper;
 
     @FXML
-    private Label analysisTxt1;
-
-    @FXML
-    private ImageView anaylsisImg1;
-
-    @FXML
     private Button submitSignIn;
 
     @FXML
@@ -101,8 +95,7 @@ public class PhaseOneController implements Initializable {
 
     private boolean valid;
 
-    @FXML
-    private AnchorPane statPage;
+
     @FXML
     private AnchorPane basicPlan;
 
@@ -293,28 +286,9 @@ public class PhaseOneController implements Initializable {
     @FXML
     private ImageView tenMvsImg;
 
-    //stat
-    @FXML
-    private Label analysisTxt;
-
-    Button closee = new Button();
-
-    Label BigT = new Label();
-
-    @FXML
-    private ImageView anaylsisImg;
-
-
-    private VBox vboxxx = new VBox();
-
-    private VBox vboxxx2 = new VBox();
-
-
     boolean checkEntered = false;
 
     String userPlan = "";
-
-    boolean isRated = false;
 
 
     VBox container = new VBox();
@@ -333,8 +307,6 @@ public class PhaseOneController implements Initializable {
     StackPane likeThis = new StackPane();
 
     TilePane searchTilPane = new TilePane();
-
-    ImageView statIcon = new ImageView();
 
     @FXML
     ScrollPane scrollPaneSearch = new ScrollPane();
@@ -420,6 +392,21 @@ public class PhaseOneController implements Initializable {
             signInForm.setVisible(false);
             signUpForm.setVisible(false);
             subscriptionPlanss.setVisible(false);
+
+
+            bigConrainer.setVisible(true);
+            movieTilePane1.getChildren().clear();
+            container.getChildren().clear();
+
+            home1.setStyle("-fx-background-color:rgba(172, 172, 172, 0.35);");
+            movie1.setStyle("-fx-background-color: transparent ;");
+            list1.setStyle("-fx-background-color: transparent ;");
+            genera1.setStyle("-fx-background-color: transparent;");
+            history1.setStyle("-fx-background-color: transparent ;");
+            fakeCombo.setVisible(false);
+            fakeIqon.setVisible(false);
+
+
         }
     }
 
@@ -796,6 +783,32 @@ public class PhaseOneController implements Initializable {
         genera1.setStyle("-fx-background-color: transparent;");
         fakeCombo.setVisible(false);
         fakeIqon.setVisible(false);
+
+        headerLabel.setText("Continue Watching");
+        headerLabel.setStyle("-fx-text-fill: white; -fx-font-size: 30; -fx-font-weight: 900;-fx-padding:0px 0 30px 20px;");
+
+        movieTilePane1.getChildren().clear();
+        movieTilePane1.setPrefWidth(1700);
+        movieTilePane1.setStyle("-fx-background-color: #0F0A05; -fx-padding: 0;");
+
+
+
+        container.getChildren().clear();
+        container.getChildren().addAll(headerLabel, movieTilePane1);
+
+        container.setStyle("-fx-background-color: #0F0A05; -fx-padding: 20px 10px 0 10px;");
+
+        scrollPane.setContent(container);
+        scrollPane.setVvalue(0.0);
+
+        scrollPane.setContent(container);
+
+        for (UserWatchRecord record : HelloApplication.users.get(User.whoIsActive-1).getHistory())
+        {
+            addMovieToTilePane(record,movieTilePane1);
+        }
+
+
     }
 
     @FXML
@@ -819,6 +832,33 @@ public class PhaseOneController implements Initializable {
         movie1.setStyle("-fx-background-color: transparent ;");
         fakeCombo.setVisible(false);
         fakeIqon.setVisible(false);
+
+
+
+        headerLabel.setText("My List");
+        headerLabel.setStyle("-fx-text-fill: white; -fx-font-size: 30; -fx-font-weight: 900;-fx-padding:0px 0 30px 20px;");
+
+        movieTilePane1.getChildren().clear();
+        movieTilePane1.setPrefWidth(1700);
+        movieTilePane1.setStyle("-fx-background-color: #0F0A05; -fx-padding: 0;");
+
+
+
+        container.getChildren().clear();
+        container.getChildren().addAll(headerLabel, movieTilePane1);
+
+        container.setStyle("-fx-background-color: #0F0A05; -fx-padding: 20px 10px 0 10px;");
+
+        scrollPane.setContent(container);
+        scrollPane.setVvalue(0.0);
+
+        scrollPane.setContent(container);
+
+        for (Movie movie : HelloApplication.users.get(User.whoIsActive-1).getMovieList())
+        {
+            addMovieToTilePane(movie,movieTilePane1);
+        }
+
     }
 
     @FXML
@@ -878,10 +918,15 @@ public class PhaseOneController implements Initializable {
 
 
 
-//
+
         if(searchFeild.getText().length()  < 3 && searchFeild.getText().length() > 0)
+        {
+            warningSearch.setText("The minimum number of characters is 3");
+            warningSearch.setPrefWidth(500);
             warningSearch.setVisible(true);
-        else {
+        }
+        else
+        {
             warningSearch.setVisible(false);
             Search(movies,castMovies,genraMovies);
             scrollPaneSearch.setContent(searchTilPane);
@@ -891,34 +936,38 @@ public class PhaseOneController implements Initializable {
 
 
 
-    private void Search (ArrayList<Movie> movie,ArrayList<Movie> castMovie ,ArrayList<Movie> genraMovie)
+    private void Search (ArrayList<Movie> movies,ArrayList<Movie> castMovie ,ArrayList<Movie> genraMovie)
     {
 
-        if(movie.size()==0&&castMovie.size()==0&&genraMovie.size()==0)
+        if(movies.size()==0&&castMovie.size()==0&&genraMovie.size()==0)
         {
-            Label notfound=new Label("We couldn't find any results that match your search");
-            notfound.setStyle("-fx-text-fill:white;-fx-font-size:25;-fx-font-weight:900;-fx-padding:30;");
-            searchTilPane.getChildren().add(notfound);
+
+            warningSearch.setText("We couldn't find any results that match your search");
+            warningSearch.setVisible(true);
+
+//            Label notfound=new Label("We couldn't find any results that match your search");
+//            notfound.setStyle("-fx-text-fill:white;-fx-font-size:25;-fx-font-weight:900;-fx-padding:30;");
+//            searchTilPane.getChildren().add(notfound);
         }
         else
         {
 
-            for(Movie m: movie)
-                addMovieToHome(m,searchTilPane,scrollPaneSearch);
-
-            for(Movie m: castMovie)
-                addMovieToHome(m,searchTilPane,scrollPaneSearch);
-
-            for(Movie m: genraMovie)
-                addMovieToHome(m,searchTilPane,scrollPaneSearch);
-
+            for(Movie movie: movies)
+            {
+                addMovieToTilePane(movie,searchTilPane);
             }
 
+            for(Movie movie : castMovie)
+            {
+                addMovieToTilePane(movie,searchTilPane);
+            }
 
+            for(Movie movie: genraMovie)
+            {
+                addMovieToTilePane(movie,searchTilPane);
+            }
 
-
-
-
+        }
 
     }
 
@@ -959,6 +1008,21 @@ public class PhaseOneController implements Initializable {
         passwordSignUp.setStyle("-fx-border-width: 0");
         userNameSignUp.clear();
         userNameSignUp.setStyle("-fx-border-width: 0");
+
+
+        home1.setStyle("-fx-background-color:rgba(172, 172, 172, 0.35);");
+        movie1.setStyle("-fx-background-color: transparent ;");
+        list1.setStyle("-fx-background-color: transparent ;");
+        genera1.setStyle("-fx-background-color: transparent;");
+        history1.setStyle("-fx-background-color: transparent ;");
+        fakeCombo.setVisible(false);
+        fakeIqon.setVisible(false);
+
+        movieTilePane1.getChildren().clear();
+        container.getChildren().clear();
+        searchTilPane.getChildren().clear();
+        searchFeild.clear();
+        bigConSearch.setVisible(false);
     }
 
     @FXML
@@ -1089,78 +1153,10 @@ public class PhaseOneController implements Initializable {
         closeLabel.setStyle("-fx-text-fill: white;");
     }
 
-
-
-    void setvboxxx(){
-        vboxxx.setSpacing(10);
-        closee.setCursor(Cursor.HAND);
-        closee.setText("Back");
-        closee.setStyle("  -fx-background-color: #dca523; -fx-text-fill: #090909; -fx-font-weight: bold;");
-        BigT.setText("Month Revenue...");
-        BigT.setStyle("-fx-font-size: 51px;  -fx-font-family: 'NotoSans-Regular', 'Roboto', 'Helvetica Neue', 'sans-serif'; -fx-font-weight: bold; -fx-text-fill: #dca523; ");
-        BigT.setLayoutX(400);
-        BigT.setLayoutY(95);
-        closee.setLayoutX(1200);
-        closee.setLayoutY(20);
-        analysisTxt.setVisible(false);
-        anaylsisImg.setVisible(false);
-        analysisTxt1.setVisible(false);
-        anaylsisImg1.setVisible(false);
-        for (Map.Entry<String, Integer> entry : StatisticsManager.getMonthsRevenue().entrySet()) {
-            String month = entry.getKey();
-            Integer revenue = entry.getValue();
-            System.out.println(month);
-            System.out.println(revenue);
-            Label label = new Label(month + " : " + revenue + " 💵");
-
-            label.setStyle("-fx-font-size: 20px;  -fx-font-family: 'NotoSans-Regular', 'Roboto', 'Helvetica Neue', 'sans-serif'; -fx-font-weight: bold; -fx-text-fill: black; fx-padding: 5;  -fx-border-color: black;  -fx-border-width: 1;   -fx-border-style: solid;   -fx-background-color: white");
-
-            vboxxx.getChildren().add(label);
-        }
-        for (Map.Entry<String, HashMap<String, Integer>> entry : StatisticsManager.getHighestPlan().entrySet()) {
-            Label plansss = new Label();
-            plansss.setText(entry.getValue().toString() + " 👥");
-            plansss.setStyle("-fx-font-size: 20px;  -fx-font-family: 'NotoSans-Regular', 'Roboto', 'Helvetica Neue', 'sans-serif'; -fx-font-weight: bold; -fx-text-fill: white ; fx-padding: 5;  -fx-border-color: white;  -fx-border-width: 0.5px;   -fx-border-style: solid; " );
-            vboxxx2.getChildren().add(plansss);
-        }
-        vboxxx.setStyle("-fx-padding: 10;  -fx-spacing: 5;");
-        vboxxx.setLayoutX(60);
-        vboxxx.setLayoutY(200);
-        vboxxx2.setStyle("-fx-padding: 10;  -fx-spacing: 5;");
-        vboxxx2.setLayoutX(400);
-        vboxxx2.setLayoutY(200);
-        statPage.getChildren().add(closee);
-        statPage.getChildren().add(BigT);
-        statPage.getChildren().add(vboxxx);
-        statPage.getChildren().add(vboxxx2);
-        vboxxx.setVisible(true);
-        vboxxx2.setVisible(true);
-        closee.setVisible(true);
-        BigT.setVisible(true);
-    }
-
-    void closeboxx (){
-        analysisTxt.setVisible(true);
-        anaylsisImg.setVisible(true);
-        vboxxx.setVisible(false);
-        vboxxx2.setVisible(false);
-        closee.setVisible(false);
-        BigT.setVisible(false);
-        statPage.getChildren().remove(vboxxx);
-        statPage.getChildren().remove(vboxxx2);
-        statPage.getChildren().remove(BigT);
-        statPage.getChildren().remove(closee);
-        vboxxx.getChildren().removeAll();
-        vboxxx.getChildren().clear();
-        vboxxx2.getChildren().removeAll();
-        vboxxx2.getChildren().clear();
-    }
-
-
     private void loadMovies() {
 
         headerLabel.setText("Cinema Collection");
-        headerLabel.setStyle("-fx-text-fill: white; -fx-font-size: 24; -fx-font-weight: bold;-fx-padding:30px 0 30px 20px;");
+        headerLabel.setStyle("-fx-text-fill: white; -fx-font-size: 30; -fx-font-weight: bold;-fx-padding:0px 0 30px 20px;");
 
         movieTilePane1.getChildren().clear();
         movieTilePane1.setPrefWidth(1700);
@@ -1170,7 +1166,6 @@ public class PhaseOneController implements Initializable {
 
         container.getChildren().clear();
         container.getChildren().addAll(headerLabel, movieTilePane1);
-        scrollPane.setStyle("-fx-background-color: #0F0A05;-fx-border-width:0 0 0 0;-fx-border-radius:20px;-fx-border-color:yellow;");
 
         container.setStyle("-fx-background-color: #0F0A05; -fx-padding: 20px 10px 0 10px;");
 
@@ -1180,11 +1175,11 @@ public class PhaseOneController implements Initializable {
 
         for (int i=0;i<HelloApplication.movies.size();i++)
         {
-            addMovieToHome(HelloApplication.movies.get(i),movieTilePane1,scrollPane);
+            addMovieToTilePane(HelloApplication.movies.get(i),movieTilePane1);
         }
     }
 
-    private void addMovieToHome(Movie movie,TilePane tilePane,ScrollPane scrollPanee) {
+    private void addMovieToTilePane(Movie movie,TilePane tilePane) {
 
         StackPane stackBox = new StackPane();
 
@@ -1229,7 +1224,24 @@ public class PhaseOneController implements Initializable {
         });
 
         stackBox.setOnMouseClicked(event ->{
-            showPoster(movie,tilePane,scrollPanee);
+            showPoster(movie);
+
+            searchTilPane.getChildren().clear();
+
+            movie1.setStyle("-fx-background-color:rgba(172, 172, 172, 0.35);");
+            list1.setStyle("-fx-background-color: transparent ;");
+            home1.setStyle("-fx-background-color: transparent ;");
+            genera1.setStyle("-fx-background-color: transparent;");
+            history1.setStyle("-fx-background-color: transparent ;");
+            fakeCombo.setVisible(false);
+            fakeIqon.setVisible(false);
+
+            bigConrainer.setVisible(true);
+            bigConSearch.setVisible(false);
+            fakeCombo.setVisible(false);
+            fakeIqon.setVisible(false);
+            warningSearch.setVisible(false);
+            searchFeild.clear();
         });
 
         stackBox.setAlignment(movieLabel, Pos.BOTTOM_LEFT);
@@ -1240,18 +1252,105 @@ public class PhaseOneController implements Initializable {
 
     }
 
+    private void addMovieToTilePane(UserWatchRecord record,TilePane tilePane) {
+
+        StackPane stackBox = new StackPane();
 
 
-    private void showPoster(Movie movie,TilePane tilePane,ScrollPane scrollPanee) {
+        File file = new File(record.getMovie().getPoster());
+
+
+        ImageView posterImageView = new ImageView();
+        posterImageView.setImage(new Image(file.toURI().toString()));
+        posterImageView.setFitWidth(305);
+        posterImageView.setFitHeight(150);
+        posterImageView.setOpacity(0.85);
+
+        Rectangle clip = new Rectangle(posterImageView.getFitWidth(), posterImageView.getFitHeight());
+        clip.setArcWidth(20);
+        clip.setArcHeight(20);
+        posterImageView.setClip(clip);
+
+        Glow glow = new Glow();
+        glow.setLevel(0.9);
+
+
+
+        Label movieLabel = new Label(record.getMovie().getTitle());
+        movieLabel.setStyle("-fx-text-fill: white; -fx-font-size: 19;-fx-font-weight: 700;-fx-padding:10 10 10 10; ");
+        movieLabel.setEffect(glow);
+        stackBox.setStyle("-fx-border-color: black;");
+
+
+
+
+        Label watchingDate = new Label("Date: "+record.getDatOfWatching().toString());
+        watchingDate.setStyle("-fx-text-fill: yellow; -fx-font-size: 17;-fx-font-weight: 700;-fx-padding:10 10 10 10; ");
+        watchingDate.setVisible(false);
+
+
+
+
+        stackBox.setOnMouseEntered(event -> {
+            posterImageView.setOpacity(0.0);
+            movieLabel.setOpacity(0.0);
+            watchingDate.setVisible(true);
+            stackBox.setCursor(Cursor.HAND);
+        });
+
+        stackBox.setOnMouseExited(event -> {
+            posterImageView.setOpacity(1.0);
+            movieLabel.setOpacity(1.0);
+            watchingDate.setVisible(false);
+            stackBox.setCursor(Cursor.DEFAULT);
+            posterImageView.setOpacity(0.85);
+        });
+
+        stackBox.getChildren().addAll(posterImageView,movieLabel,watchingDate);
+
+
+        stackBox.setOnMouseClicked(event ->{
+            showPoster(record.getMovie());
+
+            searchTilPane.getChildren().clear();
+
+            movie1.setStyle("-fx-background-color:rgba(172, 172, 172, 0.35);");
+            list1.setStyle("-fx-background-color: transparent ;");
+            home1.setStyle("-fx-background-color: transparent ;");
+            genera1.setStyle("-fx-background-color: transparent;");
+            history1.setStyle("-fx-background-color: transparent ;");
+            fakeCombo.setVisible(false);
+            fakeIqon.setVisible(false);
+
+            bigConrainer.setVisible(true);
+            bigConSearch.setVisible(false);
+            fakeCombo.setVisible(false);
+            fakeIqon.setVisible(false);
+            warningSearch.setVisible(false);
+            searchFeild.clear();
+        });
+
+        stackBox.setAlignment(movieLabel, Pos.BOTTOM_LEFT);
+        tilePane.setHgap(10.0);
+        tilePane.setVgap(10.0);
+
+        tilePane.getChildren().add(stackBox);
+
+    }
+
+    private void showPoster(Movie movie) {
+
+
+
 
         scrollPane.setVvalue(0.0);
 
         VBox movieBox = new VBox();
 
         //Clear the current page
-        tilePane.getChildren().clear();
-        scrollPanee.setContent(tilePane);
-        tilePane.setStyle("-fx-background-color: #0F0A05; -fx-padding: 10px;");
+        movieTilePane1.getChildren().clear();
+        scrollPane.setContent(movieTilePane1);
+        movieTilePane1.setStyle("-fx-background-color: #0F0A05; -fx-padding: 10px;");
 
 
         //Files
@@ -1271,15 +1370,38 @@ public class PhaseOneController implements Initializable {
         addIcon.setFitWidth(20);
         addIcon.setFitHeight(20);
 
+        //Labels
+        Label movieTitle = new Label(movie.getTitle());
+        movieTitle.setStyle("-fx-text-fill: white; -fx-font-size: 40;-fx-font-weight: 700;-fx-padding:0 30px 10px 0");
+        movieTitle.setPrefWidth(400);
+        movieTitle.setAlignment(Pos.CENTER_LEFT);
+        Label year = new Label(Integer.toString(movie.getYear())+" "+Float.toString(movie.getRunningtime()).charAt(0)+" Hour "+Float.toString(movie.getRunningtime()).charAt(2)+Float.toString(movie.getRunningtime()).charAt(3)+" Minutes");
+        year.setStyle("-fx-text-fill: white; -fx-font-size: 19;-fx-font-weight: 700;-fx-padding:0 0 0 4px;");
+        Label movieDescription = new Label(movie.getMovieDescription());
+        movieDescription.setStyle("-fx-text-fill: white;-fx-font-size:15.9px;-fx-font-weight: 700;-fx-padding:0 0 30px 4px;");
+        movieDescription.setPrefWidth(moviePoster.getFitWidth()-400);
+        movieDescription.setWrapText(true);
 
 
 
         //Buttons
         HBox buttons = new HBox();
         Button watch = new Button("Watch");
-        Button add = new Button("My List");
+        Button add = new Button("Add");
         watch.setGraphic(playIcon);
         add.setGraphic(addIcon);
+
+        if(!HelloApplication.users.get(User.whoIsActive-1).getMovieList().contains(movie))
+        {
+            add.setText("Add");
+            addIcon.setRotate(0.0);
+        }
+        else
+        {
+            add.setText("Remove");
+            addIcon.setRotate(90.0);
+        }
+
         buttons.setSpacing(25);
 
         watch.setOnMouseEntered(event -> {
@@ -1301,12 +1423,58 @@ public class PhaseOneController implements Initializable {
 
 
         watch.setOnMouseClicked(event -> {
+
+            if(!HelloApplication.users.get(User.whoIsActive-1).getSubscription().isPlaneActive())
+            {
+
+                HelloApplication.users.get(User.whoIsActive-1).setSubscriptionActive(false);
+
+                subscriptionPlanss.setVisible(true);
+                bigConrainer.setVisible(false);
+                movieTilePane1.getChildren().clear();
+                container.getChildren().clear();
+                fakeCombo.setVisible(false);
+                mainMenu.setVisible(false);
+                fakeIqon.setVisible(false);
+
+
+            }
+            else if (!isWatchedBefore(movie))
+            {
+                HelloApplication.users.get(User.whoIsActive-1).getSubscription().setCapacity((byte) (HelloApplication.users.get(User.whoIsActive-1).getSubscription().getCapacity()-1));
+                HelloApplication.users.get(User.whoIsActive-1).addToHistory(new UserWatchRecord(User.whoIsActive, movie.getMovieId(), movie));
                 movie.watchemovie();
-            System.out.println(movie.getTitle()+" : "+movie.getViews());
+            }
+            else
+            {
+                HelloApplication.users.get(User.whoIsActive-1).addToHistory(new UserWatchRecord(User.whoIsActive, movie.getMovieId(), movie));
+                movie.watchemovie();
+            }
+
         });
 
+        add.setOnMouseClicked(event -> {
+            if(!HelloApplication.users.get(User.whoIsActive-1).getMovieList().contains(movie))
+            {
+                HelloApplication.users.get(User.whoIsActive-1).addToMovieList(movie);
+                add.setText("Remove");
+                System.out.println("Added The Movie");
+            }
+            else
+            {
+                Iterator<Movie> iterator = HelloApplication.users.get(User.whoIsActive-1).getMovieList().iterator();
 
+                while (iterator.hasNext()) {
+                    Movie film = iterator.next();
+                    if (movie.getMovieId() == film.getMovieId()) {
+                        iterator.remove();
+                    }
+                }
 
+                add.setText("Add");
+
+            }
+        });
 
         //Buttons styling
         watch.setStyle("-fx-text-fill: black; -fx-font-size: 19;-fx-font-weight: 700; -fx-background-color: white;");
@@ -1314,23 +1482,6 @@ public class PhaseOneController implements Initializable {
         add.setStyle("-fx-text-fill: white; -fx-font-size: 19;-fx-font-weight: 700; -fx-background-color: #383533;");
         add.setPrefSize(150,50);
         buttons.getChildren().addAll(watch,add);
-
-
-
-        //Labels
-        Label movieTitle = new Label(movie.getTitle());
-        movieTitle.setStyle("-fx-text-fill: white; -fx-font-size: 40;-fx-font-weight: 700;-fx-padding:0 30px 10px 0");
-        movieTitle.setPrefWidth(400);
-        movieTitle.setAlignment(Pos.CENTER_LEFT);
-        Label year = new Label(Integer.toString(movie.getYear())+" "+Float.toString(movie.getRunningtime()).charAt(0)+" Hour "+Float.toString(movie.getRunningtime()).charAt(2)+Float.toString(movie.getRunningtime()).charAt(3)+" Minutes");
-        year.setStyle("-fx-text-fill: white; -fx-font-size: 19;-fx-font-weight: 700;-fx-padding:0 0 0 4px;");
-        Label movieDescription = new Label(movie.getMovieDescription());
-        movieDescription.setStyle("-fx-text-fill: white;-fx-font-size:15.9px;-fx-font-weight: 700;-fx-padding:0 0 30px 4px;");
-        movieDescription.setPrefWidth(moviePoster.getFitWidth()-400);
-        movieDescription.setWrapText(true);
-
-
-
 
         //Movie genre label
         String typess = new String("");
@@ -1359,74 +1510,9 @@ public class PhaseOneController implements Initializable {
         clip.setArcHeight(25);
         moviePoster.setClip(clip);
 
-
-
-
-        //Rates
-        ArrayList<ImageView> rates = new ArrayList<>();
-        for (int i=0;i<5;i++)
-        {
-            File beforeRateIm = new File("src/main/resources/com/example/uservalidation/icons/beforeRating.png");
-            ImageView imageView = new ImageView(new Image(beforeRateIm.toURI().toString()));
-            imageView.setFitWidth(50);
-            imageView.setFitHeight(50);
-
-            rates.add(imageView);
-        }
-        HBox ratees = new HBox();
-        ratees.getChildren().addAll(rates);
-        ratees.setStyle("-fx-padding:20px 0 0 0 40px;");
-        ratees.setOpacity(0.5);
-
-        //Rates events
-        ratees.setOnMouseEntered(event -> {
-            if(!isRated)
-            {
-                ratees.setOpacity(1.0);
-                ratees.setCursor(Cursor.HAND);
-            }
-        });
-        ratees.setOnMouseExited(event -> {
-            ratees.setOpacity(0.5);
-            ratees.setCursor(Cursor.DEFAULT);
-        });
-
-        ratees.setOnMouseClicked(event -> {
-
-            if(!isRated)
-            {
-
-                isRated=true;
-
-
-                double mouseX = event.getX();
-                double imageSize = 50;
-                int clickedImageIndex = (int) (mouseX / imageSize) + 1;
-
-                movie.ratings.add((byte) clickedImageIndex);
-                System.out.println(movie.getTitle()+" : ");
-                System.out.println(movie.getRate());
-
-                for (int i = 0; i < rates.size(); i++) {
-                    File ratingImageFile;
-                    if (i < clickedImageIndex) {
-                        ratingImageFile = new File("src/main/resources/com/example/uservalidation/icons/afterRating.png");
-                    } else {
-                        ratingImageFile = new File("src/main/resources/com/example/uservalidation/icons/beforeRating.png");
-                    }
-
-                    rates.get(i).setImage(new Image(ratingImageFile.toURI().toString()));
-
-                }
-            }
-
-        });
-
-
-
         //Right info container
         VBox rightInfo = new VBox();
-        rightInfo.getChildren().addAll(movieTitle,year,type,movieDescription,buttons,ratees);
+        rightInfo.getChildren().addAll(movieTitle,year,type,movieDescription,buttons);
 
         //Right info and poster container
         HBox head = new HBox();
@@ -1501,9 +1587,28 @@ public class PhaseOneController implements Initializable {
         movieBox.setMargin(controls,new Insets(70,0,0,0));
 
         //All container
-        tilePane.getChildren().addAll(movieBox);
-        tilePane.setPrefWidth(1250);
-        tilePane.setPrefHeight(500);
+        movieTilePane1.getChildren().addAll(movieBox);
+        movieTilePane1.setPrefWidth(1250);
+        movieTilePane1.setPrefHeight(500);
+    }
+
+
+    private boolean isWatchedBefore(Movie movie)
+    {
+        boolean watchedBefore = false;
+
+        Iterator<UserWatchRecord> iterator = HelloApplication.users.get(User.whoIsActive-1).getHistory().iterator();
+
+        while (iterator.hasNext()) {
+            UserWatchRecord UWR = iterator.next();
+            if (UWR.getMovieId() == movie.getMovieId())
+            {
+                watchedBefore = true;
+                iterator.remove();
+            }
+        }
+
+        return watchedBefore;
     }
 
     private void addCastToDisplay(ArrayList<Cast> casts) {
@@ -1577,7 +1682,7 @@ public class PhaseOneController implements Initializable {
             {
                 if((HelloApplication.movies.get(i).getCast().get(j).getFirstName()+" "+HelloApplication.movies.get(i).getCast().get(j).getLastName()).equals(actor.getFirstName()+" "+actor.getLastName()))
                 {
-                    addMovieToHome(HelloApplication.movies.get(i),movieTilePane1,scrollPane);
+                    addMovieToTilePane(HelloApplication.movies.get(i),movieTilePane1);
                 }
             }
         }
@@ -1690,7 +1795,8 @@ public class PhaseOneController implements Initializable {
         });
 
         moviePoster.setOnMouseClicked(event ->{
-            showPoster(movie,movieTilePane1,scrollPane);
+            bigConSearch.setVisible(false);
+            showPoster(movie);
         });
 
         moviePoster.setAlignment(movieTitle, Pos.BOTTOM_LEFT);
@@ -1766,7 +1872,7 @@ public class PhaseOneController implements Initializable {
             {
                 if(genre.equals(movie.getTypes().get(0)))
                 {
-                    addMovieToHome(movie,movieTilePane1,scrollPane);
+                    addMovieToTilePane(movie,movieTilePane1);
                 }
             }
 
@@ -1796,8 +1902,17 @@ public class PhaseOneController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
 
-        analysisTxt.setOnMouseClicked(event -> setvboxxx());
-        closee.setOnMouseClicked(event -> closeboxx());
+        scrollPaneSearch.setStyle("-fx-background-color: #0F0A05;");
+        scrollPaneSearch.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        scrollPaneSearch.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        scrollPaneSearch.setFitToWidth(true);
+        scrollPaneSearch.setFitToHeight(true);
+
+
+        emailSignIn.setText("ahmed412naderr@gmail.com");
+        passwordSignIn.setText("12345678");
+
+
         scrollPane.setStyle("-fx-background-color: #0F0A05;");
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
