@@ -22,7 +22,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.uservalidation.PhaseOneController">
    <children>
-      <AnchorPane fx:id="signInForm" prefHeight="800.0" prefWidth="1280.0" styleClass="back-signIn" stylesheets="@sign_in.css" visible="false">
+      <AnchorPane fx:id="signInForm" prefHeight="800.0" prefWidth="1280.0" styleClass="back-signIn" stylesheets="@sign_in.css">
          <children>
             <ImageView fitHeight="75.0" fitWidth="66.0" layoutX="42.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -417,10 +417,13 @@
                               <Image url="@arrow.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="stattIcon" fitHeight="41.0" fitWidth="44.0" layoutX="1160.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="stattIcon" fitHeight="41.0" fitWidth="44.0" layoutX="1160.0" layoutY="29.0" onMousePressed="#toStatPage" pickOnBounds="true" preserveRatio="true" visible="false">
                            <image>
                               <Image url="@statIconn.png" />
                            </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </ImageView>
                      </children>
                   </AnchorPane>
@@ -755,7 +758,7 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="statPage" prefHeight="807.0" prefWidth="1362.0" styleClass="fullContainer" stylesheets="@styling.css">
+      <AnchorPane fx:id="statPage" prefHeight="807.0" prefWidth="1362.0" styleClass="fullContainer" stylesheets="@styling.css" visible="false">
          <children>
             <Label layoutX="113.0" layoutY="29.0" prefHeight="46.0" prefWidth="126.0" text="WATCH IT" textFill="WHITE">
                <font>
@@ -780,7 +783,7 @@
                   <Image url="@analysis.png" />
                </image>
             </ImageView>
-            <Label fx:id="analysisTxt1" layoutX="154.0" layoutY="275.0" text="Tap here if you want  to get the highest plan for specific month " textFill="#d3d1d1">
+            <Label fx:id="analysisTxt1" layoutX="154.0" layoutY="275.0" onMousePressed="#getHIghesttttPlannn" text="Tap here if you want  to get the highest plan for specific month " textFill="#d3d1d1">
                <font>
                   <Font name="System Bold" size="22.0" />
                </font>
@@ -793,6 +796,14 @@
                   <Image url="@analysis.png" />
                </image>
             </ImageView>
+            <Button fx:id="backStatMain" layoutX="1198.0" layoutY="27.0" mnemonicParsing="false" onMousePressed="#closeStat" styleClass="subbttn" stylesheets="@styling.css" text="Back">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
          </children></AnchorPane>
 
    </children>

@@ -156,32 +156,38 @@ public class StatisticsManager {
         }
         return top10R;
     }
-    public static void getetHighestPlanInEachMonth(int month){
-        if(month == 12 )
-        System.out.println(plan12.entrySet().stream().sorted(Map.Entry.comparingByValue()).collect(Collectors.toList()).getLast());
+    public static String getetHighestPlanInEachMonth(String month)
+    {
+        if("12".equals(month) )
+        return (plan12.entrySet().stream().sorted(Map.Entry.comparingByValue()).collect(Collectors.toList()).getLast().toString());
 
-        else if (month == 11) {
-            System.out.println(plan11.entrySet().stream().sorted(Map.Entry.comparingByValue()).collect(Collectors.toList()).getLast());
+        else if ("11".equals(month)) {
+            return(plan11.entrySet().stream().sorted(Map.Entry.comparingByValue()).collect(Collectors.toList()).getLast().toString());
         }
-        else if(month == 10)
-            System.out.println(plan10.entrySet().stream().sorted(Map.Entry.comparingByValue()).collect(Collectors.toList()).getLast());
-        else if(month == 9)
-            System.out.println(plan9.entrySet().stream().sorted(Map.Entry.comparingByValue()).collect(Collectors.toList()).getLast());
-        else if(month == 8)
-            System.out.println(plan8.entrySet().stream().sorted(Map.Entry.comparingByValue()).collect(Collectors.toList()).getLast());
-        else if(month == 7)
-            System.out.println(plan7.entrySet().stream().sorted(Map.Entry.comparingByValue()).collect(Collectors.toList()).getLast());
-        else if(month == 6)
-            System.out.println(plan6.entrySet().stream().sorted(Map.Entry.comparingByValue()).collect(Collectors.toList()).getLast());
-        else if(month == 5)
-            System.out.println(plan5.entrySet().stream().sorted(Map.Entry.comparingByValue()).collect(Collectors.toList()).getLast());
-        else if(month == 4)
-            System.out.println(plan4.entrySet().stream().sorted(Map.Entry.comparingByValue()).collect(Collectors.toList()).getLast());
-        else if(month == 3)
-            System.out.println(plan3.entrySet().stream().sorted(Map.Entry.comparingByValue()).collect(Collectors.toList()).getLast());
-        else if(month == 2)
-            System.out.println(plan2.entrySet().stream().sorted(Map.Entry.comparingByValue()).collect(Collectors.toList()).getLast());
-        else if(month == 1)
-            System.out.println(plan1.entrySet().stream().sorted(Map.Entry.comparingByValue()).collect(Collectors.toList()).getLast());
+        else if("10".equals(month))
+            return(plan10.entrySet().stream().sorted(Map.Entry.comparingByValue()).collect(Collectors.toList()).getLast().toString());
+        else if("9".equals(month))
+            return(plan9.entrySet().stream().sorted(Map.Entry.comparingByValue()).collect(Collectors.toList()).getLast().toString());
+        else if("8".equals(month))
+            return(plan8.entrySet().stream().sorted(Map.Entry.comparingByValue()).collect(Collectors.toList()).getLast().toString());
+        else if("7".equals(month))
+            return(plan7.entrySet().stream().sorted(Map.Entry.comparingByValue()).collect(Collectors.toList()).getLast().toString());
+        else if("6".equals(month))
+            return(plan6.entrySet().stream().sorted(Map.Entry.comparingByValue()).collect(Collectors.toList()).getLast().toString());
+        else if("5".equals(month))
+            return(plan5.entrySet().stream().sorted(Map.Entry.comparingByValue()).collect(Collectors.toList()).getLast().toString());
+        else if("4".equals(month))
+            return(plan4.entrySet().stream().sorted(Map.Entry.comparingByValue()).collect(Collectors.toList()).getLast().toString());
+        else if("3".equals(month))
+            return(plan3.entrySet().stream().sorted(Map.Entry.comparingByValue()).collect(Collectors.toList()).getLast().toString());
+        else if("2".equals(month))
+            return(plan2.entrySet().stream().sorted(Map.Entry.comparingByValue()).collect(Collectors.toList()).getLast().toString());
+        else if("1".equals(month))
+            return(plan1.entrySet().stream().sorted(Map.Entry.comparingByValue()).collect(Collectors.toList()).getLast().toString());
+        else if ("".equals(month)) {
+            return "Please Enter Something to search ";
+        } else
+            return "Invalid Month  , please try agin ";
     }
+
 }
