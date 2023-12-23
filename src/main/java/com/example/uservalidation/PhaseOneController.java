@@ -477,6 +477,8 @@ public class PhaseOneController implements Initializable {
                         signInForm.setVisible(false);
                         signUpForm.setVisible(false);
                         User.whoIsActive = it.getUserId();
+
+
                     }
                     else
                     {
@@ -805,6 +807,7 @@ public class PhaseOneController implements Initializable {
         history1.setStyle("-fx-background-color: transparent ;");
         fakeCombo.setVisible(false);
         fakeIqon.setVisible(false);
+
     }
 
     @FXML
@@ -909,7 +912,7 @@ public class PhaseOneController implements Initializable {
             for(Movie m: genraMovie)
                 addMovieToHome(m,searchTilPane,scrollPaneSearch);
 
-           }
+            }
 
 
 
@@ -1166,7 +1169,6 @@ public class PhaseOneController implements Initializable {
 
 
         container.getChildren().clear();
-
         container.getChildren().addAll(headerLabel, movieTilePane1);
         scrollPane.setStyle("-fx-background-color: #0F0A05;-fx-border-width:0 0 0 0;-fx-border-radius:20px;-fx-border-color:yellow;");
 
@@ -1174,6 +1176,7 @@ public class PhaseOneController implements Initializable {
 
         scrollPane.setContent(container);
         scrollPane.setVvalue(0.0);
+
 
         for (int i=0;i<HelloApplication.movies.size();i++)
         {
@@ -1209,6 +1212,9 @@ public class PhaseOneController implements Initializable {
         movieLabel.setStyle("-fx-text-fill: white; -fx-font-size: 19;-fx-font-weight: 700;-fx-padding:10 10 10 10; ");
         movieLabel.setEffect(glow);
         stackBox.setStyle("-fx-border-color: black;");
+
+
+
 
         stackBox.getChildren().addAll(posterImageView,movieLabel);
 
@@ -1275,6 +1281,7 @@ public class PhaseOneController implements Initializable {
         watch.setGraphic(playIcon);
         add.setGraphic(addIcon);
         buttons.setSpacing(25);
+
         watch.setOnMouseEntered(event -> {
             watch.setOpacity(0.5);
             watch.setCursor(Cursor.HAND);
@@ -1292,8 +1299,9 @@ public class PhaseOneController implements Initializable {
             add.setCursor(Cursor.DEFAULT);
         });
 
+
         watch.setOnMouseClicked(event -> {
-            movie.watchemovie();
+                movie.watchemovie();
             System.out.println(movie.getTitle()+" : "+movie.getViews());
         });
 
@@ -1344,10 +1352,6 @@ public class PhaseOneController implements Initializable {
         }
         Label type = new Label(typess);
         type.setStyle("-fx-text-fill: white; -fx-font-size: 19;-fx-font-weight: 700;-fx-padding:0 0 20px 4px;");
-
-
-
-
 
         //To set Border
         Rectangle clip = new Rectangle(moviePoster.getFitWidth(), moviePoster.getFitHeight());
@@ -1429,9 +1433,6 @@ public class PhaseOneController implements Initializable {
         head.getChildren().addAll(moviePoster,rightInfo);
         head.setSpacing(15);
 
-
-
-
         //controls
         Button castControl = new Button("Cast");
         Button detailsControl = new Button("Details");
@@ -1486,38 +1487,18 @@ public class PhaseOneController implements Initializable {
             addMoreLikeThisToDisplay(movie);
         });
 
-
-
-
-
-
-
-
         //cast
         addCastToDisplay(movie.getCast());
-
-
-
 
         HBox controls = new HBox();
         controls.getChildren().addAll(castControl,detailsControl,likeControl);
         controls.setSpacing(10);
-
-
-
-
 
         //All
         movieBox.setStyle("-fx-padding:20px");
         movieBox.setSpacing(10);
         movieBox.getChildren().addAll(head,controls,controlled);
         movieBox.setMargin(controls,new Insets(70,0,0,0));
-
-
-
-
-
-
 
         //All container
         tilePane.getChildren().addAll(movieBox);
@@ -1822,6 +1803,9 @@ public class PhaseOneController implements Initializable {
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         scrollPane.setFitToWidth(true);
         scrollPane.setFitToHeight(true);
+
+
+
     }
 
 

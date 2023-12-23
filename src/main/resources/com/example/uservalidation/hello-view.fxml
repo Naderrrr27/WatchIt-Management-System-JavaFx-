@@ -245,7 +245,7 @@
             </Label>
             <HBox alignment="CENTER" layoutX="-5.0" layoutY="261.0" prefHeight="242.0" prefWidth="1353.0" spacing="42.0">
                <children>
-                  <AnchorPane fx:id="basicPlan" onMousePressed="#basicSelected" prefHeight="238.0" prefWidth="294.0" styleClass="planSub" stylesheets="@styling.css">
+                  <AnchorPane fx:id="basicPlan" onMousePressed="#basicSelected" prefHeight="238.0" prefWidth="294.0" stylesheets="@styling.css">
                      <children>
                         <Label fx:id="basicTxt" alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="11.0" layoutY="14.0" prefHeight="62.0" prefWidth="128.0" text="Basic " textFill="#acacac">
                            <font>
@@ -273,11 +273,8 @@
                            </image>
                         </ImageView>
                      </children>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
                   </AnchorPane>
-                  <AnchorPane fx:id="standardPLan" layoutX="540.0" layoutY="12.0" onMousePressed="#standardSelected" prefHeight="238.0" prefWidth="297.0" styleClass="planSub" stylesheets="@styling.css">
+                  <AnchorPane fx:id="standardPLan" layoutX="540.0" layoutY="12.0" onMousePressed="#standardSelected" prefHeight="238.0" prefWidth="297.0" stylesheets="@styling.css">
                      <children>
                         <Label fx:id="standTxt" alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="11.0" layoutY="14.0" prefHeight="62.0" prefWidth="192.0" text="Standard" textFill="#acacac">
                            <font>

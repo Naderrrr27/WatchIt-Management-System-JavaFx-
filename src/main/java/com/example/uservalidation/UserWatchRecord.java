@@ -1,28 +1,52 @@
 package com.example.uservalidation;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class UserWatchRecord {
-   private int userId;
+public class UserWatchRecord implements Serializable {
+    private int userId;
     private  int movieId;
     private  Movie movie;
 
     private  LocalDate datOfWatching;
     private  byte rate;
 
-   public UserWatchRecord(int uid,int mid,Movie m)
-    {
-
+    public UserWatchRecord(int userId, int movieId, Movie movie) {
+        this.userId = userId;
+        this.movieId = movieId;
+        this.movie = movie;
+        this.datOfWatching = LocalDate.now();
     }
 
-    public void setMovie(Movie m)
+
+    //Setters
+    public void setMovie(Movie movie)
     {
-        movie=m;
+        this.movie = movie;
     }
 
-    public void setRate(byte r)
+    public void setDatOfWatching(LocalDate datOfWatching) {
+        this.datOfWatching = datOfWatching;
+    }
+
+    public void setRate(byte rate)
     {
-        rate=r;
+        this.rate = rate;
+    }
+
+
+
+
+
+
+    //Getters
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public int getMovieId() {
+        return movieId;
     }
 
     public Movie getMovie()
@@ -41,5 +65,14 @@ public class UserWatchRecord {
         return rate;
     }
 
-
+    @Override
+    public String toString() {
+        return "UserWatchRecord{" +
+                "userId=" + userId +
+                ", movieId=" + movieId +
+                ", movie=" + movie +
+                ", datOfWatching=" + datOfWatching +
+                ", rate=" + rate +
+                '}';
+    }
 }

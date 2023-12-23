@@ -20,6 +20,8 @@ public class   User implements Serializable {
     protected Subscription subscription;
     protected boolean isSubscriptionDone;
     protected ArrayList<Movie> movieList = new ArrayList<>();
+    protected ArrayList<UserWatchRecord> history = new ArrayList<>();
+
 
     public User(String fName, String lName, String uName, String mail, String pass)
     {
@@ -67,7 +69,11 @@ public class   User implements Serializable {
 
     public void addToMovieList(Movie movie)
     {
-        movieList.add(movie);
+        movieList.addFirst(movie);
+    }
+
+    public void addToHistory(UserWatchRecord Record) {
+        history.addFirst(Record);
     }
 
     //Getter
@@ -104,8 +110,18 @@ public class   User implements Serializable {
         return isSubscriptionDone;
     }
 
+    public String getPassword()
+    {
+        return password;
+    }
+
+
     public ArrayList<Movie> getMovieList() {
         return movieList;
+    }
+
+    public ArrayList<UserWatchRecord> getHistory() {
+        return history;
     }
 
     @Override
@@ -120,13 +136,26 @@ public class   User implements Serializable {
                 ", subscription=" + subscription +
                 ", isSubscriptionDone=" + isSubscriptionDone +
                 ", movieList=" + movieList +
+                ", history=" + history +
                 '}';
     }
 
-    public String getPassword()
-    {
-        return password;
-    }
+
+    //    @Override
+//    public String toString() {
+//        return "User{" +
+//                "userId=" + userId +
+//                ", firstName='" + firstName + '\'' +
+//                ", lastName='" + lastName + '\'' +
+//                ", userName='" + userName + '\'' +
+//                ", email='" + email + '\'' +
+//                ", password='" + password + '\'' +
+//                ", subscription=" + subscription +
+//                ", isSubscriptionDone=" + isSubscriptionDone +
+//                ", movieList=" + movieList +
+//                '}';
+//    }
+
 
 
 }
