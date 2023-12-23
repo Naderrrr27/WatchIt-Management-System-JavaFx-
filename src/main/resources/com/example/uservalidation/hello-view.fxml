@@ -47,7 +47,7 @@
             </Button>
             <Label layoutX="412.0" layoutY="152.0" prefHeight="54.0" prefWidth="414.0" text="Sign In to your Account" textFill="WHITE">
                <font>
-                  <Font name="System Bold" size="37.0" />
+                  <Font name="System Bold" size="36.0" />
                </font>
             </Label>
             <Label contentDisplay="CENTER" layoutX="413.0" layoutY="217.0" prefHeight="34.0" prefWidth="326.0" text="Enter your registered email and password" textFill="#c1bdb9" wrapText="true">

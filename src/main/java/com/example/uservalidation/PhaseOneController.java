@@ -311,6 +311,10 @@ public class PhaseOneController implements Initializable {
     @FXML
     ScrollPane scrollPaneSearch = new ScrollPane();
 
+    TilePane viewTilePane = new TilePane();
+
+    TilePane rateTilePane = new TilePane();
+
 
     public boolean validEmail()
     {
@@ -820,6 +824,42 @@ public class PhaseOneController implements Initializable {
         history1.setStyle("-fx-background-color: transparent ;");
         fakeCombo.setVisible(false);
         fakeIqon.setVisible(false);
+
+        viewTilePane.getChildren().clear();
+        rateTilePane.getChildren().clear();
+
+        container.getChildren().clear();
+
+
+        Label viewLabel = new Label("Top Views");
+        viewLabel.setStyle("-fx-text-fill: white; -fx-font-size: 30; -fx-font-weight: 900;-fx-padding:0px 0 30px 20px;");
+
+        Label rateLabel = new Label("Top Rates");
+        rateLabel.setStyle("-fx-text-fill: white; -fx-font-size: 30; -fx-font-weight: 900;-fx-padding:0px 0 30px 20px;");
+
+
+
+
+
+        container.getChildren().clear();
+        container.getChildren().addAll(viewLabel, viewTilePane,rateLabel,rateTilePane);
+        container.setStyle("-fx-background-color: #0F0A05; -fx-padding: 20px 10px 0 10px;");
+
+
+
+        scrollPane.setContent(container);
+        scrollPane.setVvalue(0.0);
+
+
+
+        scrollPane.setContent(container);
+
+
+
+        for (Movie movie : StatisticsManager.getTopViewsMovies())
+        {
+            addMovieToTilePane(movie,viewTilePane);
+        }
 
     }
 
