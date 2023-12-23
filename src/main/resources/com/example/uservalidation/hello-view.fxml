@@ -22,7 +22,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.uservalidation.PhaseOneController">
    <children>
-      <AnchorPane fx:id="signInForm" prefHeight="800.0" prefWidth="1280.0" styleClass="back-signIn" stylesheets="@sign_in.css">
+      <AnchorPane fx:id="signInForm" prefHeight="800.0" prefWidth="1280.0" styleClass="back-signIn" stylesheets="@sign_in.css" visible="false">
          <children>
             <ImageView fitHeight="75.0" fitWidth="66.0" layoutX="42.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -755,7 +755,7 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="statPage" prefHeight="807.0" prefWidth="1362.0" styleClass="fullContainer" stylesheets="@styling.css" visible="false">
+      <AnchorPane fx:id="statPage" prefHeight="807.0" prefWidth="1362.0" styleClass="fullContainer" stylesheets="@styling.css">
          <children>
             <Label layoutX="113.0" layoutY="29.0" prefHeight="46.0" prefWidth="126.0" text="WATCH IT" textFill="WHITE">
                <font>

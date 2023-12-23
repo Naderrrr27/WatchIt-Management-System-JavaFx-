@@ -22,9 +22,7 @@ import javafx.scene.shape.Rectangle;
 import java.io.*;
 import java.net.URL;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.ResourceBundle;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -61,6 +59,12 @@ public class PhaseOneController implements Initializable {
     private Hyperlink signUpHyper;
 
     @FXML
+    private Label analysisTxt1;
+
+    @FXML
+    private ImageView anaylsisImg1;
+
+    @FXML
     private Button submitSignIn;
 
     @FXML
@@ -95,7 +99,8 @@ public class PhaseOneController implements Initializable {
 
     private boolean valid;
 
-
+    @FXML
+    private AnchorPane statPage;
     @FXML
     private AnchorPane basicPlan;
 
@@ -286,6 +291,23 @@ public class PhaseOneController implements Initializable {
     @FXML
     private ImageView tenMvsImg;
 
+    //stat
+    @FXML
+    private Label analysisTxt;
+
+    Button closee = new Button();
+
+    Label BigT = new Label();
+
+    @FXML
+    private ImageView anaylsisImg;
+
+
+    private VBox vboxxx = new VBox();
+
+    private VBox vboxxx2 = new VBox();
+
+
     boolean checkEntered = false;
 
     String userPlan = "";
@@ -307,6 +329,8 @@ public class PhaseOneController implements Initializable {
     StackPane likeThis = new StackPane();
 
     TilePane searchTilPane = new TilePane();
+
+    ImageView statIcon = new ImageView();
 
     @FXML
     ScrollPane scrollPaneSearch = new ScrollPane();
@@ -410,6 +434,46 @@ public class PhaseOneController implements Initializable {
             fakeCombo.setVisible(false);
             fakeIqon.setVisible(false);
 
+            viewTilePane.getChildren().clear();
+            rateTilePane.getChildren().clear();
+
+            container.getChildren().clear();
+
+
+            Label viewLabel = new Label("Top Views");
+            viewLabel.setStyle("-fx-text-fill: white; -fx-font-size: 30; -fx-font-weight: 900;-fx-padding:0px 0 30px 20px;");
+
+            Label rateLabel = new Label("Top Rates");
+            rateLabel.setStyle("-fx-text-fill: white; -fx-font-size: 30; -fx-font-weight: 900;-fx-padding:0px 0 30px 20px;");
+
+
+            VBox highViews = new VBox();
+            highViews.getChildren().addAll(viewLabel,viewTilePane);
+
+            VBox highRates = new VBox();
+            highRates.getChildren().addAll(rateLabel,rateTilePane);
+
+            container.getChildren().clear();
+            container.getChildren().addAll(highViews);
+            container.setStyle("-fx-background-color: #0F0A05; -fx-padding: 20px 10px 0 10px;");
+
+
+
+            scrollPane.setContent(container);
+            scrollPane.setVvalue(0.0);
+
+
+
+            scrollPane.setContent(container);
+
+
+
+            for (Movie movie : StatisticsManager.getTopViewsMovies())
+            {
+                addMovieToTilePane(movie,viewTilePane);
+            }
+
+
 
         }
     }
@@ -469,7 +533,6 @@ public class PhaseOneController implements Initializable {
                         signUpForm.setVisible(false);
                         User.whoIsActive = it.getUserId();
 
-
                     }
                     else
                     {
@@ -478,6 +541,46 @@ public class PhaseOneController implements Initializable {
                         mainMenu.setVisible(true);
                         signInForm.setVisible(false);
                         User.whoIsActive = it.getUserId();
+
+                        viewTilePane.getChildren().clear();
+                        rateTilePane.getChildren().clear();
+
+                        container.getChildren().clear();
+
+
+                        Label viewLabel = new Label("Top Views");
+                        viewLabel.setStyle("-fx-text-fill: white; -fx-font-size: 30; -fx-font-weight: 900;-fx-padding:0px 0 30px 20px;");
+
+                        Label rateLabel = new Label("Top Rates");
+                        rateLabel.setStyle("-fx-text-fill: white; -fx-font-size: 30; -fx-font-weight: 900;-fx-padding:0px 0 30px 20px;");
+
+
+                        VBox highViews = new VBox();
+                        highViews.getChildren().addAll(viewLabel,viewTilePane);
+
+                        VBox highRates = new VBox();
+                        highRates.getChildren().addAll(rateLabel,rateTilePane);
+
+                        container.getChildren().clear();
+                        container.getChildren().addAll(highViews);
+                        container.setStyle("-fx-background-color: #0F0A05; -fx-padding: 20px 10px 0 10px;");
+
+
+
+                        scrollPane.setContent(container);
+                        scrollPane.setVvalue(0.0);
+
+
+
+                        scrollPane.setContent(container);
+
+
+
+                        for (Movie movie : StatisticsManager.getTopViewsMovies())
+                        {
+                            addMovieToTilePane(movie,viewTilePane);
+                        }
+
                     }
 
                     this.valid=true;
@@ -838,11 +941,14 @@ public class PhaseOneController implements Initializable {
         rateLabel.setStyle("-fx-text-fill: white; -fx-font-size: 30; -fx-font-weight: 900;-fx-padding:0px 0 30px 20px;");
 
 
+        VBox highViews = new VBox();
+        highViews.getChildren().addAll(viewLabel,viewTilePane);
 
-
+        VBox highRates = new VBox();
+        highRates.getChildren().addAll(rateLabel,rateTilePane);
 
         container.getChildren().clear();
-        container.getChildren().addAll(viewLabel, viewTilePane,rateLabel,rateTilePane);
+        container.getChildren().addAll(highViews);
         container.setStyle("-fx-background-color: #0F0A05; -fx-padding: 20px 10px 0 10px;");
 
 
@@ -1192,6 +1298,74 @@ public class PhaseOneController implements Initializable {
     void closeHoverrOut(MouseEvent event) {
         closeLabel.setStyle("-fx-text-fill: white;");
     }
+
+
+
+    void setvboxxx(){
+        vboxxx.setSpacing(10);
+        closee.setCursor(Cursor.HAND);
+        closee.setText("Back");
+        closee.setStyle("  -fx-background-color: #dca523; -fx-text-fill: #090909; -fx-font-weight: bold;");
+        BigT.setText("Month Revenue...");
+        BigT.setStyle("-fx-font-size: 51px;  -fx-font-family: 'NotoSans-Regular', 'Roboto', 'Helvetica Neue', 'sans-serif'; -fx-font-weight: bold; -fx-text-fill: #dca523; ");
+        BigT.setLayoutX(400);
+        BigT.setLayoutY(95);
+        closee.setLayoutX(1200);
+        closee.setLayoutY(20);
+        analysisTxt.setVisible(false);
+        anaylsisImg.setVisible(false);
+        analysisTxt1.setVisible(false);
+        anaylsisImg1.setVisible(false);
+        for (Map.Entry<String, Integer> entry : StatisticsManager.getMonthsRevenue().entrySet()) {
+            String month = entry.getKey();
+            Integer revenue = entry.getValue();
+            System.out.println(month);
+            System.out.println(revenue);
+            Label label = new Label(month + " : " + revenue + " 💵");
+
+            label.setStyle("-fx-font-size: 20px;  -fx-font-family: 'NotoSans-Regular', 'Roboto', 'Helvetica Neue', 'sans-serif'; -fx-font-weight: bold; -fx-text-fill: black; fx-padding: 5;  -fx-border-color: black;  -fx-border-width: 1;   -fx-border-style: solid;   -fx-background-color: white");
+
+            vboxxx.getChildren().add(label);
+        }
+        for (Map.Entry<String, HashMap<String, Integer>> entry : StatisticsManager.getHighestPlan().entrySet()) {
+            Label plansss = new Label();
+            plansss.setText(entry.getValue().toString() + " 👥");
+            plansss.setStyle("-fx-font-size: 20px;  -fx-font-family: 'NotoSans-Regular', 'Roboto', 'Helvetica Neue', 'sans-serif'; -fx-font-weight: bold; -fx-text-fill: white ; fx-padding: 5;  -fx-border-color: white;  -fx-border-width: 0.5px;   -fx-border-style: solid; " );
+            vboxxx2.getChildren().add(plansss);
+        }
+        vboxxx.setStyle("-fx-padding: 10;  -fx-spacing: 5;");
+        vboxxx.setLayoutX(60);
+        vboxxx.setLayoutY(200);
+        vboxxx2.setStyle("-fx-padding: 10;  -fx-spacing: 5;");
+        vboxxx2.setLayoutX(400);
+        vboxxx2.setLayoutY(200);
+        statPage.getChildren().add(closee);
+        statPage.getChildren().add(BigT);
+        statPage.getChildren().add(vboxxx);
+        statPage.getChildren().add(vboxxx2);
+        vboxxx.setVisible(true);
+        vboxxx2.setVisible(true);
+        closee.setVisible(true);
+        BigT.setVisible(true);
+    }
+
+    void closeboxx (){
+        analysisTxt.setVisible(true);
+        anaylsisImg.setVisible(true);
+        vboxxx.setVisible(false);
+        vboxxx2.setVisible(false);
+        closee.setVisible(false);
+        BigT.setVisible(false);
+        statPage.getChildren().remove(vboxxx);
+        statPage.getChildren().remove(vboxxx2);
+        statPage.getChildren().remove(BigT);
+        statPage.getChildren().remove(closee);
+        vboxxx.getChildren().removeAll();
+        vboxxx.getChildren().clear();
+        vboxxx2.getChildren().removeAll();
+        vboxxx2.getChildren().clear();
+    }
+
 
     private void loadMovies() {
 
@@ -1942,17 +2116,8 @@ public class PhaseOneController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
 
-        scrollPaneSearch.setStyle("-fx-background-color: #0F0A05;");
-        scrollPaneSearch.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-        scrollPaneSearch.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-        scrollPaneSearch.setFitToWidth(true);
-        scrollPaneSearch.setFitToHeight(true);
-
-
-        emailSignIn.setText("ahmed412naderr@gmail.com");
-        passwordSignIn.setText("12345678");
-
-
+        analysisTxt.setOnMouseClicked(event -> setvboxxx());
+        closee.setOnMouseClicked(event -> closeboxx());
         scrollPane.setStyle("-fx-background-color: #0F0A05;");
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
