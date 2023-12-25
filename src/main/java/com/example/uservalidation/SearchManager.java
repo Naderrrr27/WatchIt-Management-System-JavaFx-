@@ -6,16 +6,18 @@ public class SearchManager {
 
     SearchManager(){};
 
+
     public static ArrayList<Movie> searchMovie(String searchedItem)
     {
 
+        int counter = 0;
 
         ArrayList<Movie> movies = new ArrayList<>();
 
         for (Movie m : HelloApplication.movies)
         {
 
-            if(searchedItem.equalsIgnoreCase(m.getTitle()))
+            if(m.getTitle().toLowerCase().contains(searchedItem.toLowerCase()))
                 movies.add(m);
 
         }
@@ -28,13 +30,17 @@ public class SearchManager {
     public static ArrayList<Movie> searchCast(String searchedItem)
     {
 
+        int counter = 0;
 
         ArrayList<Movie> castMovies = new ArrayList<>();
 
-        for (Cast c : HelloApplication.casts)
+        for (Movie movie : HelloApplication.movies)
         {
-            if(searchedItem.equalsIgnoreCase(c.getFirstName()+" "+c.getLastName()))
-                castMovies=c.getActedMovie();
+            for (Cast castt : movie.getCast())
+            {
+                if((castt.getFirstName()+" "+castt.getLastName()).toLowerCase().contains(searchedItem.toLowerCase()))
+                    castMovies.add(movie);
+            }
         }
 
         return castMovies ;
@@ -44,21 +50,22 @@ public class SearchManager {
     public static ArrayList<Movie> searchGenra(String searchedItem)
     {
 
+        int counter = 0;
 
-        ArrayList<Movie>movies=new ArrayList<>();
+        ArrayList<Movie> moviesGenre=new ArrayList<>();
 
 
         for(Movie m:HelloApplication.movies)
         {
-            if(searchedItem.equalsIgnoreCase(m.getTypes().get(0)))
+            if(m.getTypes().get(0).toLowerCase().contains(searchedItem.toLowerCase()))
             {
-                movies.add(m);
+                moviesGenre.add(m);
             }
         }
 
 
 
-        return movies;
+        return moviesGenre;
 
 
     }

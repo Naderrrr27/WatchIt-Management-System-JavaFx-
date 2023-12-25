@@ -21,7 +21,7 @@ public class StatisticsManager {
     private  static HashMap<String , Integer> plan11 = new HashMap<>();
     private  static HashMap<String , Integer> plan12 = new HashMap<>();
 
-    private  static ArrayList<Movie> topViewsMovies = HelloApplication.movies;
+    private  static ArrayList<Movie> topViewsMovies = new ArrayList<>(HelloApplication.movies);
 
     private static Set<Float> sortRate = new TreeSet<>(Comparator.reverseOrder());
 

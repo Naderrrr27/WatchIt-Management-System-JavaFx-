@@ -65,6 +65,10 @@ public class UserWatchRecord implements Serializable {
         return rate;
     }
 
+
+
+
+
     @Override
     public String toString() {
         return "UserWatchRecord{" +

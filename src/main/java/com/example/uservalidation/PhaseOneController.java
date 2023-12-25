@@ -345,6 +345,9 @@ public class PhaseOneController implements Initializable {
     ImageView statIcon = new ImageView();
 
     @FXML
+    ImageView stattIcon = new ImageView();
+
+    @FXML
     ScrollPane scrollPaneSearch = new ScrollPane();
 
     TilePane viewTilePane = new TilePane();
@@ -495,6 +498,9 @@ public class PhaseOneController implements Initializable {
     //mola7azat?
     public void signOut(ActionEvent event)
     {
+
+        stattIcon.setVisible(false);
+
         signInForm.setVisible(true);
         signUpForm.setVisible(false);
         subscriptionPlanss.setVisible(false);
@@ -513,7 +519,6 @@ public class PhaseOneController implements Initializable {
         passwordSignIn.setStyle("-fx-border-width: 0 0 2 0;-fx-border-radius: 10;-fx-text-inner-color:white;-fx-border-color: #DCA523;");
         passwordValid.setVisible(false);
     }
-
     public void signIn(ActionEvent event)
     {
         if(emailSignIn.getText().isEmpty()||passwordSignIn.getText().isEmpty())
@@ -538,6 +543,16 @@ public class PhaseOneController implements Initializable {
             {
                 if(emailSignIn.getText().equals(it.getEmail())&&passwordSignIn.getText().equals(it.getPassword()))
                 {
+
+                    if(emailSignIn.getText().equals("admin@gmail.com")&&passwordSignIn.getText().equals("admin111"))
+                    {
+                        it.setSubscription(new Subscription("Basic"));
+                        it.setSubscriptionActive(true);
+
+
+                        stattIcon.setVisible(true);
+                    }
+
                     if(it.isSubscriptionActive()==false)
                     {
                         subscriptionPlanss.setVisible(true);
@@ -613,6 +628,7 @@ public class PhaseOneController implements Initializable {
             }
         }
     }
+
 
     public void signUp() throws IOException {
         if (firstNameSignUp.getText().isEmpty()||lastNameSignUp.getText().isEmpty()||userNameSignUp.getText().isEmpty()||emailSignUp.getText().isEmpty()||passwordSignUp.getText().isEmpty())
@@ -751,6 +767,9 @@ public class PhaseOneController implements Initializable {
     @FXML
         //sign out when subscriptionPlanes are displayed
     void sugnOutSub(ActionEvent event) {
+
+        stattIcon.setVisible(false);
+
         signInForm.setVisible(true);
         signUpForm.setVisible(false);
         subscriptionPlanss.setVisible(false);
@@ -1070,14 +1089,14 @@ public class PhaseOneController implements Initializable {
     void validateSearch(KeyEvent event) {
         String s =searchFeild.getText();
         searchTilPane.getChildren().clear();
-        ArrayList<Movie>movies =SearchManager.searchMovie(s);
-        ArrayList<Movie> castMovies=SearchManager.searchCast(s);
-        ArrayList<Movie> genraMovies=SearchManager.searchGenra(s);
 
+        Set<Movie> movies = new LinkedHashSet<>();
 
+        movies.addAll(SearchManager.searchMovie(s));
+        movies.addAll(SearchManager.searchCast(s));
+        movies.addAll(SearchManager.searchGenra(s));
 
-
-        if(searchFeild.getText().length()  < 3 && searchFeild.getText().length() > 0)
+        if(searchFeild.getText().length()  < 3 && searchFeild.getText().length() >= 0)
         {
             warningSearch.setText("The minimum number of characters is 3");
             warningSearch.setPrefWidth(500);
@@ -1086,7 +1105,7 @@ public class PhaseOneController implements Initializable {
         else
         {
             warningSearch.setVisible(false);
-            Search(movies,castMovies,genraMovies);
+            Search(movies);
             scrollPaneSearch.setContent(searchTilPane);
 
         }
@@ -1094,37 +1113,20 @@ public class PhaseOneController implements Initializable {
 
 
 
-    private void Search (ArrayList<Movie> movies,ArrayList<Movie> castMovie ,ArrayList<Movie> genraMovie)
+    private void Search (Set<Movie> myMovies)
     {
 
-        if(movies.size()==0&&castMovie.size()==0&&genraMovie.size()==0)
+        if(myMovies.isEmpty())
         {
-
             warningSearch.setText("We couldn't find any results that match your search");
             warningSearch.setVisible(true);
-
-//            Label notfound=new Label("We couldn't find any results that match your search");
-//            notfound.setStyle("-fx-text-fill:white;-fx-font-size:25;-fx-font-weight:900;-fx-padding:30;");
-//            searchTilPane.getChildren().add(notfound);
         }
         else
         {
-
-            for(Movie movie: movies)
+            for(Movie movie: myMovies)
             {
                 addMovieToTilePane(movie,searchTilPane);
             }
-
-            for(Movie movie : castMovie)
-            {
-                addMovieToTilePane(movie,searchTilPane);
-            }
-
-            for(Movie movie: genraMovie)
-            {
-                addMovieToTilePane(movie,searchTilPane);
-            }
-
         }
 
     }
@@ -1147,6 +1149,10 @@ public class PhaseOneController implements Initializable {
 
     @FXML
     void signOutt(MouseEvent event) {
+
+        stattIcon.setVisible(false);
+
+
         signInForm.setVisible(true);
         mainMenu.setVisible(false);
         fakeCombo.setVisible(false);
@@ -1453,7 +1459,6 @@ public class PhaseOneController implements Initializable {
         resultLabel.setVisible(true);
     }
 
-
     private void loadMovies() {
 
         headerLabel.setText("Cinema Collection");
@@ -1725,7 +1730,7 @@ public class PhaseOneController implements Initializable {
 
         watch.setOnMouseClicked(event -> {
 
-            if(!HelloApplication.users.get(User.whoIsActive-1).getSubscription().isPlaneActive())
+            if(!HelloApplication.users.get(User.whoIsActive-1).getEmail().equals("admin@gmail.com")&&!HelloApplication.users.get(User.whoIsActive-1).getSubscription().isPlaneActive())
             {
 
                 HelloApplication.users.get(User.whoIsActive-1).setSubscriptionActive(false);
@@ -1893,7 +1898,6 @@ public class PhaseOneController implements Initializable {
         movieTilePane1.setPrefHeight(500);
     }
 
-
     private boolean isWatchedBefore(Movie movie)
     {
         boolean watchedBefore = false;
@@ -1989,8 +1993,6 @@ public class PhaseOneController implements Initializable {
         }
     }
 
-
-
     private void addDetailsToDisplay(Movie movie) {
         controlled.getChildren().clear();
         Label title = new Label(movie.getTitle());
@@ -2035,9 +2037,6 @@ public class PhaseOneController implements Initializable {
 
     }
 
-
-
-
     private void addMoreLikeThisToDisplay(Movie movie) {
         controlled.getChildren().clear();
         int c=0;
@@ -2054,8 +2053,6 @@ public class PhaseOneController implements Initializable {
             }
         }
     }
-
-
 
     private void showLikeThis(Movie movie)
     {
@@ -2108,7 +2105,6 @@ public class PhaseOneController implements Initializable {
         controlled.setMargin(moviePoster,new Insets(50,10,0,0));
 
     }
-
 
 
     private void displayGenre(ArrayList<String> genres) {
@@ -2191,17 +2187,12 @@ public class PhaseOneController implements Initializable {
 
     }
 
-
-
-
-
-
-
-
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+
+        emailSignIn.setText("admin@gmail.com");
+        passwordSignIn.setText("admin111");
 
         analysisTxt.setOnMouseClicked(event -> setvboxxx());
         closee.setOnMouseClicked(event -> closeboxx());
@@ -2211,10 +2202,12 @@ public class PhaseOneController implements Initializable {
         scrollPane.setFitToWidth(true);
         scrollPane.setFitToHeight(true);
 
-
+        scrollPaneSearch.setStyle("-fx-background-color: #0F0A05;");
+        scrollPaneSearch.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        scrollPaneSearch.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        scrollPaneSearch.setFitToWidth(true);
+        scrollPaneSearch.setFitToHeight(true);
 
     }
-
-
 
 }

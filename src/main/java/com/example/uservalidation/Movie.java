@@ -2,6 +2,7 @@ package com.example.uservalidation;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Movie implements Serializable {
 
@@ -190,6 +191,18 @@ public class Movie implements Serializable {
         return types;
     }
 
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Movie movie)) return false;
+        return movieId == movie.movieId;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(movieId);
+    }
 
     @Override
     public String toString() {
